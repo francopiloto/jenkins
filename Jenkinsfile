@@ -6,6 +6,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     bat 'pm2 stop sippi-react-dev'
+                    bat 'pm2 delete sippi-react-dev'
                 }
             }
         }
@@ -19,7 +20,8 @@ pipeline {
         
         stage('Start') {
             steps {
-                bat 'pm2 start ./server/index.js --name sippi-react-dev'
+                bat 'pm2 start test.js --name sippi-react-dev'
+                bat 'pm2 save'
             }
         }
     }
