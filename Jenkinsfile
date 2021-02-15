@@ -35,12 +35,13 @@ pipeline {
                     }
 
                     script {
-                        properties = readProperties file: 'src/main/resources/application.properties'
-                        properties['spring.datasource.url'] = 'jdbc:postgresql://localhost:5432/api-teste'
-                        properties['server.port'] = apiPort
-                        properties['cors.allowed.origins'] = "http://sippi.polodeinovacao.ifce.edu.br:${reactPort}"
+                        props = readProperties file: 'src/main/resources/application.properties'
+                        props['spring.datasource.url'] = 'jdbc:postgresql://localhost:5432/api-teste'
+                        props['server.port'] = apiPort
+                        props['cors.allowed.origins'] = "http://sippi.polodeinovacao.ifce.edu.br:${reactPort}"
 
-                        echo properties
+                        def content = props.collect{entry->entry.key+"="+entry.value}.join('\n')
+                        writeFile file: 'src/main/resources/application.properties', text: content
                     }
                 }
             }
