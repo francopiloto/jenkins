@@ -70,11 +70,10 @@ pipeline {
             steps {
                 ws(workspace) {
                     catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
-                        bat 'rd dist /s /q'
+                        bat 'del log.txt'
                     }
 
-                    bat 'mkdir dist'
-                    bat 'move build\\libs\\sippi.jar dist'
+                    bat 'move build\\libs\\sippi.jar .'
                     bat 'rd build /s /q'
                     bat 'rd src /s /q'
                 }
