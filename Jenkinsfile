@@ -74,7 +74,7 @@ pipeline {
                     }
 
                     bat 'mkdir dist'
-                    bat 'move build/libs/sippi.jar dist/sippi.jar'
+                    bat 'move build/libs/sippi.jar dist/'
                     bat 'rd build /s /q'
                     bat 'rd src /s /q'
                 }
