@@ -73,7 +73,9 @@ pipeline {
                         bat 'rd dist /s /q'
                     }
 
-                    bat 'ren build dist'
+                    bat 'mkdir dist'
+                    bat 'move build/libs/sippi.jar dist/sippi.jar'
+                    bat 'rd build /s /q'
                     bat 'rd src /s /q'
                 }
             }

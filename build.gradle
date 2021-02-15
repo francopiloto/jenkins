@@ -7,12 +7,16 @@ plugins {
 }
 
 group = 'api.sippi'
-version = '1.0.0'
+version = ''
 sourceCompatibility = '1.8'
 compileJava.options.encoding = 'UTF-8'
 
 repositories {
 	mavenCentral()
+}
+
+bootJar {
+   archiveFileName = 'sippi.jar'
 }
 
 dependencies {

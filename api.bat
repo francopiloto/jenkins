@@ -1,1 +1,1 @@
-java -jar sippi.jar
+java -jar dist/sippi.jar
