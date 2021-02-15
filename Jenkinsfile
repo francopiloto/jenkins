@@ -20,7 +20,7 @@ pipeline {
         
         stage('Start') {
             steps {
-                bat 'pm2 start test.js --name sippi-react-dev'
+                bat 'pm2 start teste.js --name sippi-react-dev'
                 bat 'pm2 save'
             }
         }
