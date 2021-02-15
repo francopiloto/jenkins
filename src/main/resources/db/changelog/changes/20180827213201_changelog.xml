@@ -1,0 +1,44 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="franco" id="20180827213201-1">
+        <sql splitStatements="false" endDelimiter=";">
+            DO $body$
+            DECLARE r record;
+            BEGIN
+                FOR r IN (SELECT con.conname as constraint_name, rel.relname as table_name
+                          FROM pg_catalog.pg_constraint con
+                          INNER JOIN pg_catalog.pg_class rel ON rel.oid = con.conrelid
+                          INNER JOIN pg_catalog.pg_namespace nsp ON nsp.oid = connamespace
+                          WHERE rel.relname IN
+                                 ('aluno','aluno_area','aluno_arquivo','aluno_nivel','area_competencia','area_pesquisa',
+                                  'arquivo','bolsa_info','campus','categoria_bolsa','colaborador','colaborador_area',
+                                  'colaborador_arquivo','conta','contrato_info','diaria','email_config','empresa',
+                                  'empresa_contato','endereco','notificacao','password_reset_token','permissao','pesquisador',
+                                  'pesquisador_area','pesquisador_arquivo','pesquisador_salario','pesquisador_titulo','pessoa',
+                                  'processo','projeto','projeto_aporte','projeto_area_map','projeto_atividade','projeto_config',
+                                  'projeto_descritivo','projeto_estagio','projeto_estagio_map','projeto_fonte_recurso',
+                                  'projeto_historico','projeto_macroentrega','projeto_material','projeto_material_map',
+                                  'projeto_maturidade','projeto_maturidade_map','projeto_modalidade','projeto_modalidade_parte',
+                                  'projeto_outros','projeto_outros_map','projeto_rh','projeto_rh_map','projeto_servico',
+                                  'projeto_servico_map','projeto_servico_tipo','projeto_solicitacao','projeto_solicitacao_compra',
+                                  'projeto_solicitacao_pagamento','projeto_solicitacao_servico','projeto_solicitacao_viagem',
+                                  'projeto_solicitacaorh','projeto_viagem','projeto_viagem_map','proposta','proposta_aporte',
+                                  'proposta_area_map','proposta_atividade','proposta_config','proposta_descritivo',
+                                  'proposta_devolucao','proposta_empresa','proposta_estagio','proposta_informativo',
+                                  'proposta_macroentrega','proposta_material','proposta_maturidade_map','proposta_outros',
+                                  'proposta_rh','proposta_servico','proposta_viagem','supervisor','supervisor_notificacao',
+                                  'usuario','usuario_perfil','usuario_perfil_permissao','vinculo_instituicao','vinculo_trabalho')
+                          AND nsp.nspname = 'public' AND contype IN ('c','f','p','u') ORDER BY rel.relname)
+                LOOP
+                    EXECUTE 'ALTER TABLE ' || quote_ident(r.table_name) || ' DROP CONSTRAINT IF EXISTS '|| quote_ident(r.constraint_name) || ' CASCADE;';
+                END LOOP;
+            END
+            $body$;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

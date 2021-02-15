@@ -1,0 +1,36 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+  
+      <changeSet author="Izabella" id="20200504215339-1">
+      <preConditions onFail="MARK_RAN">
+    		<not>
+    			<tableExists tableName="meses"/>
+    		</not>
+    	</preConditions> 
+    	
+        <createTable tableName="meses">
+            <column autoIncrement="true" name="id" type="SMALLINT">
+                <constraints primaryKey="true" primaryKeyName="mesesPK"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20200504215339-2">
+        <addColumn tableName="projeto_solicitacao_pagamento_rh">
+            <column name="ano_pagamento" type="int4" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="Izabella (generated)" id="1588640087967-49">
+        <addUniqueConstraint columnNames="nome" constraintName="UC_MESESNOME_COL" tableName="meses"/>
+    </changeSet>
+    
+</databaseChangeLog>

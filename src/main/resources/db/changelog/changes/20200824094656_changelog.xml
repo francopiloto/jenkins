@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="matheusholandamatos" id="20200824094656-1">
+        <preConditions onFail="MARK_RAN">
+       		<not>
+        		<columnExists tableName="projeto_payment" columnName="rh_id"/>
+        	</not>	
+        </preConditions>      
+        <addColumn tableName="projeto_payment">
+            <column name="rh_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="matheusholandamatos" id="20200824094656-2">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK3s1ffr49w5yy5f3h3lgnp4oy1"/>
+            </not>
+        </preConditions>       
+        <addForeignKeyConstraint baseColumnNames="rh_id" baseTableName="projeto_payment" constraintName="FK3s1ffr49w5yy5f3h3lgnp4oy1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh" validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>

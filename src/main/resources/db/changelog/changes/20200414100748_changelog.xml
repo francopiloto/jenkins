@@ -1,0 +1,86 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+ 
+    <changeSet author="Izabella" id="20200414100748-1">
+        <createTable tableName="projeto_payment">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_paymentPK"/>
+            </column>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duracao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meses_executados" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meses_solicitados" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cargo" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="encargos" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="perfil" type="VARCHAR(255)"/>
+            <column name="perfil_id" type="BIGINT"/>
+            <column name="remuneracao" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="categoria_bolsa_id" type="SMALLINT"/>
+            <column name="pessoa_id" type="BIGINT"/>
+            <column name="vinculo_instituicao_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vinculo_trabalho_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Izabella" id="20200414100748-2">
+        <createTable tableName="projeto_payment_map">
+            <column name="versao" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="projeto_payment_mapPK"/>
+            </column>
+            <column name="payment_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_payment_mapPK"/>
+            </column>
+            <column name="projeto_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_payment_mapPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Izabella" id="20200414100748-3">
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_payment" constraintName="FK1onuxlyceoobg05fwcbsew4ak" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    <changeSet author="Izabella" id="20200414100748-4">
+        <addForeignKeyConstraint baseColumnNames="categoria_bolsa_id" baseTableName="projeto_payment" constraintName="FK2mcuqhl9kq9nie495olhbiph3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="categoria_bolsa" validate="true"/>
+    </changeSet>
+    <changeSet author="Izabella" id="20200414100748-5">
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="projeto_payment" constraintName="FK4v26sdbw3y8alw2eeto377234" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    <changeSet author="Izabella" id="20200414100748-6">
+        <addForeignKeyConstraint baseColumnNames="vinculo_instituicao_id" baseTableName="projeto_payment" constraintName="FK5hidt1sqk0kgwfeyn1ykme28w" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="vinculo_instituicao" validate="true"/>
+    </changeSet>
+    <changeSet author="Izabella" id="20200414100748-7">
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_payment_map" constraintName="FK729eh4buwocnenej9wmab4sgn" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+    </changeSet>
+    <changeSet author="Izabella" id="20200414100748-8">
+        <addForeignKeyConstraint baseColumnNames="payment_id" baseTableName="projeto_payment_map" constraintName="FKnai6lch26v7p9d44tvy8mwwqj" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_payment" validate="true"/>
+    </changeSet>
+    <changeSet author="Izabella" id="20200414100748-9">
+        <addForeignKeyConstraint baseColumnNames="vinculo_trabalho_id" baseTableName="projeto_payment" constraintName="FKocrufs460jare0mmqwitej2fl" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="vinculo_trabalho" validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,667 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-1">
+    	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano"/>    		
+    		</not>
+    	</preConditions>       
+        <createTable tableName="projeto_plano">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_planoPK"/>
+            </column>
+            <column name="duracao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sigla" type="VARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titulo" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="coordenador_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descritivo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="projeto_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+	<changeSet author="matheusholandamatos" id="20200526090706-2">
+    	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_descritivo"/>    		
+    		</not>
+    	</preConditions>   	
+        <createTable tableName="projeto_plano_descritivo">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_plano_descritivoPK"/>
+            </column>
+            <column name="escopo" type="VARCHAR(5000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="introducao" type="VARCHAR(5000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="originalidade" type="VARCHAR(5000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="premissas" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="propriedade_intelectual" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="restricoes" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resumo_publico" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="riscos" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="projeto_descritivo_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>    
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-3">
+    	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_atividadae"/>    		
+    		</not>
+    	</preConditions>       
+        <createTable tableName="projeto_plano_atividade">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_plano_atividadePK"/>
+            </column>
+            <column name="mes_fim" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mes_inicio" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titulo" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_macroentrega" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-4">
+    	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_estagio"/>    		
+    		</not>
+    	</preConditions>       
+        <createTable tableName="projeto_plano_estagio">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_plano_estagioPK"/>
+            </column>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duracao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meses_executados" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meses_solicitados" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="funcao" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="remuneracao" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="estagios_id" type="BIGINT"/>
+            <column name="pessoa_id" type="BIGINT"/>
+            <column name="projeto_plano_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-5">
+    	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_macroentrega"/>    		
+    		</not>
+    	</preConditions>       
+        <createTable tableName="projeto_plano_macroentrega">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_plano_macroentregaPK"/>
+            </column>
+            <column name="data_entrega" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duracao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="inicio" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titulo" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="macroentregas_id" type="BIGINT"/>
+            <column name="projeto_plano_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-6">
+    	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_material"/>    		
+    		</not>
+    	</preConditions>       
+        <createTable tableName="projeto_plano_material">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_plano_materialPK"/>
+            </column>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_executado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_solicitado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="material_id" type="BIGINT"/>
+            <column name="projeto_plano_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-7">
+    	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_outros"/>    		
+    		</not>
+    	</preConditions>       
+        <createTable tableName="projeto_plano_outros">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_plano_outrosPK"/>
+            </column>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_executado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_solicitado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="outros_id" type="BIGINT"/>
+            <column name="projeto_plano_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-8">
+    	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_rh"/>    		
+    		</not>
+    	</preConditions>       
+        <createTable tableName="projeto_plano_rh">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_plano_rhPK"/>
+            </column>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duracao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meses_executados" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meses_solicitados" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cargo" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="encargos" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="perfil" type="VARCHAR(255)"/>
+            <column name="perfil_id" type="BIGINT"/>
+            <column name="remuneracao" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="categoria_bolsa_id" type="SMALLINT"/>
+            <column name="pessoa_id" type="BIGINT"/>
+            <column name="rh_id" type="BIGINT"/>
+            <column name="vinculo_instituicao_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vinculo_trabalho_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="projeto_plano_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-9">
+    	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_servico"/>    		
+    		</not>
+    	</preConditions>       
+        <createTable tableName="projeto_plano_servico">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_plano_servicoPK"/>
+            </column>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_executado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_solicitado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="servicos_id" type="BIGINT"/>
+            <column name="projeto_plano_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-10">
+    	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_viagem"/>    		
+    		</not>
+    	</preConditions>       
+        <createTable tableName="projeto_plano_viagem">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_plano_viagemPK"/>
+            </column>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_executado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_solicitado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_diaria" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_passagem" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="viagens_id" type="BIGINT"/>
+            <column name="projeto_plano_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-11">
+        <addUniqueConstraint columnNames="sigla" constraintName="UC_PROJETO_PLANOSIGLA_COL" tableName="projeto_plano"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-12">
+        <addUniqueConstraint columnNames="titulo" constraintName="UC_PROJETO_PLANOTITULO_COL" tableName="projeto_plano"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-13">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK1svq7el9tqui57ex94shv6ct9"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="material_id" baseTableName="projeto_plano_material" constraintName="FK1svq7el9tqui57ex94shv6ct9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_material" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-14">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK20ctdivx2fshp1cq100r403yp"/>
+            </not>
+        </preConditions>    
+        <addForeignKeyConstraint baseColumnNames="projeto_plano_id" baseTableName="projeto_plano_viagem" constraintName="FK20ctdivx2fshp1cq100r403yp" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-15">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK3hmry53nvxmnlh2lhyqprkd0v"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_plano_estagio" constraintName="FK3hmry53nvxmnlh2lhyqprkd0v" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-16">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK47ejx9hoglf39tqlcj7sbqul8"/>
+            </not>
+        </preConditions> 
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_plano_rh" constraintName="FK47ejx9hoglf39tqlcj7sbqul8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-17">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK4j1hlrni7gu2hruludd1a05tr"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="coordenador_id" baseTableName="projeto_plano" constraintName="FK4j1hlrni7gu2hruludd1a05tr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-18">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK66as6ok5ufi8mvvlir3d5yijo"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="projeto_plano_id" baseTableName="projeto_plano_outros" constraintName="FK66as6ok5ufi8mvvlir3d5yijo" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-19">
+       	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK6tg9oaqiakxebu9r0cm7hof16"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_plano_material" constraintName="FK6tg9oaqiakxebu9r0cm7hof16" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-20">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKqrykergmir40uul9hh0xfsbca"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="descritivo_id" baseTableName="projeto_plano" constraintName="FKqrykergmir40uul9hh0xfsbca" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano_descritivo" validate="true"/>
+    </changeSet>    
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-21">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKmbw4ufws4bk0yfdrwsjdvk6bk"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="projeto_descritivo_id" baseTableName="projeto_plano_descritivo" constraintName="FKmbw4ufws4bk0yfdrwsjdvk6bk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_descritivo" validate="true"/>
+    </changeSet>    
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-22">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKc4umnjn1bpib5i4uf0nmfc1c"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="projeto_plano_rh" constraintName="FKc4umnjn1bpib5i4uf0nmfc1c" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-23">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKctvq1a4olmy52ypicmsogjciy"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="servicos_id" baseTableName="projeto_plano_servico" constraintName="FKctvq1a4olmy52ypicmsogjciy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_servico" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-24">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKd505donptut9jjqdf68uu2p37"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="categoria_bolsa_id" baseTableName="projeto_plano_rh" constraintName="FKd505donptut9jjqdf68uu2p37" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="categoria_bolsa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-25">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKdcf8f8fgmmohjmrk5ig16y52q"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="vinculo_trabalho_id" baseTableName="projeto_plano_rh" constraintName="FKdcf8f8fgmmohjmrk5ig16y52q" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="vinculo_trabalho" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-26">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKdiajhujrjisvjx9yemitc8wn7"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_plano_viagem" constraintName="FKdiajhujrjisvjx9yemitc8wn7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-27">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKe7n053f81d1p9cb18y21t5hk8"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="rh_id" baseTableName="projeto_plano_rh" constraintName="FKe7n053f81d1p9cb18y21t5hk8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-28">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKecyuhei23b8srj908n8y8oo0v"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_plano_servico" constraintName="FKecyuhei23b8srj908n8y8oo0v" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-29">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKetenur8c2ttbio4f44arlumde"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="projeto_plano_id" baseTableName="projeto_plano_macroentrega" constraintName="FKetenur8c2ttbio4f44arlumde" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-30">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKfk8sgnc1i15fgdg35htjae8a6"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="macroentregas_id" baseTableName="projeto_plano_macroentrega" constraintName="FKfk8sgnc1i15fgdg35htjae8a6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_macroentrega" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-31">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKhqo6txbw6x59kfhlc5x3iy4k0"/>
+            </not>
+        </preConditions>    
+        <addForeignKeyConstraint baseColumnNames="vinculo_instituicao_id" baseTableName="projeto_plano_rh" constraintName="FKhqo6txbw6x59kfhlc5x3iy4k0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="vinculo_instituicao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-32">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKi2ri8109gqkb8wivl4b6ov7cm"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_plano" constraintName="FKi2ri8109gqkb8wivl4b6ov7cm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-33">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKi2x95aic9xo6njssg62ipppvp"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="id_macroentrega" baseTableName="projeto_plano_atividade" constraintName="FKi2x95aic9xo6njssg62ipppvp" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano_macroentrega" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-34">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKkksj38otth8qsrq7g767p46bi"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="projeto_plano_id" baseTableName="projeto_plano_rh" constraintName="FKkksj38otth8qsrq7g767p46bi" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-35">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKlbf1ejen1ysqheaq9jbnm58w3"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_plano_outros" constraintName="FKlbf1ejen1ysqheaq9jbnm58w3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-36">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKoosbvxyo977igut0i37g09ys9"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="projeto_plano_id" baseTableName="projeto_plano_estagio" constraintName="FKoosbvxyo977igut0i37g09ys9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-37">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKpq65xbjv32wt9wax339ucuekk"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="outros_id" baseTableName="projeto_plano_outros" constraintName="FKpq65xbjv32wt9wax339ucuekk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_outros" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-38">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKpu9xxawiswdndta7dtodlbfmd"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="projeto_plano_estagio" constraintName="FKpu9xxawiswdndta7dtodlbfmd" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-39">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKr89v3p5n74jcyxcpekvkqt5kr"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="estagios_id" baseTableName="projeto_plano_estagio" constraintName="FKr89v3p5n74jcyxcpekvkqt5kr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_estagio" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-40">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKrm768wfvrxmx3bthklaa8ly8u"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="viagens_id" baseTableName="projeto_plano_viagem" constraintName="FKrm768wfvrxmx3bthklaa8ly8u" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_viagem" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-41">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKrn8qgnm583li1scp2xijn0e0m"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="projeto_plano_id" baseTableName="projeto_plano_material" constraintName="FKrn8qgnm583li1scp2xijn0e0m" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200526090706-42">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKyi0ub7pvvfqlmglnnkpv4qnb"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="projeto_plano_id" baseTableName="projeto_plano_servico" constraintName="FKyi0ub7pvvfqlmglnnkpv4qnb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

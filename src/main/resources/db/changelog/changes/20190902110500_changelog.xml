@@ -1,0 +1,143 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="franco" id="20190902110500-1">
+        <modifyDataType columnName="estado" newDataType="CHARACTER(3)" tableName="proposta" />
+        <addDefaultValue columnDataType="CHARACTER" columnName="estado" defaultValue="EDT" tableName="proposta"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20190902110500-2">
+        <modifyDataType columnName="estado" newDataType="CHARACTER(3)" tableName="projeto" />
+        <addDefaultValue columnDataType="CHARACTER" columnName="estado" defaultValue="SIG" tableName="projeto"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-3">
+        <modifyDataType columnName="estado" newDataType="CHARACTER(3)" tableName="proposta_devolucao" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-4">
+        <modifyDataType columnName="nome" newDataType="VARCHAR(255)" tableName="empresa_contato" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-5">
+        <modifyDataType columnName="descricao" newDataType="VARCHAR(255)" tableName="projeto_material" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-6">
+        <modifyDataType columnName="descricao" newDataType="VARCHAR(255)" tableName="projeto_outros" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-7">
+        <modifyDataType columnName="descricao" newDataType="VARCHAR(255)" tableName="projeto_servico" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-8">
+        <modifyDataType columnName="descricao" newDataType="VARCHAR(255)" tableName="projeto_viagem" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-9">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="fonte_recurso" />
+        </preConditions>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="fonte_recurso"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-10">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="projeto_estado" />
+        </preConditions>
+        <dropTable cascadeConstraints="true" schemaName="public" tableName="projeto_estado"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-11">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="proposta_aporte" columnName="macroentrega" />
+        </preConditions>
+        <dropColumn columnName="macroentrega" tableName="proposta_aporte"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-12">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="proposta_aporte" columnName="ordem" />
+            </not>
+        </preConditions>
+        <addColumn tableName="proposta_aporte">
+            <column name="ordem" type="SMALLINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-13">
+        <modifyDataType columnName="observacoes" newDataType="VARCHAR(5000)" tableName="proposta" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-14">
+        <addNotNullConstraint columnDataType="SMALLINT" columnName="duracao" tableName="proposta_macroentrega"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-15">
+        <addNotNullConstraint columnDataType="SMALLINT" columnName="inicio" tableName="proposta_macroentrega"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-16">
+        <addDefaultValue columnDataType="SMALLINT" columnName="ordem" defaultValue="0" tableName="proposta_outros"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-17">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="aluno_nivel" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-18">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="area_competencia" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-19">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="area_pesquisa" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-20">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="campus" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-21">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="categoria_bolsa" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-22">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="diaria" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-23">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="email_config" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-24">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="pesquisador_titulo" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-25">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="projeto_modalidade" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-26">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="projeto_servico_tipo" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-27">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="proposta_config" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-28">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="vinculo_instituicao" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190902110500-29">
+        <modifyDataType columnName="id" newDataType="SMALLINT" tableName="vinculo_trabalho" />
+    </changeSet>
+    
+</databaseChangeLog>

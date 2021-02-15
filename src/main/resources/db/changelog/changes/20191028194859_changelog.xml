@@ -1,0 +1,100 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="franco" id="20191028194859-1">
+        <addColumn tableName="projeto">
+            <column name="numero" type="varchar(10)" defaultValue="0000.0000">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-2">
+        <dropColumn columnName="valor_mensal" tableName="contrato_info"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-3">
+        <sql>
+            UPDATE proposta_descritivo SET resumo_publico = substring(resumo_publico from 1 for 500);
+        </sql>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-4">
+        <addColumn tableName="nivel_curso">
+            <column defaultValue=" " name="titulo" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-5">
+        <sql>
+            UPDATE nivel_curso SET titulo = 'Aluno Técnico'        WHERE valor = 'Técnico';
+            UPDATE nivel_curso SET titulo = 'Graduando'            WHERE valor = 'Graduação';
+            UPDATE nivel_curso SET titulo = 'Aluno Especialização' WHERE valor = 'Especialização';
+            UPDATE nivel_curso SET titulo = 'Mestrando'            WHERE valor = 'Mestrado';
+            UPDATE nivel_curso SET titulo = 'Doutorando'           WHERE valor = 'Doutorado';
+        </sql>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-6">
+        <addColumn tableName="contrato_info">
+            <column name="carga_horaria" type="int4" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-7">
+        <addColumn tableName="contrato_info">
+            <column name="data_inicio" type="timestamp" defaultValue="0001-01-01 01:01:01">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-8">
+        <sql splitStatements="false" endDelimiter=";">
+            UPDATE contrato_info 
+            SET carga_horaria = bolsa_info.carga_horaria, data_inicio = bolsa_info.data_inicio 
+            FROM bolsa_info WHERE contrato_info.id = bolsa_info.id;
+        </sql>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-9">
+        <dropColumn columnName="carga_horaria" tableName="bolsa_info"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-10">
+        <dropColumn columnName="data_inicio" tableName="bolsa_info"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-11">
+        <dropNotNullConstraint columnDataType="number(19,2)" columnName="valor" tableName="projeto_solicitacao"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-12">
+        <sql>
+            UPDATE projeto_solicitacao SET valor = NULL WHERE tipo IN ('rh','_rh','contratacao_rh');
+        </sql>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-13">
+        <createTable tableName="clt_info">
+            <column name="descricao_atividades" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="clt_infoPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191028194859-14">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="clt_info" constraintName="FKeqs57t04fnyjckteu11vpobrv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="contrato_info" validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>

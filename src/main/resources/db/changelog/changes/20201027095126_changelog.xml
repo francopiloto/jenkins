@@ -1,0 +1,179 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:pro="http://www.liquibase.org/xml/ns/pro" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    
+    <changeSet author="fcolucas" id="20201027095126-1">
+        <sql>
+            DROP TABLE pergunta_coordenador_opcao;
+            DROP TABLE pergunta_bolsista_opcao;
+            DROP TABLE avaliacaorh_bolsista;
+            DROP TABLE avaliacaorh_coordenador;
+        </sql>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027095126-2">
+    	<preConditions onFail="MARK_RAN"> 
+    		<tableExists tableName="avaliacao_bolsista"/>
+    	</preConditions>
+    	<dropTable tableName="avaliacao_bolsista"/>
+    	<dropTable tableName="avaliacao_coordenador"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027095126-3">
+    	<dropTable tableName="bolsista_avaliacao"/>
+    	<dropTable tableName="coordenador_avaliacao"/>
+    	<dropTable tableName="pergunta_avaliacao_bolsista"/>
+    	<dropTable tableName="pergunta_avaliacao_coordenador"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027095126-4">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<tableExists tableName="pergunta_avaliacao_bolsista"/>
+    		</not>
+    	</preConditions>
+        <createTable tableName="pergunta_avaliacao_bolsista">
+            <column autoIncrement="true" name="id" type="SMALLINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pergunta_avaliacao_bolsistaPK"/>
+            </column>
+            <column name="pergunta" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027095126-5">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<tableExists tableName="pergunta_avaliacao_coordenador"/>
+    		</not>
+    	</preConditions>
+        <createTable tableName="pergunta_avaliacao_coordenador">
+            <column autoIncrement="true" name="id" type="SMALLINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pergunta_avaliacao_coordenadorPK"/>
+            </column>
+            <column name="pergunta" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027095126-6">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<tableExists tableName="pergunta_bolsista_opcao"/>
+    		</not>
+    	</preConditions>
+        <createTable tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="opcao" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20201027095126-7">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<tableExists tableName="pergunta_coordenador_opcao"/>
+    		</not>
+    	</preConditions>
+        <createTable tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="opcao" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027095126-8">
+        <addForeignKeyConstraint baseColumnNames="pergunta_id" baseTableName="pergunta_coordenador_opcao" constraintName="FK9i7axdihrgbng5mecaixumt60" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pergunta_avaliacao_coordenador" validate="true"/>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20201027095126-9">
+        <addForeignKeyConstraint baseColumnNames="pergunta_id" baseTableName="pergunta_bolsista_opcao" constraintName="FKl7egdf2v4ffw8ih724rg758bq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pergunta_avaliacao_bolsista" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027095126-10">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM pergunta_avaliacao_bolsista</sqlCheck>
+        </preConditions>
+        <insert tableName="pergunta_avaliacao_bolsista">                       
+            <column name="pergunta" value="A importância da inserção no Projeto para a formação:"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_bolsista">                        
+            <column name="pergunta" value="A experiência de ser bolsista do Projeto foi:"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_bolsista">                        
+            <column name="pergunta" value="Aplicou princípios científicos nas atividades diárias:"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_avaliacao_bolsista">                          
+            <column name="pergunta" value="Aplicou e relacionou conhecimentos teóricos na fundamentação prática:"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_avaliacao_bolsista">                        
+            <column name="pergunta" value="Foi estimulado à superação de desafios pelo coordenador e demais bolsistas componentes da equipe:"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_bolsista">                        
+            <column name="pergunta" value="Você se sentiu parte ativa do processo de ensino-aprendizagem nas ações desenvolvidas no projeto que fez parte? Justifique sua resposta."/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_bolsista">                         
+            <column name="pergunta" value="Questões como protagonismo, independência e autonomia foram trabalhados e/ou estimulados durante o projeto? Justifique sua resposta."/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_bolsista">                        
+            <column name="pergunta" value="De que maneira à prática desenvolvida no projeto contribui para a sua formação acadêmica?"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_bolsista">                         
+            <column name="pergunta" value="Você percebe diferença entre aprender com ações práticas e aprender com o método tradicional de ensino que leva em consideração aulas expositivas e provas? Justifique sua resposta."/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_bolsista">                       
+            <column name="pergunta" value="Quais os pontos positivos da sua participação no projeto?"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_bolsista">                        
+            <column name="pergunta" value="Quais os pontos negativos da sua participação no projeto?"/>                                                                  
+        </insert>                                       
+    </changeSet>
+
+    
+    <changeSet author="fcolucas" id="20201027095126-11">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM pergunta_avaliacao_coordenador</sqlCheck>
+        </preConditions>
+        <insert tableName="pergunta_avaliacao_coordenador">                        
+            <column name="pergunta" value="Em relação às habilidades desenvolvidas pelo bolsista quanto ao conhecimento dos métodos e técnicas de pesquisa:"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_coordenador">                          
+            <column name="pergunta" value="Em relação às habilidades desenvolvidas pelo bolsista quanto ao interesse pela pesquisa tecnológica:"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_coordenador">                        
+            <column name="pergunta" value="Em relação às habilidades desenvolvidas pelo bolsista, quanto ao espírito crítico:"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_coordenador">                       
+            <column name="pergunta" value="Em relação às habilidades desenvolvidas pelo bolsista quanto a criatividade:"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_coordenador">                        
+            <column name="pergunta" value="Como você avalia a participação do bolsista quanto ao aprofundamento de seus conhecimentos em Sistemas Embarcados e Mobilidade Digital:"/>                                                                  
+        </insert>  
+        <insert tableName="pergunta_avaliacao_coordenador">                         
+            <column name="pergunta" value="O bolsista colaborava com ideias que buscavam superar eventuais problemas durante o desenvolvimento do projeto?"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_coordenador">                         
+            <column name="pergunta" value="Quais as competências técnicas desenvolvidas pelo bolsista durante sua participação no projeto?"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_coordenador">                          
+            <column name="pergunta" value="O bolsista contribuiu para a atuação satisfatória dos demais colegas de equipe? De que forma?"/>                                                                  
+        </insert>  
+        <insert tableName="pergunta_avaliacao_coordenador">                        
+            <column name="pergunta" value="O bolsista propõe ideias novas ou soluções de problemas de forma assertiva a partir dos recursos disponíveis? De que forma?"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_coordenador">                        
+            <column name="pergunta" value="Quais características você destacaria na atuação do bolsista?"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_avaliacao_coordenador">                        
+            <column name="pergunta" value="Quais aspectos precisam ser melhorados na atuação do bolsista?"/>                                                                  
+        </insert>                           
+    </changeSet>
+
+</databaseChangeLog>

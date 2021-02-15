@@ -1,0 +1,61 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200507114552-1">
+    	<preConditions onFail="MARK_RAN">
+    		<tableExists tableName="projeto_contrapartida"/>
+    	</preConditions>
+    		<dropTable tableName="projeto_contrapartida_map"/>
+    		<dropTable tableName="projeto_contrapartida"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200507114552-2">
+        <createTable tableName="projeto_contrapartida">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_contrapartidaPK"/>
+            </column>
+            <column name="carga_horaria" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="estado" type="int4">
+            	<constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="perfil" type="VARCHAR(255)"/>
+            <column name="perfil_id" type="BIGINT"/>
+            <column name="remuneracao" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pessoa_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+   
+	<changeSet author="fcolucas" id="20200507114552-3">
+        <createTable tableName="projeto_contrapartida_map">
+            <column name="versao" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="projeto_contrapartida_mapPK"/>
+            </column>
+            <column name="contrapartida_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_contrapartida_mapPK"/>
+            </column>
+            <column name="projeto_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_contrapartida_mapPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20200507114552-4">
+        <addForeignKeyConstraint baseColumnNames="contrapartida_id" baseTableName="projeto_contrapartida_map" constraintName="FK1axh9x358dywuqq8fjipe1im9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_contrapartida" validate="true"/>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20200507114552-5">
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_contrapartida_map" constraintName="FKf62a1eu4d7hjy5sc09gi3xinb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+    </changeSet>
+  
+    <changeSet author="fcolucas" id="20200507114552-6">
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="projeto_contrapartida" constraintName="FKjwf988pn39lwduwmnga2hebsc" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+</databaseChangeLog>

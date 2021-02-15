@@ -1,0 +1,105 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200213120419-1">
+        <update tableName="email_edit">                       
+            <column name="mensagem"><![CDATA[<p>Prezado discente {nome},</p><p>segue em anexo a declaração da comissão de avaliação com o resultado da solicitação de inscrição no Edital Nº {edital} do Polo de Inovação.</p>]]></column>
+            <where> id = 1 </where>                                                                
+        </update>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213120419-2">
+        <update tableName="email_edit">
+            <column name="mensagem"><![CDATA[<p>Prezado {nome},</p><p>solicitação de cadastro de Aluno realizado com sucesso. O resultado desta inscrição será enviado por e-mail após análise da comissão de avaliação, conforme edital.</p>]]></column>
+            <where> id = 2 </where>                                                               
+        </update>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213120419-3">
+        <update tableName="email_edit">
+            <column name="mensagem"><![CDATA[<p>Prezado pesquisador {nome},</p><p>segue em anexo a declaração da comissão de avaliação com o resultado da solicitação de inscrição no Edital Nº {edital} do Polo de Inovação.</p>]]></column>
+            <where> id = 3 </where>                                                             
+        </update>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213120419-4">
+        <update tableName="email_edit">
+            <column name="mensagem"><![CDATA[<p>Prezado {nome},</p><p>solicitação de cadastro de Pesquisador realizado com sucesso. O resultado desta inscrição será enviado por e-mail após análise da comissão de avaliação, conforme edital.</p>]]></column> 
+            <where> id = 4 </where>                                                               
+        </update>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213120419-5">
+        <update tableName="email_edit">
+            <column name="mensagem"><![CDATA[<p>Prezado colaborador {nome},</p><p>segue em anexo a declaração da comissão de avaliação com o resultado da solicitação de inscrição no Edital Nº {edital} do Polo de Inovação.</p>]]></column>
+            <where> id = 5 </where>                                                              
+        </update>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213120419-6">
+        <update tableName="email_edit">
+            <column name="mensagem"><![CDATA[<p>Prezado {nome},</p><p>solicitação de cadastro de Colaborador realizado com sucesso. O resultado desta inscrição será enviado por e-mail após análise da comissão de avaliação, conforme edital.</p>]]></column>
+            <where> id = 6 </where>                                                              
+        </update>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213120419-7">
+        <update tableName="email_edit">
+            <column name="mensagem"><![CDATA[<p>Prezado {nome},</p><p>segue em anexo a declaração da comissão de avaliação com o resultado da solicitação de inscrição da empresa {empresa} no Edital Nº {edital} do Polo de Inovação</p>]]></column>   
+            <where> id = 7 </where>                                                               
+        </update>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213120419-8">
+        <update tableName="email_edit"> 
+            <column name="mensagem"><![CDATA[<p>Prezado {nome},</p><p>solicitação de cadastro da Empresa {empresa} realizado com sucesso. O resultado desta inscrição será enviado por e-mail após análise da comissão de avaliação, conforme edital.</p>]]></column>
+            <where> id = 8 </where>
+        </update>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213120419-9">
+        <update tableName="email_edit">
+            <column name="mensagem"><![CDATA[<p>Prezado {nome},</p><p>você foi cadastrado para fazer parte do grupo de supervisores do Sistema de Projetos do Polo de Inovação - SIPPI.</p>]]></column>
+            <where> id = 9 </where>
+        </update>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213120419-10">
+        <update tableName="email_edit">
+            <column name="mensagem"><![CDATA[<p>Seguem os dados de acesso:<p><p>Usuário: {usuario}</p><p>Senha: {senha}</p>]]></column>  
+            <where> id = 10 </where> 
+        </update>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213120419-11">
+        <update tableName="email_edit">
+            <column name="mensagem"><![CDATA[<p>Acesse o link abaixo para redefinir sua senha.</p><p>{link}</p>]]></column> 
+            <where> id = 11 </where>  
+        </update>                        
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200213120419-12">
+        <update tableName="email_edit">
+            <column name="mensagem"><![CDATA[<p>Prezado discente {nome},</p><p>sua proposta "{titulo}" teve o estado alterado para {estado} em {data}.</p>]]></column>  
+            <where> id = 12 </where> 
+        </update>                        
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200213120419-13">
+        <update tableName="email_edit"> 
+            <column name="mensagem"><![CDATA[<p>Prezado coordenador {nome},</p><p>Segue o resultado da análise da sua solicitação:</p><p>{resultado}</p>]]></column>  
+            <where> id = 13 </where> 
+        </update>                        
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200213120419-14">
+        <update tableName="email_edit">
+            <column name="mensagem"><![CDATA[<p>Acesse o link abaixo para informar os dados.</p><p>{link}</p>]]></column>  
+            <where> id = 14 </where>                                                                
+        </update> 
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,110 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+	
+	<changeSet author="fcolucas" id="20210111120900-1">
+		<sql>
+			DELETE FROM databasechangelog WHERE id like '20210111120900%'
+		</sql>
+	</changeSet>
+	
+	<changeSet author="fcolucas" id="20210111120900-2">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sqlCheck expectedResult="0">SELECT COUNT(1) FROM proposta_area_map</sqlCheck>
+			</not>
+        </preConditions>
+		<sql>
+			UPDATE proposta_area_map SET area_id = '1'
+		</sql>
+	</changeSet>
+	
+	<changeSet author="Izabella" id="20210111120900-3">
+		<update tableName="area_competencia">
+			<column name="nome" value="Sistemas Embarcados e Mobilidade Digital"/>
+			<where>id = 1</where>
+		</update>
+		
+		<sql>
+			UPDATE projeto_area_map SET area_id = '1';
+			DELETE FROM area_competencia WHERE id = '2';
+		</sql>
+	</changeSet>
+	
+    <changeSet author="Izabella" id="20210111120900-4">
+       <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="sub_area" />
+            </not>
+        </preConditions>
+    
+        <createTable tableName="sub_area">
+            <column autoIncrement="true" name="id" type="SMALLINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sub_areaPK"/>
+            </column>
+            <column name="ativado" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20210111120900-5">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="area_competencia" columnName="ativado"/>
+            </not>
+        </preConditions>
+    
+        <addColumn tableName="area_competencia">
+            <column name="ativado" type="boolean"/>
+        </addColumn>
+        
+        <update tableName="area_competencia">
+        	<column name="ativado" value="true"/>
+        </update>
+        
+        <addNotNullConstraint tableName="area_competencia" columnName="ativado"/>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20210111120900-6">
+        <addUniqueConstraint columnNames="nome" constraintName="UC_SUB_AREANOME_COL" tableName="sub_area"/>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20210111120900-7">
+		<preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM area_competencia</sqlCheck>
+        </preConditions>
+        
+        <insert tableName="area_competencia">
+        	<column name="nome" value="Sistemas Embarcados e Mobilidade Digital"/>
+        	<column name="ativado" value="true"/>
+        </insert>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20210111120900-8">
+		<preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM sub_area</sqlCheck>
+        </preConditions>
+        
+        <insert tableName="sub_area">
+        	<column name="nome" value="Software e Protocolos para aplicações móveis e sistemas embarcados"/>
+        	<column name="ativado" value="true"/>
+        </insert>
+        
+        <insert tableName="sub_area">
+        	<column name="nome" value="Computação em nuvem e virtualização"/>
+        	<column name="ativado" value="true"/>
+        </insert>
+        
+        <insert tableName="sub_area">
+        	<column name="nome" value="Inteligência artificial e ciência de dados"/>
+        	<column name="ativado" value="true"/>
+        </insert>
+        
+    </changeSet>
+</databaseChangeLog>

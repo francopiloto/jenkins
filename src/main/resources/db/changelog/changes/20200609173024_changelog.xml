@@ -1,0 +1,15 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200609173024-1">
+    	<preConditions onFail="MARK_RAN" onError="CONTINUE">
+    		<sqlCheck expectedResult="NO">
+    			SELECT is_nullable 
+    			FROM INFORMATION_SCHEMA.COLUMNS 
+    			WHERE table_name='proposta_caracterizacao' 
+    			AND column_name='resposta';
+    		</sqlCheck>
+    	</preConditions>
+        <dropNotNullConstraint columnDataType="varchar(1000)" columnName="resposta" tableName="proposta_caracterizacao"/>
+    </changeSet>
+    </databaseChangeLog>

@@ -1,0 +1,65 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+	<changeSet author="matheusholanda" id="20200122115739-1">
+        <insert tableName="endereco">
+            <column name="id" value="1000"/>                      	
+            <column name="bairro" value="ALDEOTA"/>
+            <column name="cep" value="60110-140"/>  
+            <column name="cidade" value="Fortaleza"/> 
+            <column name="complemento" value="null"/> 
+            <column name="logradouro" value="RUA NOGUEIRA ACIOLI"/>  
+            <column name="numero" value="621"/> 
+            <column name="uf" value="CE"/>                                                                 
+        </insert>                        
+    </changeSet>
+    
+	<changeSet author="matheusholanda" id="20200122115739-2">
+        <insert tableName="endereco">   
+            <column name="id" value="1001"/>                      
+            <column name="bairro" value="BENFICA"/>
+            <column name="cep" value="60020-181"/> 
+            <column name="cidade" value="Fortaleza"/>
+            <column name="complemento" value="null"/> 
+            <column name="logradouro" value="AV. DA UNIVERSIDADE"/> 
+            <column name="numero" value="2995"/>
+            <column name="uf" value="CE"/>                                                                     
+        </insert>                        
+    </changeSet>    
+ 
+	<changeSet author="matheusholanda" id="20200122115739-3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM editavel_polo</sqlCheck>
+        </preConditions>
+        <insert tableName="editavel_polo">
+            <column name="id" value="1"/>        
+            <column name="assinatura" value="Cristiane Borges Braga"/>
+            <column name="nome" value="Polo de Inovação"/> 
+            <column name="telefone" value="(85) 3307-4000/4001/4003"/>
+            <column name="endereco_id" valueComputed="(SELECT id FROM endereco WHERE id = '1000')"/>                                   
+        </insert>
+    </changeSet>
+
+	<changeSet author="matheusholanda" id="20200122115739-4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM editavel_fundacao</sqlCheck>
+        </preConditions>	
+        <insert tableName="editavel_fundacao">
+            <column name="id" value="1"/>
+            <column name="cnpj" value="05.330.436/0001-62"/>
+            <column name="cp" value="12.132"/>
+            <column name="email" value="admfcpc@fcpc.ufc.br"/>
+            <column name="fax" value="(85) 3243-5381"/>
+            <column name="inscricao_estadual" value="06.840.206-6"/>
+            <column name="nome" value="Fundação Cearense de Pesquisa e Cultura"/>
+            <column name="nome_presidente" value="Presidente"/>
+            <column name="site" value="http://www.fcpc.ufc.br"/>
+            <column name="telefone" value="(85) 3521-3444"/>
+            <column name="endereco_id" valueComputed="(SELECT id FROM endereco WHERE id = '1001')"/>            
+        </insert>
+    </changeSet>    
+    
+</databaseChangeLog>

@@ -1,0 +1,221 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:pro="http://www.liquibase.org/xml/ns/pro" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+   
+   <changeSet author="fcolucas" id="20201027110624-1">
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="1"/>                          
+            <column name="opcao" value="Insatisfatório"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="1"/>                          
+            <column name="opcao" value="Bom"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="1"/>                          
+            <column name="opcao" value="Regular"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="1"/>                          
+            <column name="opcao" value="Ótimo"/>                                                                  
+        </insert>                       
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027110624-2">
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="2"/>                          
+            <column name="opcao" value="Insatisfatório"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="2"/>                          
+            <column name="opcao" value="Bom"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="2"/>                          
+            <column name="opcao" value="Regular"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="2"/>                          
+            <column name="opcao" value="Ótimo"/>                                                                  
+        </insert>                       
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027110624-3">
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="3"/>                          
+            <column name="opcao" value="Insatisfatório"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="3"/>                          
+            <column name="opcao" value="Bom"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="3"/>                          
+            <column name="opcao" value="Regular"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="3"/>                          
+            <column name="opcao" value="Ótimo"/>                                                                  
+        </insert>                       
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027110624-4">
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="4"/>                          
+            <column name="opcao" value="Insatisfatório"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="4"/>                          
+            <column name="opcao" value="Bom"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="4"/>                          
+            <column name="opcao" value="Regular"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="4"/>                          
+            <column name="opcao" value="Ótimo"/>                                                                  
+        </insert>                       
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027110624-5">
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="5"/>                          
+            <column name="opcao" value="Insatisfatório"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="5"/>                          
+            <column name="opcao" value="Bom"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="5"/>                          
+            <column name="opcao" value="Regular"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="5"/>                          
+            <column name="opcao" value="Ótimo"/>                                                                  
+        </insert>                       
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027110624-6">
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="6"/>                          
+            <column name="opcao" value="Não sei responder"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="6"/>                          
+            <column name="opcao" value="Nunca"/>                                                                 
+        </insert> 
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="6"/>                          
+            <column name="opcao" value="Poucas vezes"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" value="6"/>                          
+            <column name="opcao" value="Muitas vezes"/>                                                                  
+        </insert>                       
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027110624-7">
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="1"/>                          
+            <column name="opcao" value="Aprofundou seus conhecimentos na área"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="1"/>                          
+            <column name="opcao" value="Reforçou sua escolha profissional"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="1"/>                          
+            <column name="opcao" value="Despertou seu interesse para a pesquisa"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="1"/>                          
+            <column name="opcao" value="Estimulou seu pensamento científico e a criatividade"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="1"/>                          
+            <column name="opcao" value="Proporcionou a aprendizagem de técnicas e de métodos científicos"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="1"/>                          
+            <column name="opcao" value="Não contribuiu para sua formação acadêmica"/>                                                                  
+        </insert>                     
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027110624-8">
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="2"/>                          
+            <column name="opcao" value="Importante para a sua formação"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="2"/>                          
+            <column name="opcao" value="Satisfatória, porque favoreceu seu engajamento na pesquisa aplicada"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="2"/>                          
+            <column name="opcao" value="Ficou aquém de suas expectativas"/>                                                                  
+        </insert>                      
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027110624-9">
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="3"/>                          
+            <column name="opcao" value="Não sei responder"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="3"/>                          
+            <column name="opcao" value="Nunca"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="3"/>                          
+            <column name="opcao" value="Poucas vezes"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="3"/>                          
+            <column name="opcao" value="Muitas vezes"/>                                                                  
+        </insert>                     
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027110624-10">
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="4"/>                          
+            <column name="opcao" value="Não sei responder"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="4"/>                          
+            <column name="opcao" value="Nunca"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="4"/>                          
+            <column name="opcao" value="Poucas vezes"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="4"/>                          
+            <column name="opcao" value="Muitas vezes"/>                                                                  
+        </insert>                     
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201027110624-11">
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="5"/>                          
+            <column name="opcao" value="Não sei responder"/>                                                                  
+        </insert>
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="5"/>                          
+            <column name="opcao" value="Nunca"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="5"/>                          
+            <column name="opcao" value="Poucas vezes"/>                                                                  
+        </insert> 
+        <insert tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" value="5"/>                          
+            <column name="opcao" value="Muitas vezes"/>                                                                  
+        </insert>                     
+    </changeSet> 
+    
+</databaseChangeLog>

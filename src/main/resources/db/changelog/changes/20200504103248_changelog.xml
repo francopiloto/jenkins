@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+     
+    <changeSet author="matheusholandamatos" id="20200504103248-1">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<columnExists tableName="projeto_solicitacao_pagamento_rh" columnName="contrapartida"/>
+    		</not>
+    	</preConditions>    
+        <addColumn tableName="projeto_solicitacao_pagamento_rh">
+            <column name="mes_pagamento" type="varchar(255)" defaultValue="-">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200504103248-2">
+    	<sql>
+    		alter table projeto_payment rename column mes_pagamento to mes_pago;
+    	</sql>        
+    </changeSet>
+    
+</databaseChangeLog>

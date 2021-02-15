@@ -1,0 +1,62 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="matheusholandamatos" id="20200326232230-1">
+        <createTable tableName="form_desligamento_bolsista">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="form_desligamento_bolsistaPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200326232230-2">
+        <createTable tableName="form_desligamento_bolsista_resposta">
+            <column name="form_desligamento_bolsista_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resposta" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200326232230-3">
+        <createTable tableName="form_desligamento_coordenador">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="form_desligamento_coordenadorPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200326232230-4">
+        <createTable tableName="form_desligamento_coordenador_resposta">
+            <column name="form_desligamento_coordenador_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resposta" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    
+    
+    <changeSet author="matheusholandamatos" id="20200326232230-5">
+        <addColumn tableName="projeto_rh">
+            <column name="desligamentorh_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200326232230-6">
+        <createTable tableName="projeto_rh_desligamento">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_rh_desligamentoPK"/>
+            </column>
+            <column name="desligamento_bolsista_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="desligamento_coordenador_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>    
+    
+</databaseChangeLog>

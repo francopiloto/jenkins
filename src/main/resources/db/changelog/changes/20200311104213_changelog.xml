@@ -1,0 +1,14 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200311104213-1">
+        <update tableName="email_edit">
+            <column name="mensagem"><![CDATA[<p>Prezado {nome},</p><p>segue em anexo a declaração da comissão de avaliação com o resultado da solicitação de inscrição no Edital Nº {edital} do Polo de Inovação.</p>]]></column>   
+            <where> id = 15 </where>                                                               
+        </update>                        
+    </changeSet>        
+    
+</databaseChangeLog>

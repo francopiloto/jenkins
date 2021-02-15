@@ -1,0 +1,33 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="Izabella" id="20200629115726-1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="projeto_plano" columnName="contrapartidarh"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="projeto_plano">
+            <column name="contrapartidarh" type="numeric(19, 2)"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20200629115726-2">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="projeto_plano" columnName="modalidade_id"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="projeto_plano">
+            <column name="modalidade_id" type="int2"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20200629115726-3">
+        <addForeignKeyConstraint baseColumnNames="modalidade_id" baseTableName="projeto_plano" constraintName="FK8qel87sxyijneoutngk2mrot6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade" validate="true"/>
+    </changeSet>
+    
+</databaseChangeLog>

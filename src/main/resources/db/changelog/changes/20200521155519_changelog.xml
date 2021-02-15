@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200521155519-1">
+        <createTable tableName="contrapartida_arquivo">
+            <column name="contrapartida_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arquivo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200521155519-2">
+        <addForeignKeyConstraint baseColumnNames="contrapartida_id" baseTableName="contrapartida_arquivo" constraintName="FKawyjwr5bqvo3tmx6695l4fkv6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao_contrapartida" validate="true"/>
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200521155519-3">
+        <addForeignKeyConstraint baseColumnNames="arquivo_id" baseTableName="contrapartida_arquivo" constraintName="FKmhmcbv5v20psfvf9f9qqw5eis" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="arquivo" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200521155519-4">
+        <dropForeignKeyConstraint baseTableName="projeto_solicitacao_contrapartida_arquivos" constraintName="FK74xpuuicdr38hr0afhwa31awr"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200521155519-5">
+        <dropForeignKeyConstraint baseTableName="projeto_solicitacao_contrapartida_arquivos" constraintName="FKkve4hofimic6moqmniuv97k2e"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200521155519-6">
+        <dropTable tableName="projeto_solicitacao_contrapartida_arquivos"/>
+    </changeSet>
+    
+</databaseChangeLog>

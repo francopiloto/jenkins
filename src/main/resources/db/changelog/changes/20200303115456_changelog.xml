@@ -1,0 +1,120 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200303115456-1">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="externo" />
+            </not>
+        </preConditions> 
+        <createTable tableName="externo">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="externoPK"/>
+            </column>
+            <column name="ativado" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="http://lattes.cnpq.br/" name="lattes" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vinculo_externo" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pessoa_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titulacao_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200303115456-2">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="externo_area" />
+            </not>
+        </preConditions>
+        <createTable tableName="externo_area">
+            <column name="externo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="area_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200303115456-3">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="externo_arquivo" />
+            </not>
+        </preConditions>
+        <createTable tableName="externo_arquivo">
+            <column name="externo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arquivo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20200303115456-4">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="vinculo_externo" />
+            </not>
+        </preConditions>
+        <createTable tableName="vinculo_externo">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="vinculo_externoPK"/>
+            </column>
+            <column name="area_atuacao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="campus" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vinculo" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="externo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200303115456-5">
+        <addForeignKeyConstraint baseColumnNames="titulacao_id" baseTableName="externo" constraintName="FK5p4k224900nxv2u65fvqdmr3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="titulacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200303115456-6">
+        <addForeignKeyConstraint baseColumnNames="externo_id" baseTableName="externo_arquivo" constraintName="FK888q98pk6344ojdamm9mc6jym" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="externo" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200303115456-7">
+        <addForeignKeyConstraint baseColumnNames="arquivo_id" baseTableName="externo_arquivo" constraintName="FKa4vy45rj6ud561ymf4dxrgrfx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="arquivo" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200303115456-8">
+        <addForeignKeyConstraint baseColumnNames="area_id" baseTableName="externo_area" constraintName="FKdycotpc3q2lnd40b3jk4xg7ae" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="area_pesquisa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200303115456-9">
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="externo" constraintName="FKmu53vepjnjalki3nar3o11v0s" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200303115456-10">
+        <addForeignKeyConstraint baseColumnNames="externo_id" baseTableName="externo_area" constraintName="FKmuhtf9cy4btud1my0210efso1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="externo" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200303115456-11">
+        <addForeignKeyConstraint baseColumnNames="externo_id" baseTableName="vinculo_externo" constraintName="FKnlc6kif4dbm1y56bi9064cjw2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="externo" validate="true"/>
+    </changeSet>
+    
+</databaseChangeLog>

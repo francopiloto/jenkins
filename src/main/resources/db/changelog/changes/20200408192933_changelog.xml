@@ -1,0 +1,68 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+	<changeSet author="fcolucas" id="20200408192933-1">
+        <sql>
+            DELETE FROM desligamento_avaliacao_bolsista;
+            DELETE FROM desligamento_avaliacao_coordenador;
+            DELETE FROM bolsista_avaliacao;
+            DELETE FROM coordenador_avaliacao;    
+        </sql>
+    </changeSet>
+	
+    <changeSet author="fcolucas" id="20200408192933-2">
+        <createTable tableName="pergunta_bolsista_opcao">
+            <column name="pergunta_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="opcao" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200408192933-3">
+        <createTable tableName="pergunta_coordenador_opcao">
+            <column name="pergunta_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="opcao" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200408192933-4">
+        <addForeignKeyConstraint baseColumnNames="pergunta_id" baseTableName="pergunta_coordenador_opcao" constraintName="FK9i7axdihrgbng5mecaixumt60" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pergunta_avaliacao_coordenador" validate="true"/>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20200408192933-5">
+        <addForeignKeyConstraint baseColumnNames="pergunta_id" baseTableName="pergunta_bolsista_opcao" constraintName="FKl7egdf2v4ffw8ih724rg758bq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pergunta_avaliacao_bolsista" validate="true"/>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20200408192933-6">
+        <dropUniqueConstraint constraintName="uc_pergunta_avaliacao_bolsistapergunta_col" tableName="pergunta_avaliacao_bolsista"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200408192933-7">
+        <dropUniqueConstraint constraintName="uc_pergunta_avaliacao_coordenadorpergunta_col" tableName="pergunta_avaliacao_coordenador"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200408192933-8">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="resposta" tableName="bolsista_avaliacao"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200408192933-9">
+        <addNotNullConstraint columnDataType="varchar(255)" columnName="resposta" tableName="coordenador_avaliacao"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200408192933-10">
+        <dropUniqueConstraint constraintName="UK_q0pmfqol8jhrj5gnmvdrfbrj" tableName="desligamento_avaliacao_coordenador"/>
+        <addUniqueConstraint columnNames="avaliacao_coordenador_id" constraintName="UK_q0pmfqol8jhrj5gnmvdrfbrj" tableName="desligamento_avaliacao_coordenador"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200408192933-11">
+        <dropUniqueConstraint constraintName="UK_swjtl3vahyvvbguawm5scn9yk" tableName="desligamento_avaliacao_bolsista"/>
+        <addUniqueConstraint columnNames="avaliacao_bolsista_id" constraintName="UK_swjtl3vahyvvbguawm5scn9yk" tableName="desligamento_avaliacao_bolsista"/>
+    </changeSet>
+    
+</databaseChangeLog>

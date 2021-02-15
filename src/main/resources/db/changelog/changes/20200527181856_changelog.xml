@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200527181856-1">
+        <dropForeignKeyConstraint baseTableName="contrapartida_arquivo" constraintName="FKawyjwr5bqvo3tmx6695l4fkv6"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200527181856-2">
+        <dropForeignKeyConstraint baseTableName="contrapartida_arquivo" constraintName="FKmhmcbv5v20psfvf9f9qqw5eis"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200527181856-3">
+        <dropTable tableName="contrapartida_arquivo"/>
+    </changeSet>
+    
+</databaseChangeLog>

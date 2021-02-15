@@ -1,0 +1,30 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+   
+   <changeSet author="fcolucas" id="20200520132122-1">
+   		<sql>
+   			DELETE FROM projeto_contrapartida_map;
+   			DELETE FROM projeto_contrapartida;
+   		</sql>
+   </changeSet>
+   
+    <changeSet author="fcolucas" id="20200520132122-2">
+        <addColumn tableName="projeto_contrapartida">
+            <column name="date" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200520132122-3">
+        <dropColumn columnName="ano" tableName="projeto_contrapartida"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200520132122-4">
+        <dropColumn columnName="meses" tableName="projeto_contrapartida"/>
+    </changeSet>
+    
+</databaseChangeLog>

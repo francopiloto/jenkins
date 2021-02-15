@@ -1,0 +1,89 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="matheusholandamatos" id="20200729092210-1">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="projeto_viagem_diaria" />
+        </preConditions>    
+        <renameTable newTableName="projeto_diaria" oldTableName="projeto_viagem_diaria" schemaName="public" />
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200729092210-2">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="projeto_viagem_diaria_map" />
+        </preConditions>        
+        <renameTable newTableName="projeto_diaria_map" oldTableName="projeto_viagem_diaria_map" schemaName="public" />
+    </changeSet> 
+    
+    <changeSet author="matheusholandamatos" id="20200729092210-3">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="projeto_viagem_passagem" />
+        </preConditions>        
+        <renameTable newTableName="projeto_passagem" oldTableName="projeto_viagem_passagem" schemaName="public" />
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200729092210-4">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="projeto_viagem_passagem_map" />
+        </preConditions>      
+        <renameTable newTableName="projeto_passagem_map" oldTableName="projeto_viagem_passagem_map" schemaName="public" />
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200729092210-5">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="projeto_plano_viagem_passagem" />
+        </preConditions>      
+        <renameTable newTableName="projeto_plano_passagem" oldTableName="projeto_plano_viagem_passagem" schemaName="public" />
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200729092210-6">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="projeto_plano_viagem_diaria" />
+        </preConditions>      
+        <renameTable newTableName="projeto_plano_diaria" oldTableName="projeto_plano_viagem_diaria" schemaName="public" />
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200729092210-7">
+        <preConditions onFail="MARK_RAN">
+        	<columnExists tableName="projeto_passagem_map" columnName="viagem_passagem_id"/>
+        </preConditions>      
+    	<sql>
+    		alter table projeto_passagem_map rename viagem_passagem_id to passagem_id;
+    	</sql>        
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200729092210-8">
+        <preConditions onFail="MARK_RAN">
+        	<columnExists tableName="projeto_diaria_map" columnName="viagem_diaria_id"/>
+        </preConditions>      
+    	<sql>
+    		alter table projeto_diaria_map rename viagem_diaria_id to diaria_id;
+    	</sql>        
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200729092210-9">
+        <preConditions onFail="MARK_RAN">
+        	<columnExists tableName="projeto_historico" columnName="viagem_passagem"/>
+        </preConditions>      
+    	<sql>
+    		alter table projeto_historico rename viagem_passagem to passagem;
+    	</sql>        
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200729092210-10">
+        <preConditions onFail="MARK_RAN">
+        	<columnExists tableName="projeto_historico" columnName="viagem_diaria"/>
+        </preConditions>      
+    	<sql>
+    		alter table projeto_historico rename viagem_diaria to diaria;
+    	</sql>        
+    </changeSet> 
+    
+    <changeSet author="matheusholandamatos" id="20200729092210-11">
+        <preConditions onFail="MARK_RAN">
+        	<columnExists tableName="projeto_solicitacao_diaria" columnName="sugestoes"/>
+        </preConditions>          
+    	<dropColumn columnName="sugestoes" tableName="projeto_solicitacao_diaria"/>     
+    </changeSet>                                                  
+           	
+</databaseChangeLog>

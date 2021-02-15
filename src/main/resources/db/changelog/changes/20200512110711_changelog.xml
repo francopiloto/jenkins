@@ -1,0 +1,83 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+   
+    <changeSet author="matheusholandamatos" id="20200512110711-1">
+    	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_solicitacao_ferias_clt"/>    		
+    		</not>
+    	</preConditions>    
+        <createTable tableName="projeto_solicitacao_ferias_clt">
+            <column name="data_final" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_inicio" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_solicitacao_ferias_cltPK"/>
+            </column>
+            <column name="rh_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+   
+    <changeSet author="matheusholandamatos" id="20200512110711-2">
+       	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_solicitacao_rescisao_clt"/>    		
+    		</not>
+    	</preConditions>   
+        <createTable tableName="projeto_solicitacao_rescisao_clt">
+            <column name="aviso_previo" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_rescisao" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="iniciativa" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_solicitacao_rescisao_cltPK"/>
+            </column>
+            <column name="rh_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200512110711-3">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+        		<foreignKeyConstraintExists schemaName="public" foreignKeyName="FK9o0ttv2hk4weoyvq47aeyxyab"/>
+       		</not>
+        </preConditions>    
+        <addForeignKeyConstraint baseColumnNames="rh_id" baseTableName="projeto_solicitacao_rescisao_clt" constraintName="FK9o0ttv2hk4weoyvq47aeyxyab" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200512110711-4">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+        		<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKdqm1hpxm1eo41p0bbstlkmvw1"/>
+       		</not>
+        </preConditions> 
+        <addForeignKeyConstraint baseColumnNames="rh_id" baseTableName="projeto_solicitacao_ferias_clt" constraintName="FKdqm1hpxm1eo41p0bbstlkmvw1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200512110711-5">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+        		<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKll6epeti85lmtywm36ij4tibb"/>
+       		</not>
+        </preConditions>     
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="projeto_solicitacao_rescisao_clt" constraintName="FKll6epeti85lmtywm36ij4tibb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200512110711-6">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+        		<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKptkk4i4jr5wscwg0dpbkdutkm"/>
+       		</not>
+        </preConditions> 
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="projeto_solicitacao_ferias_clt" constraintName="FKptkk4i4jr5wscwg0dpbkdutkm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao" validate="true"/>
+    </changeSet>
+   
+</databaseChangeLog>

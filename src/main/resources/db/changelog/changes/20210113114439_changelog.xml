@@ -1,0 +1,47 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+        
+    <changeSet author="Izabella" id="20210113114439-1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists columnName="id_area" tableName="sub_area" />
+            </not>
+        </preConditions>
+        <addColumn tableName="sub_area">
+            <column name="id_area" type="int2"></column>
+        </addColumn>
+        <update tableName="sub_area">
+        	<column name="id_area" value="1"></column>
+        </update>
+        <addNotNullConstraint tableName="sub_area" columnName="id_area"/>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20210113114439-2">
+        <addForeignKeyConstraint baseColumnNames="id_area" baseTableName="sub_area" constraintName="FKiynx0aq2ulxr8pkn064pivjcj" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="area_competencia" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20210113114439-3">
+        <dropForeignKeyConstraint baseTableName="credenciamento_embrapii" constraintName="FKh5e17ga3sxpb7a6me6di0sol3"/>
+    </changeSet>
+          
+          
+    <changeSet author="Izabella" id="20210113114439-4">
+        <dropForeignKeyConstraint baseTableName="credenciamento_embrapii_sub_area" constraintName="FKbyrxl6avaayei3qye6l7kf777"/>
+    </changeSet>
+          
+    <changeSet author="Izabella" id="20210113114439-5">
+        <dropForeignKeyConstraint baseTableName="credenciamento_embrapii_sub_area" constraintName="FKawvi1gpmjwal0micy0mjjjar7"/>
+    </changeSet>
+       
+    <changeSet author="Izabella" id="20210113114439-6">
+        <dropTable tableName="credenciamento_embrapii"/>
+    </changeSet>
+
+	<changeSet author="Izabella" id="20210113114439-7">
+        <dropTable tableName="credenciamento_embrapii_sub_area"/>
+    </changeSet>
+
+</databaseChangeLog>

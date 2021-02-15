@@ -1,0 +1,89 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id "io.freefair.lombok" version "5.2.1"
+}
+
+group = 'api.sippi'
+version = '1.0.0'
+sourceCompatibility = '1.8'
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
+	implementation 'org.liquibase:liquibase-core'
+	implementation 'org.liquibase.ext:liquibase-hibernate5:3.8'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+	
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+			
+	runtimeOnly 'org.postgresql:postgresql'
+	
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+eclipse
+{
+    jdt
+    {
+    	file
+    	{
+    		File dir = file('.settings')
+      		dir.mkdirs()
+
+      		File f = file('.settings/org.eclipse.core.resources.prefs')
+      		f.write('eclipse.preferences.version=1\n')
+      		f.append('encoding/<project>=UTF-8\n')
+      		f.append('encoding//src/main/resources/application.properties=UTF-8\n')
+      		f.append('encoding//src/main/resources/messages.properties=UTF-8\n')
+    	}
+    }
+}
+
+// Task to HELP generating liquibase changelogs.
+Properties props = new Properties()
+
+file('src/main/resources/application.properties').withInputStream {
+   props.load(it)
+}
+
+task diffChangelog(type: JavaExec) {
+    group = "db"
+
+    classpath sourceSets.main.runtimeClasspath
+  
+    main = "liquibase.integration.commandline.Main"
+
+    args "--changeLogFile=src/main/resources/db/" + buildTimestamp() + "_changelog.xml"
+    args "--referenceUrl=hibernate:spring:ifce.polo.sippi.model?dialect=org.hibernate.dialect.PostgreSQL9Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
+    args "--username=" + props.getProperty('spring.datasource.username')
+    args "--password=" + props.getProperty('spring.datasource.password')
+    args "--url=" + props.getProperty('spring.datasource.url')
+    args "--driver=org.postgresql.Driver"
+    args "diffChangeLog"
+}
+
+def buildTimestamp()
+{
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMddHHmmss')
+    return formattedDate
+}
+

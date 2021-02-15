@@ -1,0 +1,106 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="Izabella" id="20200915121055-1">
+        <createTable tableName="uf">
+            <column autoIncrement="true" name="id" type="SMALLINT">
+                <constraints primaryKey="true" primaryKeyName="ufPK"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Izabella" id="20200915121055-2">
+        <addUniqueConstraint columnNames="nome" constraintName="UC_UFNOME_COL" tableName="uf"/>
+    </changeSet>
+    <changeSet author="Izabella" id="20200915121055-3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM uf</sqlCheck>
+        </preConditions>
+        <insert tableName="uf">
+            <column name="nome" value="AC"/>
+        </insert>
+		<insert tableName="uf">
+            <column name="nome" value="AL"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="AP"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="AM"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="BA"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="CE"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="DF"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="ES"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="GO"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="MA"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="MT"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="MS"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="MG"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="PA"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="PB"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="PR"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="PE"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="PI"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="RJ"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="RN"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="RS"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="RO"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="RR"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="SC"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="SP"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="SE"/>
+        </insert>
+        <insert tableName="uf">
+            <column name="nome" value="TO"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

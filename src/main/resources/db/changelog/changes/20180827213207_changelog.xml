@@ -1,0 +1,444 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="franco" id="20180827213207-1">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM aluno_nivel</sqlCheck>
+        </preConditions>
+        <insert tableName="aluno_nivel">
+            <column name="valor" value="Técnico"/>
+        </insert>
+        <insert tableName="aluno_nivel">
+            <column name="valor" value="Graduação"/>
+        </insert>
+        <insert tableName="aluno_nivel">
+            <column name="valor" value="Especialização"/>
+        </insert>
+        <insert tableName="aluno_nivel">
+            <column name="valor" value="Mestrado"/>
+        </insert>
+        <insert tableName="aluno_nivel">
+            <column name="valor" value="Doutorado"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-2">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM area_competencia</sqlCheck>
+        </preConditions>
+        <insert tableName="area_competencia">
+            <column name="nome" value="SISTEMAS EMBARCADOS"/>
+        </insert>
+        <insert tableName="area_competencia">
+            <column name="nome" value="MOBILIDADE DIGITAL"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-3">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM area_pesquisa</sqlCheck>
+        </preConditions>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Big DATA"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Computação em nuvem"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Dispositivos móveis - SOFTWARE"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Dispositivos móveis - HARDWARE"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="FIRMWARE"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Desenvolvimentismo de Hardware"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Internet das coisas"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Automação comercial"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Automação industrial"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Computação Cognitiva (I"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Visão Computacional"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Engenharia de Software"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Desenvolvimento de sensores"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Processamento digital de sinais"/>
+        </insert>
+        <insert tableName="area_pesquisa">
+            <column name="nome" value="Sistemas de Telecomunicações"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-4">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM campus</sqlCheck>
+        </preConditions>
+        <insert tableName="campus">
+            <column name="nome" value="Acaraú"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Acopiara"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Aracati"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Baturité"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Boa Viagem"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Camocim"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Canindé"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Caucaia"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Cedro"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Crateús"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Crato"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Fortaleza"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Guaramiranga"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Horizonte"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Iguatu"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Itapipoca"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Jaguaribe"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Jaguaruana"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Juazeiro do Norte"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Limoeiro do Norte"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Maracanaú"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Maranguape"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Morada Nova"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Paracuru"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Pecém"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Polo de Inovação Fortaleza"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Quixadá"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Reitoria"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Sobral"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Tabuleiro do Norte"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Tauá"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Tianguá"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Ubajara"/>
+        </insert>
+        <insert tableName="campus">
+            <column name="nome" value="Umirim"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-5">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM categoria_bolsa</sqlCheck>
+        </preConditions>
+        <insert tableName="categoria_bolsa">
+            <column name="nome" value="Pesquisador Doutor"/>
+            <column name="valor_maximo" value="6000"/>
+        </insert>
+        <insert tableName="categoria_bolsa">
+            <column name="nome" value="Pesquisador Mestre"/>
+            <column name="valor_maximo" value="4200"/>
+        </insert>
+        <insert tableName="categoria_bolsa">
+            <column name="nome" value="Pesquisador Especialista"/>
+            <column name="valor_maximo" value="2600"/>
+        </insert>
+        <insert tableName="categoria_bolsa">
+            <column name="nome" value="Pesquisador Graduado"/>
+            <column name="valor_maximo" value="2400"/>
+        </insert>
+        <insert tableName="categoria_bolsa">
+            <column name="nome" value="Pesquisador Técnico"/>
+            <column name="valor_maximo" value="2200"/>
+        </insert>
+        <insert tableName="categoria_bolsa">
+            <column name="nome" value="Coordenador de Projeto"/>
+            <column name="valor_maximo" value="6000"/>
+        </insert>
+        <insert tableName="categoria_bolsa">
+            <column name="nome" value="Estudante Técnico"/>
+            <column name="valor_maximo" value="1200"/>
+        </insert>
+        <insert tableName="categoria_bolsa">
+            <column name="nome" value="Estudante Graduação"/>
+            <column name="valor_maximo" value="1600"/>
+        </insert>
+        <insert tableName="categoria_bolsa">
+            <column name="nome" value="Estudante Mestrado"/>
+            <column name="valor_maximo" value="3200"/>
+        </insert>
+        <insert tableName="categoria_bolsa">
+            <column name="nome" value="Estudante Doutorado"/>
+            <column name="valor_maximo" value="4400"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-6">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM diaria</sqlCheck>
+        </preConditions>
+        <insert tableName="diaria">
+            <column name="valor" value="425.60"/>
+            <column name="destino" value="Brasília, Manaus e Rio de Janeiro"/>
+        </insert>
+        <insert tableName="diaria">
+            <column name="valor" value="382.32"/>
+            <column name="destino" value="São Paulo, Recife, Belo Horizonte, Porto Alegre, Belém, Fortaleza e Salvador"/>
+        </insert>
+        <insert tableName="diaria">
+            <column name="valor" value="341.02"/>
+            <column name="destino" value="Demais capitais"/>
+        </insert>
+        <insert tableName="diaria">
+            <column name="valor" value="272.00"/>
+            <column name="destino" value="Demais Localidades"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-7">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM email_config</sqlCheck>
+        </preConditions>
+        <insert tableName="email_config">
+            <column name="servidor" value="smtp.gmail.com"/>
+            <column name="usuario" value="dev.erp.polo@gmail.com"/>
+            <column name="senha" value="23dRtoXdr56"/>
+            <column name="protocolo" value="smtp"/>
+            <column name="codificacao" value="UTF-8"/>
+            <column name="autenticado" value="true"/>
+            <column name="tls" value="true"/>
+            <column name="porta" value="587"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-8">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM permissao</sqlCheck>
+        </preConditions>
+        <insert tableName="permissao">
+            <column name="nome" value="ROLE_ADMIN"/>
+        </insert>
+        <insert tableName="permissao">
+            <column name="nome" value="ROLE_RESEARCHER"/>
+        </insert>
+        <insert tableName="permissao">
+            <column name="nome" value="ROLE_SUPERVISOR"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-9">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM pesquisador_titulo</sqlCheck>
+        </preConditions>
+        <insert tableName="pesquisador_titulo">
+            <column name="valor" value="Graduado"/>
+        </insert>
+        <insert tableName="pesquisador_titulo">
+            <column name="valor" value="Especialista"/>
+        </insert>
+        <insert tableName="pesquisador_titulo">
+            <column name="valor" value="Mestre"/>
+        </insert>
+        <insert tableName="pesquisador_titulo">
+            <column name="valor" value="Doutor"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-10">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM projeto_config</sqlCheck>
+        </preConditions>
+        <insert tableName="projeto_config">
+            <column name="id" value="1"/>
+            <column name="diretor_oficios" value="Sr. Francisco Antônio Guimarães"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-11">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM projeto_maturidade</sqlCheck>
+        </preConditions>
+        <insert tableName="projeto_maturidade">
+            <column name="id" value="TRL 3"/>
+            <column name="descricao" value="Estabelecimento de função crítica de forma analítica ou experimental e ou prova de conceito"/>
+        </insert>
+        <insert tableName="projeto_maturidade">
+            <column name="id" value="TRL 4"/>
+            <column name="descricao" value="Validação funcional dos componentes em ambiente de laboratório"/>
+        </insert>
+        <insert tableName="projeto_maturidade">
+            <column name="id" value="TRL 5"/>
+            <column name="descricao" value="Validação das funções críticas dos componentes em ambiente relevante"/>
+        </insert>
+        <insert tableName="projeto_maturidade">
+            <column name="id" value="TRL 6"/>
+            <column name="descricao" value="Demonstração de funções do protótipo em ambiente relevante"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-12">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM projeto_servico_tipo</sqlCheck>
+        </preConditions>
+        <insert tableName="projeto_servico_tipo">
+            <column name="nome" value="Atividades de P,D&amp;I"/>
+        </insert>
+        <insert tableName="projeto_servico_tipo">
+            <column name="nome" value="Serviços Tecnológicos"/>
+        </insert>
+        <insert tableName="projeto_servico_tipo">
+            <column name="nome" value="Outros Serviços"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-13">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM proposta_config</sqlCheck>
+        </preConditions>
+        <insert tableName="proposta_config">
+            <column name="prazo_finalizacao" value="3"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-14">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM usuario</sqlCheck>
+        </preConditions>
+        <insert tableName="usuario">
+            <column name="nome" value="admin"/>
+            <column name="senha" value="$2a$10$DpT1o/8Cqii8VfZZ0Efub./ZUpMyJrQsNM0IgPsHLXbHFYulX.4N2"/>
+            <column name="ativado" value="true"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-15">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM usuario_perfil</sqlCheck>
+        </preConditions>
+        <insert tableName="usuario_perfil">
+            <column name="nome" value="aluno"/>
+        </insert>
+        <insert tableName="usuario_perfil">
+            <column name="nome" value="pesquisador"/>
+        </insert>
+        <insert tableName="usuario_perfil">
+            <column name="nome" value="supervisor"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-16">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM usuario_perfil_permissao</sqlCheck>
+        </preConditions>
+        <insert tableName="usuario_perfil_permissao">
+            <column name="usuario_perfil" value="pesquisador"/>
+            <column name="permissao" value="ROLE_RESEARCHER"/>
+        </insert>
+        <insert tableName="usuario_perfil_permissao">
+            <column name="usuario_perfil" value="supervisor"/>
+            <column name="permissao" value="ROLE_RESEARCHER"/>
+        </insert>
+        <insert tableName="usuario_perfil_permissao">
+            <column name="usuario_perfil" value="supervisor"/>
+            <column name="permissao" value="ROLE_SUPERVISOR"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-17">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM vinculo_instituicao</sqlCheck>
+        </preConditions>
+        <insert tableName="vinculo_instituicao">
+            <column name="nome" value="IFCE"/>
+        </insert>
+        <insert tableName="vinculo_instituicao">
+            <column name="nome" value="Outros"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213207-18">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM vinculo_trabalho</sqlCheck>
+        </preConditions>
+        <insert tableName="vinculo_trabalho">
+            <column name="nome" value="Bolsa"/>
+            <column name="percentual" value="0.00"/>
+            <column name="fixo" value="0.00"/>
+        </insert>
+        <insert tableName="vinculo_trabalho">
+            <column name="nome" value="CLT"/>
+            <column name="percentual" value="100.00"/>
+            <column name="fixo" value="0.00"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

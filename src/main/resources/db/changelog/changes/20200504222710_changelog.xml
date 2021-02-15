@@ -1,0 +1,48 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="Izabella" id="20200504222710-1">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM meses</sqlCheck>
+        </preConditions>
+        <insert tableName="meses">
+            <column name="nome" value="Janeiro"/>
+        </insert>
+        <insert tableName="meses">
+            <column name="nome" value="Fevereiro"/>
+        </insert>
+        <insert tableName="meses">
+            <column name="nome" value="Março"/>
+        </insert>
+        <insert tableName="meses">
+            <column name="nome" value="Abril"/>
+        </insert>
+        <insert tableName="meses">
+            <column name="nome" value="Maio"/>
+        </insert>
+        <insert tableName="meses">
+            <column name="nome" value="Junho"/>
+        </insert>
+        <insert tableName="meses">
+            <column name="nome" value="Julho"/>
+        </insert>
+        <insert tableName="meses">
+            <column name="nome" value="Agosto"/>
+        </insert>
+        <insert tableName="meses">
+            <column name="nome" value="Setembro"/>
+        </insert>
+        <insert tableName="meses">
+            <column name="nome" value="Outubro"/>
+        </insert>
+        <insert tableName="meses">
+            <column name="nome" value="Novembro"/>
+        </insert>
+        <insert tableName="meses">
+            <column name="nome" value="Dezembro"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

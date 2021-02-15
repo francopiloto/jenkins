@@ -1,0 +1,40 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="Izabella" id="20200903101144-1">
+		<preConditions onFail="MARK_RAN">
+        	<not>
+            	<tableExists tableName="projeto_eap" />
+            </not>
+        </preConditions>
+        
+        <createTable tableName="projeto_eap">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_eapPK"/>
+            </column>
+            <column name="criterios" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_pai" type="BIGINT"/>
+            <column name="nivel" type="SMALLINT"/>
+            <column name="nome" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="qnte_filhos" type="SMALLINT"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20200903101144-2">
+		<preConditions onFail="MARK_RAN">
+            <columnExists tableName="projeto_plano_eap" columnName="id_proposta"/>
+        </preConditions>
+    
+    	<dropColumn columnName="id_proposta" tableName="projeto_plano_eap"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,22 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="Izabella" id="20200903122736-1">
+        <addColumn tableName="projeto">
+            <column name="eap_data" type="varchar(5242880)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Izabella" id="20200903122736-2">
+        <addColumn tableName="projeto_eap">
+            <column name="id_projeto" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Izabella" id="20200903122736-3">
+        <addForeignKeyConstraint baseColumnNames="id_projeto" baseTableName="projeto_eap" constraintName="FKlro4wbkfkayrblsar1dyhwyq0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,110 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+  
+    <changeSet author="matheusholandamatos" id="20200727102110-1">
+       	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_solicitacao_passagem"/>    		
+    		</not>
+    	</preConditions>       
+        <createTable tableName="projeto_solicitacao_passagem">
+            <column name="data_viagem" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="documento" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="justificativa" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passageiro" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passaporte" type="VARCHAR(20)"/>
+            <column name="sugestoes" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefone" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tipo_documento" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trecho" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    
+ 	<changeSet author="matheusholandamatos" id="20200727102110-2">
+       	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_solicitacao_diaria"/>    		
+    		</not>
+    	</preConditions>    	
+        <createTable tableName="projeto_solicitacao_diaria">
+            <column name="documento" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hospede" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="justificativa" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sugestoes" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefone" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tipo_documento" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>            
+            <column name="id" type="BIGINT"/>
+        </createTable>
+    </changeSet>    
+    
+    <changeSet author="matheusholandamatos" id="20200727102110-3">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKcii3hv5bwlkftg2y2a1lxe32k"/>
+            </not>
+        </preConditions>        
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="projeto_solicitacao_passagem" constraintName="FKcii3hv5bwlkftg2y2a1lxe32k" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200727102110-4">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKssuxverf3xykg76tv693uf6jv"/>
+            </not>
+        </preConditions>      
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="projeto_solicitacao_diaria" constraintName="FKssuxverf3xykg76tv693uf6jv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao" validate="true"/>
+    </changeSet>    
+
+    <changeSet author="matheusholandamatos" id="20200727102110-5">
+    	<preConditions onFail="MARK_RAN">
+        	<foreignKeyConstraintExists foreignKeyName="FKr8aiiejly6g0qp7o2as0uds35"/>
+        </preConditions>    
+        <dropForeignKeyConstraint baseTableName="projeto_solicitacao_viagem" constraintName="FKr8aiiejly6g0qp7o2as0uds35"/>
+    </changeSet>
+   
+    <changeSet author="matheusholandamatos" id="20200727102110-6">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="projeto_solicitacao_viagem" />
+        </preConditions>    
+        <dropTable tableName="projeto_solicitacao_viagem"/>
+    </changeSet>
+   
+</databaseChangeLog>

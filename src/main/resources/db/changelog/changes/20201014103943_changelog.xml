@@ -1,0 +1,42 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20201014103943-1">
+    	<preConditions onFail="MARK_RAN">
+    		<foreignKeyConstraintExists foreignKeyName="FKj8wyt27kkqxsxmgu88vffa2q6"/>
+    	</preConditions>
+        <dropForeignKeyConstraint baseTableName="solicitacao_declaracoes" constraintName="FKj8wyt27kkqxsxmgu88vffa2q6"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201014103943-2">
+    	<preConditions onFail="MARK_RAN">
+    		<tableExists tableName="solicitacao_declaracoes"/>
+    	</preConditions>
+        <dropTable tableName="solicitacao_declaracoes"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201014103943-3">
+    	<preConditions onFail="MARK_RAN">
+    		<foreignKeyConstraintExists foreignKeyName="FKdh9eeorerohqo3hcn3a3suhxe"/>
+    	</preConditions>
+        <dropForeignKeyConstraint baseTableName="solicitacao_arquivos" constraintName="FKdh9eeorerohqo3hcn3a3suhxe"/>
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20201014103943-4">
+    	<preConditions onFail="MARK_RAN">
+    		<foreignKeyConstraintExists foreignKeyName="FKqhqco53vpqv7bdb2wx8wvqb5c"/>
+    	</preConditions>
+        <dropForeignKeyConstraint baseTableName="solicitacao_arquivos" constraintName="FKqhqco53vpqv7bdb2wx8wvqb5c"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20201014103943-5">
+    	<preConditions onFail="MARK_RAN">
+    		<tableExists tableName="solicitacao_arquivos"/>
+    	</preConditions>
+        <dropTable tableName="solicitacao_arquivos"/>
+    </changeSet>
+   
+</databaseChangeLog>

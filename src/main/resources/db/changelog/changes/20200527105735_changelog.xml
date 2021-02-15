@@ -1,0 +1,42 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="matheusholandamatos" id="20200527105735-1">
+    	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_maturidade_map"/>    		
+    		</not>
+    	</preConditions>      
+        <createTable tableName="projeto_plano_maturidade_map">
+            <column name="projeto_plano_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="area_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+
+    <changeSet author="matheusholandamatos" id="20200527105735-2">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKigxd9bersi5rc618y78sp6ols"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="area_id" baseTableName="projeto_plano_maturidade_map" constraintName="FKigxd9bersi5rc618y78sp6ols" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_maturidade" validate="true"/>
+    </changeSet>
+
+    <changeSet author="matheusholandamatos" id="20200527105735-3">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKqk68jl7wqocs6ytluu6aimv78"/>
+            </not>
+        </preConditions>    
+        <addForeignKeyConstraint baseColumnNames="projeto_plano_id" baseTableName="projeto_plano_maturidade_map" constraintName="FKqk68jl7wqocs6ytluu6aimv78" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano" validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,39 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200406093921-1">
+        <addForeignKeyConstraint baseColumnNames="desligamentorh_id" baseTableName="projeto_rh" constraintName="FKf1xhoms1hue4dgtnm4x72uq4a" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh_desligamento" validate="true"/>
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200406093921-2">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="resposta" tableName="bolsista_avaliacao"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200406093921-3">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="resposta" tableName="coordenador_avaliacao"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200406093921-4">
+        <dropUniqueConstraint constraintName="UC_PERGUNTA_AVALIACAO_BOLSISTAPERGUNTA_COL" tableName="pergunta_avaliacao_bolsista"/>
+        <addUniqueConstraint columnNames="pergunta" constraintName="UC_PERGUNTA_AVALIACAO_BOLSISTAPERGUNTA_COL" tableName="pergunta_avaliacao_bolsista"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200406093921-5">
+        <dropUniqueConstraint constraintName="UC_PERGUNTA_AVALIACAO_COORDENADORPERGUNTA_COL" tableName="pergunta_avaliacao_coordenador"/>
+        <addUniqueConstraint columnNames="pergunta" constraintName="UC_PERGUNTA_AVALIACAO_COORDENADORPERGUNTA_COL" tableName="pergunta_avaliacao_coordenador"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200406093921-6">
+        <dropUniqueConstraint constraintName="UK_q0pmfqol8jhrj5gnmvdrfbrj" tableName="desligamento_avaliacao_coordenador"/>
+        <addUniqueConstraint columnNames="avaliacao_coordenador_id" constraintName="UK_q0pmfqol8jhrj5gnmvdrfbrj" tableName="desligamento_avaliacao_coordenador"/>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20200406093921-7">
+        <dropUniqueConstraint constraintName="UK_swjtl3vahyvvbguawm5scn9yk" tableName="desligamento_avaliacao_bolsista"/>
+        <addUniqueConstraint columnNames="avaliacao_bolsista_id" constraintName="UK_swjtl3vahyvvbguawm5scn9yk" tableName="desligamento_avaliacao_bolsista"/>
+    </changeSet>
+    
+</databaseChangeLog>

@@ -1,0 +1,162 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+	
+	<changeSet author="fcolucas" id="20200402124422-1">
+    	<preConditions onFail="MARK_RAN">
+        	<tableExists tableName="projeto_rh_desligamento" />
+        </preConditions> 
+        <dropTable tableName="projeto_rh_desligamento"/>
+    </changeSet>
+    
+	<changeSet author="fcolucas" id="20200402124422-2">
+        <createTable tableName="projeto_rh_desligamento">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_rh_desligamentooPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-3">
+        <createTable tableName="bolsista_avaliacao">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="bolsista_avaliacaoPK"/>
+            </column>
+            <column name="resposta" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pergunta_avaliacao_bolsista_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-4">
+        <createTable tableName="coordenador_avaliacao">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="coordenador_avaliacaoPK"/>
+            </column>
+            <column name="resposta" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pergunta_avaliacao_coordenador_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-5">
+        <createTable tableName="desligamento_avaliacao_bolsista">
+            <column name="projeto_rh_desligamento_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="avaliacao_bolsista_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-6">
+        <createTable tableName="desligamento_avaliacao_coordenador">
+            <column name="projeto_rh_desligamento_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="avaliacao_coordenador_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-7">
+        <createTable tableName="pergunta_avaliacao_bolsista">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pergunta_avaliacao_bolsistaPK"/>
+            </column>
+            <column name="pergunta" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-8">
+        <createTable tableName="pergunta_avaliacao_coordenador">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pergunta_avaliacao_coordenadorPK"/>
+            </column>
+            <column name="pergunta" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-9">
+        <addUniqueConstraint columnNames="pergunta" constraintName="UC_PERGUNTA_AVALIACAO_BOLSISTAPERGUNTA_COL" tableName="pergunta_avaliacao_bolsista"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-10">
+        <addUniqueConstraint columnNames="pergunta" constraintName="UC_PERGUNTA_AVALIACAO_COORDENADORPERGUNTA_COL" tableName="pergunta_avaliacao_coordenador"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-11">
+        <addUniqueConstraint columnNames="avaliacao_coordenador_id" constraintName="UK_q0pmfqol8jhrj5gnmvdrfbrj" tableName="desligamento_avaliacao_coordenador"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-12">
+        <addUniqueConstraint columnNames="avaliacao_bolsista_id" constraintName="UK_swjtl3vahyvvbguawm5scn9yk" tableName="desligamento_avaliacao_bolsista"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-13">
+        <addForeignKeyConstraint baseColumnNames="avaliacao_coordenador_id" baseTableName="desligamento_avaliacao_coordenador" constraintName="FK7e1tjpi0b977o33ui0l3yy4uw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="coordenador_avaliacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-14">
+        <addForeignKeyConstraint baseColumnNames="pergunta_avaliacao_bolsista_id" baseTableName="bolsista_avaliacao" constraintName="FK81esaqnb5mh9og33p09k2enct" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pergunta_avaliacao_bolsista" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-15">
+        <addForeignKeyConstraint baseColumnNames="projeto_rh_desligamento_id" baseTableName="desligamento_avaliacao_coordenador" constraintName="FKldij32ttqm92ujd8v0wam5jwa" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh_desligamento" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-16">
+        <addForeignKeyConstraint baseColumnNames="projeto_rh_desligamento_id" baseTableName="desligamento_avaliacao_bolsista" constraintName="FKmetyd41d2q9ib6ufoxbefrtve" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh_desligamento" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-17">
+        <addForeignKeyConstraint baseColumnNames="avaliacao_bolsista_id" baseTableName="desligamento_avaliacao_bolsista" constraintName="FKpwsx9vd29lc28tcnsmnkl7xnw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bolsista_avaliacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-18">
+        <addForeignKeyConstraint baseColumnNames="pergunta_avaliacao_coordenador_id" baseTableName="coordenador_avaliacao" constraintName="FKq65p3sgcfbarf00adsm5offu1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pergunta_avaliacao_coordenador" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-19">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="form_desligamento_bolsista" />
+        </preConditions> 
+        <dropTable tableName="form_desligamento_bolsista"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-20">
+    	<preConditions onFail="MARK_RAN">
+        	<tableExists tableName="form_desligamento_coordenador" />
+        </preConditions> 
+        <dropTable tableName="form_desligamento_coordenador"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-21">
+    	<preConditions onFail="MARK_RAN">
+        	<tableExists tableName="form_desligamento_bolsista_resposta" />
+        </preConditions> 
+        <dropTable tableName="form_desligamento_bolsista_resposta"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200402124422-22">
+    	<preConditions onFail="MARK_RAN">
+        	<tableExists tableName="form_desligamento_coordenador_resposta" />
+        </preConditions> 
+        <dropTable tableName="form_desligamento_coordenador_resposta"/>
+    </changeSet>
+    
+</databaseChangeLog>

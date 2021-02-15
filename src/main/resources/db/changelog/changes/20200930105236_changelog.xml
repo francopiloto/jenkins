@@ -1,0 +1,188 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="matheusholandamatos" id="20200930105236-1">
+        <preConditions onFail="MARK_RAN">
+        	<columnExists columnName="desligamentorh_id" tableName="projeto_rh" />
+   		</preConditions>    
+        <dropColumn columnName="desligamentorh_id" tableName="projeto_rh"/>
+    </changeSet>  
+
+   <changeSet author="matheusholandamatos" id="20200930105236-2">
+        <preConditions onFail="MARK_RAN">
+       		<not>
+           		<tableExists tableName="avaliacaorh_bolsista" />
+       		</not>
+   		</preConditions>   
+        <createTable tableName="avaliacaorh_bolsista">
+            <column name="projeto_rh_avaliacao_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="avaliacao_bolsista_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-3">
+        <preConditions onFail="MARK_RAN">
+       		<not>
+           		<tableExists tableName="avaliacaorh_coordenador" />
+       		</not>
+   		</preConditions>      
+        <createTable tableName="avaliacaorh_coordenador">
+            <column name="projeto_rh_avaliacao_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="avaliacao_coordenador_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-4">
+        <preConditions onFail="MARK_RAN">
+       		<not>
+           		<tableExists tableName="projeto_rh_avaliacao" />
+       		</not>
+   		</preConditions>      
+        <createTable tableName="projeto_rh_avaliacao">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_rh_avaliacaoPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-5">
+        <preConditions onFail="MARK_RAN">
+       		<not>
+           		<columnExists tableName="projeto_payment" columnName="avaliacaorh_id"/>
+       		</not>
+   		</preConditions>     
+        <addColumn tableName="projeto_payment">
+            <column name="avaliacaorh_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-6">
+        <preConditions onFail="MARK_RAN">
+       		<not>        
+        		<columnExists columnName="desligamentorh_id" tableName="projeto_rh" />
+       		</not>        		
+   		</preConditions>      
+        <addColumn tableName="projeto_rh">
+            <column name="desligamentorh_id" type="int8"/>
+        </addColumn>
+    </changeSet>    
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-7">
+    	<sql>
+    		delete from opcoes_bolsista;
+    	</sql>
+        <addColumn tableName="opcoes_bolsista">
+            <column name="projeto_rh_avaliacao_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="matheusholandamatos" id="20200930105236-8">
+        <addUniqueConstraint columnNames="avaliacao_bolsista_id" constraintName="UK_93a40orlbt66xp4rpekwn7asx" tableName="avaliacaorh_bolsista"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-9">
+        <addUniqueConstraint columnNames="avaliacao_coordenador_id" constraintName="UK_e64kkwje6ki2ysqodm2eqm3ru" tableName="avaliacaorh_coordenador"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-10">
+        <addForeignKeyConstraint baseColumnNames="avaliacao_bolsista_id" baseTableName="avaliacaorh_bolsista" constraintName="FK1qg1lilb8ue2cm6lymlh3slwx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bolsista_avaliacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-11">
+        <addForeignKeyConstraint baseColumnNames="desligamento_id" baseTableName="desligamento_token" constraintName="FK64myv86nt2w1xvvsw134shcwg" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh_avaliacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-12">
+        <addForeignKeyConstraint baseColumnNames="projeto_rh_avaliacao_id" baseTableName="avaliacaorh_bolsista" constraintName="FK80egy52c1ewxda6bhyem1gd8b" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh_avaliacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-13">
+        <addForeignKeyConstraint baseColumnNames="avaliacaorh_id" baseTableName="projeto_payment" constraintName="FKksco7dikswwxxts19deiju06s" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh_avaliacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-14">
+        <addForeignKeyConstraint baseColumnNames="avaliacao_coordenador_id" baseTableName="avaliacaorh_coordenador" constraintName="FKm46juk878bcvuew9dyitxe43b" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="coordenador_avaliacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-15">
+        <addForeignKeyConstraint baseColumnNames="projeto_rh_avaliacao_id" baseTableName="avaliacaorh_coordenador" constraintName="FKmy6jeepr8td6rc3h4aw1sulbo" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh_avaliacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-16">
+        <addForeignKeyConstraint baseColumnNames="projeto_rh_avaliacao_id" baseTableName="opcoes_bolsista" constraintName="FKrfhk4p8p79jt09yuy82cnh16r" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh_avaliacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-17">
+        <dropForeignKeyConstraint baseTableName="desligamento_avaliacao_coordenador" constraintName="FK7e1tjpi0b977o33ui0l3yy4uw"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-18">
+        <dropForeignKeyConstraint baseTableName="desligamento_token" constraintName="FKcqxyxqcqfofodqk6km33asec"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-19">
+        <dropForeignKeyConstraint baseTableName="desligamento_avaliacao_coordenador" constraintName="FKldij32ttqm92ujd8v0wam5jwa"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-20">
+        <dropForeignKeyConstraint baseTableName="desligamento_avaliacao_bolsista" constraintName="FKmetyd41d2q9ib6ufoxbefrtve"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-21">
+        <dropForeignKeyConstraint baseTableName="opcoes_bolsista" constraintName="FKnru7mnkmq29ggbwvoon7t7346"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-22">
+        <dropForeignKeyConstraint baseTableName="desligamento_avaliacao_bolsista" constraintName="FKpwsx9vd29lc28tcnsmnkl7xnw"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-23">
+        <dropUniqueConstraint constraintName="UK_q0pmfqol8jhrj5gnmvdrfbrj" tableName="desligamento_avaliacao_coordenador"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-24">
+        <dropUniqueConstraint constraintName="UK_swjtl3vahyvvbguawm5scn9yk" tableName="desligamento_avaliacao_bolsista"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-25">
+        <preConditions onFail="MARK_RAN">
+       		<tableExists tableName="desligamento_avaliacao_bolsista" />
+   		</preConditions>     
+        <dropTable tableName="desligamento_avaliacao_bolsista"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-26">
+        <preConditions onFail="MARK_RAN">
+       		<tableExists tableName="desligamento_avaliacao_coordenador" />
+   		</preConditions>       
+        <dropTable tableName="desligamento_avaliacao_coordenador"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200930105236-27">
+        <preConditions onFail="MARK_RAN">
+       		<tableExists tableName="projeto_rh_desligamento" />
+   		</preConditions>      
+        <dropTable tableName="projeto_rh_desligamento"/>
+    </changeSet>
+
+    <changeSet author="matheusholandamatos" id="20200930105236-28">
+        <preConditions onFail="MARK_RAN">
+       		<columnExists columnName="projeto_rh_desligamento_id" tableName="opcoes_bolsista" />
+   		</preConditions>    
+        <dropColumn columnName="projeto_rh_desligamento_id" tableName="opcoes_bolsista"/>
+    </changeSet>
+   
+</databaseChangeLog>

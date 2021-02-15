@@ -1,0 +1,161 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+	<changeSet author="fcolucas" id="20200402131619-1">
+        <insert tableName="pergunta_avaliacao_bolsista">
+            <column name="id" value="1"/>                          
+            <column name="pergunta" value="A importância da inserção no Projeto para a formação:"/>                                                                  
+        </insert>                        
+    </changeSet>
+    
+	<changeSet author="fcolucas" id="20200402131619-2">
+        <insert tableName="pergunta_avaliacao_bolsista">
+            <column name="id" value="2"/>                          
+            <column name="pergunta" value="A experiência de ser bolsista do Projeto foi:"/>                                                                  
+        </insert>                        
+    </changeSet>
+        
+	<changeSet author="fcolucas" id="20200402131619-3">
+        <insert tableName="pergunta_avaliacao_bolsista">
+            <column name="id" value="3"/>                          
+            <column name="pergunta" value="Aplicou princípios científicos nas atividades diárias:"/>                                                                  
+        </insert>                        
+    </changeSet>
+        
+	<changeSet author="fcolucas" id="20200402131619-4">
+        <insert tableName="pergunta_avaliacao_bolsista">
+            <column name="id" value="4"/>                          
+            <column name="pergunta" value="Aplicou e relacionou conhecimentos teóricos na fundamentação prática:"/>                                                                  
+        </insert>                        
+    </changeSet>
+        
+	<changeSet author="fcolucas" id="20200402131619-5">
+        <insert tableName="pergunta_avaliacao_bolsista">
+            <column name="id" value="5"/>                          
+            <column name="pergunta" value="Foi estimulado à superação de desafios pelo coordenador e demais bolsistas componentes da equipe:"/>                                                                  
+        </insert>                        
+    </changeSet>
+        
+	<changeSet author="fcolucas" id="20200402131619-6">
+        <insert tableName="pergunta_avaliacao_bolsista">
+            <column name="id" value="6"/>                          
+            <column name="pergunta" value="Você se sentiu parte ativa do processo de ensino-aprendizagem nas ações desenvolvidas no projeto que fez parte? Justifique sua resposta."/>                                                                  
+        </insert>                        
+    </changeSet>
+        
+	<changeSet author="fcolucas" id="20200402131619-7">
+        <insert tableName="pergunta_avaliacao_bolsista">
+            <column name="id" value="7"/>                          
+            <column name="pergunta" value="Questões como protagonismo, independência e autonomia foram trabalhados e/ou estimulados durante o projeto? Justifique sua resposta."/>                                                                  
+        </insert>                        
+    </changeSet>
+        
+	<changeSet author="fcolucas" id="20200402131619-8">
+        <insert tableName="pergunta_avaliacao_bolsista">
+            <column name="id" value="8"/>                          
+            <column name="pergunta" value="De que maneira à prática desenvolvida no projeto contribui para a sua formação acadêmica?"/>                                                                  
+        </insert>                        
+    </changeSet>
+        
+	<changeSet author="fcolucas" id="20200402131619-9">
+        <insert tableName="pergunta_avaliacao_bolsista">
+            <column name="id" value="9"/>                          
+            <column name="pergunta" value="Você percebe diferença entre aprender com ações práticas e aprender com o método tradicional de ensino que leva em consideração aulas expositivas e provas? Justifique sua resposta."/>                                                                  
+        </insert>                        
+    </changeSet>
+        
+	<changeSet author="fcolucas" id="20200402131619-10">
+        <insert tableName="pergunta_avaliacao_bolsista">
+            <column name="id" value="10"/>                          
+            <column name="pergunta" value="Quais os pontos positivos da sua participação no projeto?"/>                                                                  
+        </insert>                        
+    </changeSet>
+        
+	<changeSet author="fcolucas" id="20200402131619-11">
+        <insert tableName="pergunta_avaliacao_bolsista">
+            <column name="id" value="11"/>                          
+            <column name="pergunta" value="Quais os pontos negativos da sua participação no projeto?"/>                                                                  
+        </insert>                        
+    </changeSet>   
+    
+	<changeSet author="fcolucas" id="20200402131619-12">
+        <insert tableName="pergunta_avaliacao_coordenador">
+            <column name="id" value="1"/>                          
+            <column name="pergunta" value="Em relação às habilidades desenvolvidas pelo bolsista quanto ao conhecimento dos métodos e técnicas de pesquisa:"/>                                                                  
+        </insert>                        
+    </changeSet>  
+    
+   	<changeSet author="fcolucas" id="20200402131619-13">
+        <insert tableName="pergunta_avaliacao_coordenador">
+            <column name="id" value="2"/>                          
+            <column name="pergunta" value="Em relação às habilidades desenvolvidas pelo bolsista quanto ao interesse pela pesquisa tecnológica:"/>                                                                  
+        </insert>                        
+    </changeSet>  
+    
+	<changeSet author="fcolucas" id="20200402131619-14">
+        <insert tableName="pergunta_avaliacao_coordenador">
+            <column name="id" value="3"/>                          
+            <column name="pergunta" value="Em relação às habilidades desenvolvidas pelo bolsista, quanto ao espírito crítico:"/>                                                                  
+        </insert>                        
+    </changeSet>  
+    
+    <changeSet author="fcolucas" id="20200402131619-15">
+        <insert tableName="pergunta_avaliacao_coordenador">
+            <column name="id" value="4"/>                          
+            <column name="pergunta" value="Em relação às habilidades desenvolvidas pelo bolsista quanto a criatividade:"/>                                                                  
+        </insert>                        
+    </changeSet>  
+    
+	<changeSet author="fcolucas" id="20200402131619-16">
+        <insert tableName="pergunta_avaliacao_coordenador">
+            <column name="id" value="5"/>                          
+            <column name="pergunta" value="Como você avalia a participação do bolsista quanto ao aprofundamento de seus conhecimentos em Sistemas Embarcados e Mobilidade Digital:"/>                                                                  
+        </insert>                        
+    </changeSet>  
+   
+   	<changeSet author="fcolucas" id="20200402131619-17">
+        <insert tableName="pergunta_avaliacao_coordenador">
+            <column name="id" value="6"/>                          
+            <column name="pergunta" value="O bolsista colaborava com ideias que buscavam superar eventuais problemas durante o desenvolvimento do projeto?"/>                                                                  
+        </insert>                        
+    </changeSet>  
+    
+    <changeSet author="fcolucas" id="20200402131619-18">
+        <insert tableName="pergunta_avaliacao_coordenador">
+            <column name="id" value="7"/>                          
+            <column name="pergunta" value="Quais as competências técnicas desenvolvidas pelo bolsista durante sua participação no projeto?"/>                                                                  
+        </insert>                        
+    </changeSet>  
+    
+    <changeSet author="fcolucas" id="20200402131619-19">
+        <insert tableName="pergunta_avaliacao_coordenador">
+            <column name="id" value="8"/>                          
+            <column name="pergunta" value="O bolsista contribuiu para a atuação satisfatória dos demais colegas de equipe? De que forma?"/>                                                                  
+        </insert>                        
+    </changeSet>  
+    
+    <changeSet author="fcolucas" id="20200402131619-20">
+        <insert tableName="pergunta_avaliacao_coordenador">
+            <column name="id" value="9"/>                          
+            <column name="pergunta" value="O bolsista propõe ideias novas ou soluções de problemas de forma assertiva a partir dos recursos disponíveis? De que forma?"/>                                                                  
+        </insert>                        
+    </changeSet>  
+    
+    <changeSet author="fcolucas" id="20200402131619-21">
+        <insert tableName="pergunta_avaliacao_coordenador">
+            <column name="id" value="10"/>                          
+            <column name="pergunta" value="Quais características você destacaria na atuação do bolsista?"/>                                                                  
+        </insert>                        
+    </changeSet>  
+    
+    <changeSet author="fcolucas" id="20200402131619-22">
+        <insert tableName="pergunta_avaliacao_coordenador">
+            <column name="id" value="11"/>                          
+            <column name="pergunta" value="Quais aspectos precisam ser melhorados na atuação do bolsista?"/>                                                                  
+        </insert>                        
+    </changeSet>  
+        
+</databaseChangeLog>

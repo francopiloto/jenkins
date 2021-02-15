@@ -1,0 +1,65 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200609101430-1">
+        <createTable tableName="proposta_caracterizacao">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="proposta_caracterizacaoPK"/>
+            </column>
+            <column name="resposta" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="form_caracterizacao_pergunta_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_proposta" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200609101430-2">
+        <addForeignKeyConstraint baseColumnNames="id_proposta" baseTableName="proposta_caracterizacao" constraintName="FKfuargq7vrrh1c2mxlwmvjekqk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+    </changeSet>
+
+
+    <changeSet author="fcolucas" id="20200609101430-3">
+        <addForeignKeyConstraint baseColumnNames="form_caracterizacao_pergunta_id" baseTableName="proposta_caracterizacao" constraintName="FKskvem4dthfoxljgemaim5nm6s" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="caracterizacao_perguntas" validate="true"/>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20200609101430-4">
+        <dropForeignKeyConstraint baseTableName="form_caracterizacao_respostas" constraintName="FKfj80ox8fwa787olaf8qxd0eeo"/>
+    </changeSet>
+  
+    <changeSet author="fcolucas" id="20200609101430-5">
+        <dropForeignKeyConstraint baseTableName="form_caracterizacao" constraintName="FKhgor1kk1rmthg204m0jwihv5d"/>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20200609101430-6">
+        <dropForeignKeyConstraint baseTableName="form_caracterizacao_respostas" constraintName="FKm2jbdakw83l5hicb6w753c7o2"/>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20200609101430-7">
+        <dropForeignKeyConstraint baseTableName="caracterizacao_respostas" constraintName="FKr863bmsjnhny4xyhkvfm4vhn5"/>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20200609101430-8">
+        <dropUniqueConstraint constraintName="UK_lsujd7cfp0nnv2nygnlx5avo1" tableName="form_caracterizacao_respostas"/>
+    </changeSet>
+  
+    <changeSet author="fcolucas" id="20200609101430-9">
+        <dropTable tableName="caracterizacao_respostas"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200609101430-10">
+        <dropTable tableName="form_caracterizacao"/>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20200609101430-11">
+        <dropTable tableName="form_caracterizacao_respostas"/>
+    </changeSet>
+    
+</databaseChangeLog>

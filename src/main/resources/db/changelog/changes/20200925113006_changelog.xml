@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200925113006-1">
+        <createTable tableName="avaliacao_bolsista_config">
+            <column name="id" type="SMALLINT">
+                <constraints primaryKey="true" primaryKeyName="avaliacao_bolsista_configPK"/>
+            </column>
+            <column defaultValueNumeric="6" name="prazo_avaliacao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200925113006-2">
+        <dropTable tableName="projeto_config"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200925113006-3">
+    	<insert tableName="avaliacao_bolsista_config">
+    		<column name="id" value="1"/>
+    		<column name="prazo_avaliacao" value="6"/>
+    	</insert>
+    </changeSet>
+    
+</databaseChangeLog>

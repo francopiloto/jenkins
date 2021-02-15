@@ -1,0 +1,1895 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="franco" id="20180827213202-1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="aluno" />
+            </not>
+        </preConditions>
+        <createTable tableName="aluno">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="ativado" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="curso" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="instituicao" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="matricula" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nivel_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pessoa_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lattes" type="VARCHAR(255)" defaultValue="http://lattes.cnpq.br/">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-2">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="aluno_area" />
+            </not>
+        </preConditions>
+        <createTable tableName="aluno_area">
+            <column name="aluno_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="area_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-3">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="aluno_arquivo" />
+            </not>
+        </preConditions>
+        <createTable tableName="aluno_arquivo">
+            <column name="aluno_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arquivo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-4">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="aluno_nivel" />
+            </not>
+        </preConditions>
+        <createTable tableName="aluno_nivel">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="valor" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-5">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="area_competencia" />
+            </not>
+        </preConditions>
+        <createTable tableName="area_competencia">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-6">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="area_pesquisa" />
+            </not>
+        </preConditions>
+        <createTable tableName="area_pesquisa">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-7">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="arquivo" />
+            </not>
+        </preConditions>
+        <createTable tableName="arquivo">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="dados" type="BYTEA">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-8">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="bolsa_info" />
+            </not>
+        </preConditions>
+        <createTable tableName="bolsa_info">
+            <column name="carga_horaria" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sexo" type="CHAR(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vinculo_empregaticio" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-9">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="campus" />
+            </not>
+        </preConditions>
+        <createTable tableName="campus">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-10">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="categoria_bolsa" />
+            </not>
+        </preConditions>
+        <createTable tableName="categoria_bolsa">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_maximo" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-11">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="colaborador" />
+            </not>
+        </preConditions>
+        <createTable tableName="colaborador">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="ativado" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lattes" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="siape" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="campus_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pessoa_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titulacao_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-12">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="colaborador_area" />
+            </not>
+        </preConditions>
+        <createTable tableName="colaborador_area">
+            <column name="colaborador_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="area_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-13">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="colaborador_arquivo" />
+            </not>
+        </preConditions>
+        <createTable tableName="colaborador_arquivo">
+            <column name="colaborador_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arquivo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-14">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="conta" />
+            </not>
+        </preConditions>
+        <createTable tableName="conta">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="agencia" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="banco" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="numero" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-15">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="contrato_info" />
+            </not>
+        </preConditions>
+        <createTable tableName="contrato_info">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="data_nascimento" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rg" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rg_emissor" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rg_uf" type="VARCHAR(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tipo" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-16">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="diaria" />
+            </not>
+        </preConditions>
+        <createTable tableName="diaria">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="destino" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-17">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="email_config" />
+            </not>
+        </preConditions>
+        <createTable tableName="email_config">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="autenticado" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="codificacao" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="porta" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="protocolo" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="senha" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="servidor" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tls" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="usuario" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-18">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="empresa" />
+            </not>
+        </preConditions>
+        <createTable tableName="empresa">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="ativado" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cnae" type="VARCHAR(20)"/>
+            <column name="cnpj" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="observacoes" type="VARCHAR(255)"/>
+            <column name="razao_social" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="endereco_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-19">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="empresa_contato" />
+            </not>
+        </preConditions>
+        <createTable tableName="empresa_contato">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="cargo" type="VARCHAR(50)"/>
+            <column name="email" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefone" type="VARCHAR(15)"/>
+            <column name="id_empresa" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-20">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="endereco" />
+            </not>
+        </preConditions>
+        <createTable tableName="endereco">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="bairro" type="VARCHAR(50)"/>
+            <column name="cep" type="VARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cidade" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="complemento" type="VARCHAR(50)"/>
+            <column name="logradouro" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="numero" type="VARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="uf" type="VARCHAR(2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-21">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="notificacao" />
+            </not>
+        </preConditions>
+        <createTable tableName="notificacao">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="data" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="referencia" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tipo" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-22">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="password_reset_token" />
+            </not>
+        </preConditions>
+        <createTable tableName="password_reset_token">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="data_expiracao" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="uuid" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-23">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="permissao" />
+            </not>
+        </preConditions>
+        <createTable tableName="permissao">
+            <column name="nome" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-24">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="pesquisador" />
+            </not>
+        </preConditions>
+        <createTable tableName="pesquisador">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="ativado" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lattes" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="siape" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="campus_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pessoa_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titulacao_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-25">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="pesquisador_area" />
+            </not>
+        </preConditions>
+        <createTable tableName="pesquisador_area">
+            <column name="pesquisador_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="area_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-26">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="pesquisador_arquivo" />
+            </not>
+        </preConditions>
+        <createTable tableName="pesquisador_arquivo">
+            <column name="pesquisador_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arquivo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-27">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="pesquisador_salario" />
+            </not>
+        </preConditions>
+        <createTable tableName="pesquisador_salario">
+            <column name="vigencia" type="date"/>
+            <column name="valor" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pesquisador_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-28">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="pesquisador_titulo" />
+            </not>
+        </preConditions>
+        <createTable tableName="pesquisador_titulo">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="valor" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-29">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="pessoa" />
+            </not>
+        </preConditions>
+        <createTable tableName="pessoa">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="ativado" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cpf" type="VARCHAR(14)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefone" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="endereco_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-30">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="processo" />
+            </not>
+        </preConditions>
+        <createTable tableName="processo">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="fim" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="inicio" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="referencia" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resultado" type="VARCHAR(40)"/>
+            <column name="tipo" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-31">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="contrapartida_infra" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contrapartida_rh" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contrapartida_suporte" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="coordenador_tecnico" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_finalizacao" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_publicacao" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duracao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="estado" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sigla" type="VARCHAR(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefone" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titulo" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="versao" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="coordenador_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descritivo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-32">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_aporte" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_aporte">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="data" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parte_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_projeto" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-33">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_area_map" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_area_map">
+            <column name="projeto_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="area_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-34">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_atividade" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_atividade">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="mes_fim" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mes_inicio" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titulo" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_macroentrega" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-35">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_config" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_config">
+            <column name="id" type="SMALLINT"/>
+            <column name="diretor_oficios" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-36">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_descritivo" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_descritivo">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="escopo" type="VARCHAR(5000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="introducao" type="VARCHAR(5000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="originalidade" type="VARCHAR(5000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="premissas" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="propriedade_intelectual" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="restricoes" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resumo_publico" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="riscos" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-37">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_estagio" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_estagio">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duracao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meses_executados" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meses_solicitados" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="funcao" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="remuneracao" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pessoa_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-38">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_estagio_map" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_estagio_map">
+            <column name="versao" type="INTEGER"/>
+            <column name="estagio_id" type="BIGINT"/>
+            <column name="projeto_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-39">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_fonte_recurso" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_fonte_recurso">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="gpf" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="suporte_operacional" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="conta_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="empresa_id" type="BIGINT"/>
+            <column name="id_projeto" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-40">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_historico" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_historico">
+            <column name="versao" type="INTEGER"/>
+            <column name="data" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="estagio" type="INTEGER"/>
+            <column name="material" type="INTEGER"/>
+            <column name="outros" type="INTEGER"/>
+            <column name="rh" type="INTEGER"/>
+            <column name="servico" type="INTEGER"/>
+            <column name="viagem" type="INTEGER"/>
+            <column name="projeto_id" type="BIGINT"/>
+            <column name="usuario_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-41">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_macroentrega" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_macroentrega">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="data_entrega" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duracao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="inicio" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titulo" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_projeto" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-42">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_material" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_material">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_executado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_solicitado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-43">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_material_map" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_material_map">
+            <column name="versao" type="INTEGER"/>
+            <column name="material_id" type="BIGINT"/>
+            <column name="projeto_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-44">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_maturidade" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_maturidade">
+            <column name="id" type="VARCHAR(255)"/>
+            <column name="descricao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-45">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_maturidade_map" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_maturidade_map">
+            <column name="projeto_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="maturidade_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-46">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_modalidade" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_modalidade">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="ativado" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="infraestrutura" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="suporte_operacional_financeiro" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="suporte_operacional_total" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timeout_limit" type="INTEGER" defaultValue="10">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tipo_suporte" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-47">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_modalidade_parte" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_modalidade_parte">
+            <column autoIncrement="true" name="id" type="INTEGER"/>
+            <column name="empresa" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="maximo" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="minimo" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prioridade" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_modalidade" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="percentual_suporte" type="numeric(19, 2)" defaultValue="100.00">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-48">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_outros" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_outros">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_executado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_solicitado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-49">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_outros_map" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_outros_map">
+            <column name="versao" type="INTEGER"/>
+            <column name="outros_id" type="BIGINT"/>
+            <column name="projeto_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-50">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_rh" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_rh">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duracao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meses_executados" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meses_solicitados" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cargo" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="encargos" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="remuneracao" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="categoria_bolsa_id" type="SMALLINT"/>
+            <column name="contrato_info_id" type="BIGINT"/>
+            <column name="pessoa_id" type="BIGINT"/>
+            <column name="vinculo_instituicao_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vinculo_trabalho_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-51">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_rh_map" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_rh_map">
+            <column name="versao" type="INTEGER"/>
+            <column name="rh_id" type="BIGINT"/>
+            <column name="projeto_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-52">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_servico" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_servico">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_executado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_solicitado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-53">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_servico_map" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_servico_map">
+            <column name="versao" type="INTEGER"/>
+            <column name="servico_id" type="BIGINT"/>
+            <column name="projeto_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-54">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_servico_tipo" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_servico_tipo">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-55">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_solicitacao" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_solicitacao">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="categoria" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_oficio" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="estado" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="oficio" type="INTEGER"/>
+            <column name="referencia" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tipo" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titulo" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arquivo_id" type="BIGINT"/>
+            <column name="projeto_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-56">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_solicitacao_compra" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_solicitacao_compra">
+            <column name="descricao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="justificativa" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="BIGINT"/>
+            <column name="endereco_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-57">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_solicitacao_pagamento" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_solicitacao_pagamento">
+            <column name="id" type="BIGINT"/>
+            <column name="solicitacao_aquisicao_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-58">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_solicitacao_servico" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_solicitacao_servico">
+            <column name="criterio_selecao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="justificativa" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="BIGINT"/>
+            <column name="tipo_servico_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-59">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_solicitacao_viagem" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_solicitacao_viagem">
+            <column name="data_viagem" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="documento" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="justificativa" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passageiro" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passaporte" type="VARCHAR(20)"/>
+            <column name="sugestoes" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefone" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tipo_documento" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="trecho" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-60">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_solicitacaorh" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_solicitacaorh">
+            <column name="id" type="BIGINT"/>
+            <column name="pessoa_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-61">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_viagem" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_viagem">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_executado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_solicitado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_diaria" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_passagem" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-62">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_viagem_map" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_viagem_map">
+            <column name="versao" type="INTEGER"/>
+            <column name="viagem_id" type="BIGINT"/>
+            <column name="projeto_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-63">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="contrapartidarh" type="numeric(19, 2)"/>
+            <column name="data_criacao" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_modificacao" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duracao" type="SMALLINT"/>
+            <column name="hash" type="BYTEA"/>
+            <column name="observacoes" type="VARCHAR(5000)"/>
+            <column name="sigla" type="VARCHAR(16)"/>
+            <column name="titulo" type="VARCHAR(200)"/>
+            <column name="config_id" type="SMALLINT" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="coordenador_id" type="BIGINT" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="descritivo_id" type="BIGINT"/>
+            <column name="modalidade_id" type="SMALLINT"/>
+            <column name="supervisor_id" type="BIGINT"/>
+            <column name="estado" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="flags" type="INTEGER" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-64">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_aporte" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_aporte">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parte_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_proposta" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-65">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_area_map" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_area_map">
+            <column name="proposta_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="area_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-66">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_atividade" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_atividade">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="mes_fim" type="SMALLINT"/>
+            <column name="mes_inicio" type="SMALLINT"/>
+            <column name="ordem" type="SMALLINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titulo" type="VARCHAR(50)"/>
+            <column name="id_macroentrega" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-67">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_config" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_config">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="prazo_finalizacao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="propriedade_intelectual" type="VARCHAR(1000)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-68">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_descritivo" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_descritivo">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="escopo" type="VARCHAR(5000)"/>
+            <column name="introducao" type="VARCHAR(5000)"/>
+            <column name="riscos" type="VARCHAR(1000)"/>
+            <column name="originalidade" type="VARCHAR(5000)"/>
+            <column name="premissas" type="VARCHAR(1000)"/>
+            <column name="propriedade_intelectual" type="VARCHAR(1000)"/>
+            <column name="restricoes" type="VARCHAR(1000)"/>
+            <column name="resumo_publico" type="VARCHAR(1000)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-69">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_devolucao" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_devolucao">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="data_devolucao" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="estado" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="motivo" type="VARCHAR(5000)"/>
+            <column name="pessoa_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_proposta" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-70">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_empresa" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_empresa">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="empresa_id" type="BIGINT"/>
+            <column name="parte_id" type="INTEGER"/>
+            <column name="id_proposta" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cargo" type="VARCHAR(255)"/>
+            <column name="coordenador" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(80)"/>
+            <column name="telefone" type="VARCHAR(15)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-71">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_estagio" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_estagio">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="duracao" type="SMALLINT"/>
+            <column name="funcao" type="VARCHAR(200)"/>
+            <column name="mes_execucao" type="SMALLINT"/>
+            <column name="ordem" type="SMALLINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="remuneracao" type="numeric(19, 2)"/>
+            <column name="fonte_recurso_id" type="INTEGER"/>
+            <column name="id_proposta" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-72">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_informativo" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_informativo">
+            <column name="nome_sessao" type="VARCHAR(50)"/>
+            <column name="data" type="VARCHAR(5242880)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="thumb" type="VARCHAR(5242880)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_config" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-73">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_macroentrega" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_macroentrega">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="descricao" type="VARCHAR(200)"/>
+            <column name="duracao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="inicio" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="titulo" type="VARCHAR(50)"/>
+            <column name="id_proposta" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-74">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_material" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_material">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="descricao" type="VARCHAR(200)"/>
+            <column name="mes_execucao" type="SMALLINT"/>
+            <column name="ordem" type="SMALLINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)"/>
+            <column name="fonte_recurso_id" type="INTEGER"/>
+            <column name="id_proposta" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-75">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_maturidade_map" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_maturidade_map">
+            <column name="proposta_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="area_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-76">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_outros" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_outros">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="descricao" type="VARCHAR(200)"/>
+            <column name="mes_execucao" type="SMALLINT"/>
+            <column name="ordem" type="SMALLINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)"/>
+            <column name="fonte_recurso_id" type="INTEGER"/>
+            <column name="id_proposta" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-77">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_rh" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_rh">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="cargo" type="VARCHAR(100)"/>
+            <column name="duracao" type="SMALLINT"/>
+            <column name="encargos" type="numeric(19, 2)"/>
+            <column name="mes_execucao" type="SMALLINT"/>
+            <column name="ordem" type="SMALLINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="remuneracao" type="numeric(19, 2)"/>
+            <column name="categoria_bolsa_id" type="SMALLINT"/>
+            <column name="fonte_recurso_id" type="INTEGER"/>
+            <column name="vinculo_instituicao_id" type="SMALLINT"/>
+            <column name="vinculo_trabalho_id" type="SMALLINT"/>
+            <column name="id_proposta" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-78">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_servico" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_servico">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="descricao" type="VARCHAR(200)"/>
+            <column name="mes_execucao" type="SMALLINT"/>
+            <column name="ordem" type="SMALLINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor" type="numeric(19, 2)"/>
+            <column name="fonte_recurso_id" type="INTEGER"/>
+            <column name="id_proposta" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-79">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_viagem" />
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_viagem">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="descricao" type="VARCHAR(255)"/>
+            <column name="mes_execucao" type="SMALLINT"/>
+            <column name="ordem" type="SMALLINT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_diaria" type="numeric(19, 2)"/>
+            <column name="valor_passagem" type="numeric(19, 2)"/>
+            <column name="fonte_recurso_id" type="INTEGER"/>
+            <column name="id_proposta" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-80">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="supervisor" />
+            </not>
+        </preConditions>
+        <createTable tableName="supervisor">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="email_notificacao" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pessoa_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ativado" type="BOOLEAN" defaultValue="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-81">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="supervisor_notificacao" />
+            </not>
+        </preConditions>
+        <createTable tableName="supervisor_notificacao">
+            <column name="supervisor" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notificacao" type="VARCHAR(40)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-82">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="usuario" />
+            </not>
+        </preConditions>
+        <createTable tableName="usuario">
+            <column autoIncrement="true" name="id" type="BIGINT"/>
+            <column name="ativado" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="senha" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pessoa_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-83">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="usuario_perfil" />
+            </not>
+        </preConditions>
+        <createTable tableName="usuario_perfil">
+            <column name="nome" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-84">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="usuario_perfil_permissao" />
+            </not>
+        </preConditions>
+        <createTable tableName="usuario_perfil_permissao">
+            <column name="usuario_perfil" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="permissao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-85">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="vinculo_instituicao" />
+            </not>
+        </preConditions>
+        <createTable tableName="vinculo_instituicao">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213202-86">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="vinculo_trabalho" />
+            </not>
+        </preConditions>
+        <createTable tableName="vinculo_trabalho">
+            <column autoIncrement="true" name="id" type="SMALLINT"/>
+            <column name="percentual" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fixo" type="numeric(19, 2)" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

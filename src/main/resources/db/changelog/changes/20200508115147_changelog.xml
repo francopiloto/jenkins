@@ -1,0 +1,52 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200508115147-1">
+        <addColumn tableName="projeto_contrapartida">
+            <column name="duracao" type="int2">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="projeto_contrapartida">
+            <column name="encargos" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="projeto_contrapartida">
+            <column name="fonte_recurso_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="projeto_contrapartida">
+            <column name="mes_execucao" type="int2">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="projeto_contrapartida">
+            <column name="meses_executados" type="int2">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="projeto_contrapartida">
+            <column name="meses_solicitados" type="int2">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200508115147-2">
+        <createIndex indexName="IX_projeto_contrapartida_mapPK" tableName="projeto_contrapartida_map" unique="true">
+            <column name="contrapartida_id"/>
+            <column name="versao"/>
+            <column name="projeto_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200508115147-3">
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_contrapartida" constraintName="FKbveq6uer7it62xg561g6gmwlx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>

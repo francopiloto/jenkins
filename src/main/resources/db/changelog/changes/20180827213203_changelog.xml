@@ -1,0 +1,303 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="franco" id="20180827213203-1">
+        <addPrimaryKey columnNames="id" constraintName="alunoPK" tableName="aluno"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-2">
+        <addPrimaryKey columnNames="id" constraintName="aluno_nivelPK" tableName="aluno_nivel"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-3">
+        <addPrimaryKey columnNames="id" constraintName="area_competenciaPK" tableName="area_competencia"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-4">
+        <addPrimaryKey columnNames="id" constraintName="area_pesquisaPK" tableName="area_pesquisa"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-5">
+        <addPrimaryKey columnNames="id" constraintName="arquivoPK" tableName="arquivo"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-6">
+        <addPrimaryKey columnNames="id" constraintName="bolsa_infoPK" tableName="bolsa_info"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-7">
+        <addPrimaryKey columnNames="id" constraintName="campusPK" tableName="campus"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-8">
+        <addPrimaryKey columnNames="id" constraintName="categoria_bolsaPK" tableName="categoria_bolsa"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-9">
+        <addPrimaryKey columnNames="id" constraintName="colaboradorPK" tableName="colaborador"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-10">
+        <addPrimaryKey columnNames="id" constraintName="contaPK" tableName="conta"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-11">
+        <addPrimaryKey columnNames="id" constraintName="contrato_infoPK" tableName="contrato_info"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-12">
+        <addPrimaryKey columnNames="id" constraintName="diariaPK" tableName="diaria"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-13">
+        <addPrimaryKey columnNames="id" constraintName="email_configPK" tableName="email_config"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-14">
+        <addPrimaryKey columnNames="id" constraintName="empresaPK" tableName="empresa"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-15">
+        <addPrimaryKey columnNames="id" constraintName="empresa_contatoPK" tableName="empresa_contato"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-16">
+        <addPrimaryKey columnNames="id" constraintName="enderecoPK" tableName="endereco"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-17">
+        <addPrimaryKey columnNames="id" constraintName="notificacaoPK" tableName="notificacao"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-18">
+        <addPrimaryKey columnNames="id" constraintName="password_reset_tokenPK" tableName="password_reset_token"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-19">
+        <addPrimaryKey columnNames="nome" constraintName="permissaoPK" tableName="permissao"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-20">
+        <addPrimaryKey columnNames="id" constraintName="pesquisadorPK" tableName="pesquisador"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-21">
+        <addPrimaryKey columnNames="vigencia, pesquisador_id" constraintName="pesquisador_salarioPK" tableName="pesquisador_salario"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-22">
+        <addPrimaryKey columnNames="id" constraintName="pesquisador_tituloPK" tableName="pesquisador_titulo"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-23">
+        <addPrimaryKey columnNames="id" constraintName="pessoaPK" tableName="pessoa"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-24">
+        <addPrimaryKey columnNames="id" constraintName="processoPK" tableName="processo"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-25">
+        <addPrimaryKey columnNames="id" constraintName="projetoPK" tableName="projeto"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-26">
+        <addPrimaryKey columnNames="id" constraintName="projeto_aportePK" tableName="projeto_aporte"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-27">
+        <addPrimaryKey columnNames="id" constraintName="projeto_atividadePK" tableName="projeto_atividade"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-28">
+        <addPrimaryKey columnNames="id" constraintName="projeto_configPK" tableName="projeto_config"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-29">
+        <addPrimaryKey columnNames="id" constraintName="projeto_descritivoPK" tableName="projeto_descritivo"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-30">
+        <addPrimaryKey columnNames="id" constraintName="projeto_estagioPK" tableName="projeto_estagio"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-31">
+        <addPrimaryKey columnNames="estagio_id, versao, projeto_id" constraintName="projeto_estagio_mapPK" tableName="projeto_estagio_map"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-32">
+        <addPrimaryKey columnNames="id" constraintName="projeto_fonte_recursoPK" tableName="projeto_fonte_recurso"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-33">
+        <addPrimaryKey columnNames="versao, projeto_id" constraintName="projeto_historicoPK" tableName="projeto_historico"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-34">
+        <addPrimaryKey columnNames="id" constraintName="projeto_macroentregaPK" tableName="projeto_macroentrega"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-35">
+        <addPrimaryKey columnNames="id" constraintName="projeto_materialPK" tableName="projeto_material"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-36">
+        <addPrimaryKey columnNames="material_id, versao, projeto_id" constraintName="projeto_material_mapPK" tableName="projeto_material_map"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-37">
+        <addPrimaryKey columnNames="id" constraintName="projeto_maturidadePK" tableName="projeto_maturidade"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-38">
+        <addPrimaryKey columnNames="id" constraintName="projeto_modalidadePK" tableName="projeto_modalidade"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-39">
+        <addPrimaryKey columnNames="id" constraintName="projeto_modalidade_partePK" tableName="projeto_modalidade_parte"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-40">
+        <addPrimaryKey columnNames="id" constraintName="projeto_outrosPK" tableName="projeto_outros"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-41">
+        <addPrimaryKey columnNames="outros_id, versao, projeto_id" constraintName="projeto_outros_mapPK" tableName="projeto_outros_map"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-42">
+        <addPrimaryKey columnNames="id" constraintName="projeto_rhPK" tableName="projeto_rh"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-43">
+        <addPrimaryKey columnNames="rh_id, versao, projeto_id" constraintName="projeto_rh_mapPK" tableName="projeto_rh_map"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-44">
+        <addPrimaryKey columnNames="id" constraintName="projeto_servicoPK" tableName="projeto_servico"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-45">
+        <addPrimaryKey columnNames="servico_id, versao, projeto_id" constraintName="projeto_servico_mapPK" tableName="projeto_servico_map"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-46">
+        <addPrimaryKey columnNames="id" constraintName="projeto_servico_tipoPK" tableName="projeto_servico_tipo"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-47">
+        <addPrimaryKey columnNames="id" constraintName="projeto_solicitacaoPK" tableName="projeto_solicitacao"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-48">
+        <addPrimaryKey columnNames="id" constraintName="projeto_solicitacao_compraPK" tableName="projeto_solicitacao_compra"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-49">
+        <addPrimaryKey columnNames="id" constraintName="projeto_solicitacao_pagamentoPK" tableName="projeto_solicitacao_pagamento"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-50">
+        <addPrimaryKey columnNames="id" constraintName="projeto_solicitacao_servicoPK" tableName="projeto_solicitacao_servico"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-51">
+        <addPrimaryKey columnNames="id" constraintName="projeto_solicitacao_viagemPK" tableName="projeto_solicitacao_viagem"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-52">
+        <addPrimaryKey columnNames="id" constraintName="projeto_solicitacaorhPK" tableName="projeto_solicitacaorh"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-53">
+        <addPrimaryKey columnNames="id" constraintName="projeto_viagemPK" tableName="projeto_viagem"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-54">
+        <addPrimaryKey columnNames="viagem_id, versao, projeto_id" constraintName="projeto_viagem_mapPK" tableName="projeto_viagem_map"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-55">
+        <addPrimaryKey columnNames="id" constraintName="propostaPK" tableName="proposta"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-56">
+        <addPrimaryKey columnNames="id" constraintName="proposta_aportePK" tableName="proposta_aporte"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-57">
+        <addPrimaryKey columnNames="id" constraintName="proposta_atividadePK" tableName="proposta_atividade"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-58">
+        <addPrimaryKey columnNames="id" constraintName="proposta_configPK" tableName="proposta_config"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-59">
+        <addPrimaryKey columnNames="id" constraintName="proposta_descritivoPK" tableName="proposta_descritivo"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-60">
+        <addPrimaryKey columnNames="id" constraintName="proposta_devolucaoPK" tableName="proposta_devolucao"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-61">
+        <addPrimaryKey columnNames="id" constraintName="proposta_empresaPK" tableName="proposta_empresa"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-62">
+        <addPrimaryKey columnNames="id" constraintName="proposta_estagioPK" tableName="proposta_estagio"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-63">
+        <addPrimaryKey columnNames="nome_sessao" constraintName="proposta_informativoPK" tableName="proposta_informativo"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-64">
+        <addPrimaryKey columnNames="id" constraintName="proposta_macroentregaPK" tableName="proposta_macroentrega"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-65">
+        <addPrimaryKey columnNames="id" constraintName="proposta_materialPK" tableName="proposta_material"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-66">
+        <addPrimaryKey columnNames="id" constraintName="proposta_outrosPK" tableName="proposta_outros"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-67">
+        <addPrimaryKey columnNames="id" constraintName="proposta_rhPK" tableName="proposta_rh"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-68">
+        <addPrimaryKey columnNames="id" constraintName="proposta_servicoPK" tableName="proposta_servico"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-69">
+        <addPrimaryKey columnNames="id" constraintName="proposta_viagemPK" tableName="proposta_viagem"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-70">
+        <addPrimaryKey columnNames="id" constraintName="supervisorPK" tableName="supervisor"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-71">
+        <addPrimaryKey columnNames="id" constraintName="usuarioPK" tableName="usuario"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-72">
+        <addPrimaryKey columnNames="nome" constraintName="usuario_perfilPK" tableName="usuario_perfil"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-73">
+        <addPrimaryKey columnNames="id" constraintName="vinculo_instituicaoPK" tableName="vinculo_instituicao"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213203-74">
+        <addPrimaryKey columnNames="id" constraintName="vinculo_trabalhoPK" tableName="vinculo_trabalho"/>
+    </changeSet>
+
+</databaseChangeLog>

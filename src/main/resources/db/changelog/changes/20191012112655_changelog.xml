@@ -1,0 +1,152 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="franco" id="20191012112655-1">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists schemaName="public" foreignKeyName="FKlbha0xg3uk7qmfdd89diat4q7"/>
+		</preConditions>
+        <dropForeignKeyConstraint baseTableName="projeto_solicitacao_rh" constraintName="FKlbha0xg3uk7qmfdd89diat4q7"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20191012112655-2">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="projeto_solicitacao_rh" columnName="pessoa_id" />
+        </preConditions>
+        <dropColumn columnName="pessoa_id" tableName="projeto_solicitacao_rh"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20191012112655-3">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_solicitacao_rh_projeto_rh" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_solicitacao_rh_projeto_rh">
+            <column name="solicitacao_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="projeto_rh_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191012112655-4">
+    	<preConditions onFail="MARK_RAN">
+	    	<not>
+	    		<foreignKeyConstraintExists schemaName="public" foreignKeyName="FK10de73pra04k3a5496ywi67xq"/>
+	    	</not>
+		</preConditions>
+        <addForeignKeyConstraint baseColumnNames="solicitacao_id" baseTableName="projeto_solicitacao_rh_projeto_rh" constraintName="FK10de73pra04k3a5496ywi67xq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao_rh" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191012112655-5">
+    	<preConditions onFail="MARK_RAN">
+	    	<not>
+	    		<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKpaoxkfwkdhwdor39n6fp23s54"/>
+	    	</not>
+		</preConditions>
+        <addForeignKeyConstraint baseColumnNames="projeto_rh_id" baseTableName="projeto_solicitacao_rh_projeto_rh" constraintName="FKpaoxkfwkdhwdor39n6fp23s54" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191012112655-6">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="projeto_config" columnName="diretor_polo" />
+            </not>
+        </preConditions>
+        <addColumn tableName="projeto_config">
+            <column name="diretor_polo" type="varchar(255)" defaultValue="Cristiane Borges Braga">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191012112655-7">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="projeto_config" columnName="diretor_polo_titulo" />
+            </not>
+        </preConditions>
+        <addColumn tableName="projeto_config">
+            <column name="diretor_polo_titulo" type="varchar(50)" defaultValue="Diretora">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+	<changeSet author="franco" id="20191012112655-8">
+    	<preConditions onFail="MARK_RAN">
+            <tableExists tableName="aluno_nivel" />
+        </preConditions>
+    	<renameTable newTableName="nivel_curso" oldTableName="aluno_nivel" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20191012112655-9">
+    	<preConditions onFail="MARK_RAN">
+            <tableExists tableName="pesquisador_titulo" />
+        </preConditions>
+    	<renameTable newTableName="titulacao" oldTableName="pesquisador_titulo" />
+    </changeSet>
+    
+	<changeSet author="franco" id="20191012112655-10">
+        <createTable tableName="nivel_curso_bolsa">
+            <column name="nivel_curso_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="categoria_bolsa_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191012112655-11">
+        <createTable tableName="titulacao_bolsa">
+            <column name="titulacao_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="categoria_bolsa_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191012112655-12">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="aluno" columnName="nivel_id" />
+        </preConditions>
+        <renameColumn columnDataType="SMALLINT" newColumnName="nivel_curso_id" oldColumnName="nivel_id" tableName="aluno"/>
+    </changeSet>
+    
+     <changeSet author="franco" id="20191012112655-13">
+        <addForeignKeyConstraint baseColumnNames="nivel_curso_id" baseTableName="nivel_curso_bolsa" constraintName="FK3frix4e6k65b6jlkmmmohudiq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="nivel_curso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191012112655-14">
+        <addForeignKeyConstraint baseColumnNames="categoria_bolsa_id" baseTableName="nivel_curso_bolsa" constraintName="FKtaypmsffmqg936t4vivpvaop7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="categoria_bolsa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191012112655-15">
+        <addForeignKeyConstraint baseColumnNames="categoria_bolsa_id" baseTableName="titulacao_bolsa" constraintName="FKiwu0i22pe1171xdhxhp8odynw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="categoria_bolsa" validate="true"/>
+    </changeSet>
+   
+    <changeSet author="franco" id="20191012112655-16">
+        <addForeignKeyConstraint baseColumnNames="titulacao_id" baseTableName="titulacao_bolsa" constraintName="FKqldumq746fjkr46p22namr5cq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="titulacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191012112655-17">
+        <addColumn tableName="projeto_rh">
+            <column name="perfil" type="varchar(50)"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="franco" id="20191012112655-18">
+        <addColumn tableName="projeto_rh">
+            <column name="perfil_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    
+</databaseChangeLog>

@@ -1,0 +1,85 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+	
+    <changeSet author="Izabella" id="20210112111921-1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="credenciamento_embrapii" />
+            </not>
+        </preConditions>
+    
+        <createTable tableName="credenciamento_embrapii">
+            <column autoIncrement="true" name="id" type="SMALLINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="credenciamento_embrapiiPK"/>
+            </column>
+            <column name="area_competencia_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20210112111921-2">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="credenciamento_embrapii_sub_area" />
+            </not>
+        </preConditions>
+    
+        <createTable tableName="credenciamento_embrapii_sub_area">
+            <column name="credenciamento_embrapii_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sub_area_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20210112111921-3">
+        <addForeignKeyConstraint baseColumnNames="credenciamento_embrapii_id" baseTableName="credenciamento_embrapii_sub_area" constraintName="FKawvi1gpmjwal0micy0mjjjar7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="credenciamento_embrapii" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20210112111921-4">
+        <addForeignKeyConstraint baseColumnNames="sub_area_id" baseTableName="credenciamento_embrapii_sub_area" constraintName="FKbyrxl6avaayei3qye6l7kf777" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="sub_area" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="Izabella (generated)" id="1610461200894-9">
+        <addForeignKeyConstraint baseColumnNames="area_competencia_id" baseTableName="credenciamento_embrapii" constraintName="FKh5e17ga3sxpb7a6me6di0sol3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="area_competencia" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20210112111921-5">
+		<preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM credenciamento_embrapii</sqlCheck>
+        </preConditions>
+        
+        <insert tableName="credenciamento_embrapii">
+        	<column name="id" value="1"/>
+        	<column name="area_competencia_id" value="1"/>
+        </insert>
+    </changeSet>
+        
+    <changeSet author="Izabella" id="20210112111921-6">
+		<preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM credenciamento_embrapii_sub_area</sqlCheck>
+        </preConditions>
+        
+        <insert tableName="credenciamento_embrapii_sub_area">
+        	<column name="credenciamento_embrapii_id" value="1"/>
+        	<column name="sub_area_id" value="1"/>
+        </insert>
+        
+        <insert tableName="credenciamento_embrapii_sub_area">
+        	<column name="credenciamento_embrapii_id" value="1"/>
+        	<column name="sub_area_id" value="2"/>
+        </insert>
+        
+        <insert tableName="credenciamento_embrapii_sub_area">
+        	<column name="credenciamento_embrapii_id" value="1"/>
+        	<column name="sub_area_id" value="3"/>
+        </insert>
+    </changeSet>
+        
+</databaseChangeLog>

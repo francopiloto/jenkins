@@ -1,0 +1,68 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+      
+    <changeSet author="fcolu (generated)" id="20200421190101-1">
+        <createTable tableName="bolsista_avaliacao_opcoes">
+            <column autoIncrement="true" name="id" type="SMALLINT">
+                <constraints primaryKey="true" primaryKeyName="bolsista_avaliacao_opcoesPK"/>
+            </column>
+            <column name="opcao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+   
+    <changeSet author="fcolu (generated)" id="20200421190101-2">
+        <createTable tableName="opcoes_bolsista">
+            <column name="projeto_rh_desligamento_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="opcoes_bolsista_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+  
+    <changeSet author="fcolu (generated)" id="20200421190101-3">
+        <addUniqueConstraint columnNames="opcao" constraintName="UC_BOLSISTA_AVALIACAO_OPCOESOPCAO_COL" tableName="bolsista_avaliacao_opcoes"/>
+    </changeSet>
+   
+    <changeSet author="fcolu (generated)" id="20200421190101-4">
+        <addUniqueConstraint columnNames="opcoes_bolsista_id" constraintName="UK_cgo8r0a2lw8xoabfaovl39yk8" tableName="opcoes_bolsista"/>
+    </changeSet>
+  
+    <changeSet author="fcolu (generated)" id="20200421190101-5">
+        <addForeignKeyConstraint baseColumnNames="opcoes_bolsista_id" baseTableName="opcoes_bolsista" constraintName="FK8u2ydidrlkxo2mu2tqfr5a8g1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="bolsista_avaliacao_opcoes" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200421190101-6">
+        <insert tableName="bolsista_avaliacao_opcoes">
+            <column name="id" value="1"/>                          
+            <column name="opcao" value="Aprofundou seus conhecimentos na área"/>                                                                  
+        </insert>
+        <insert tableName="bolsista_avaliacao_opcoes">
+            <column name="id" value="2"/>                          
+            <column name="opcao" value="Reforçou sua escolha profissional"/>                                                                  
+        </insert> 
+        <insert tableName="bolsista_avaliacao_opcoes">
+            <column name="id" value="3"/>                          
+            <column name="opcao" value="Despertou seu interesse para a pesquisa"/>                                                                  
+        </insert> 
+        <insert tableName="bolsista_avaliacao_opcoes">
+            <column name="id" value="4"/>                          
+            <column name="opcao" value="Estimulou seu pensamento científico e a criatividade"/>                                                                  
+        </insert>
+        <insert tableName="bolsista_avaliacao_opcoes">
+            <column name="id" value="5"/>                          
+            <column name="opcao" value="Proporcionou a aprendizagem de técnicas e de métodos científicos"/>                                                                  
+        </insert>
+        <insert tableName="bolsista_avaliacao_opcoes">
+            <column name="id" value="6"/>                          
+            <column name="opcao" value="Não contribuiu para sua formação acadêmica"/>                                                                  
+        </insert>                     
+    </changeSet>
+    
+</databaseChangeLog>

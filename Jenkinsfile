@@ -5,7 +5,8 @@ pipeline {
         target = 'dev'
         serviceName = ''
         workspace = ''
-        port = 5003
+        apiPort = 5001
+        reactPort = 5003
     }
 
     stages {
@@ -14,11 +15,12 @@ pipeline {
                 script {
                     if (env.BRANCH_NAME == 'master') {
                         target = 'prod'
-                        port = 80
+                        apiPort = 80
+                        reactPort = 80
                     }
 
-                    serviceName = "sippi-${target}-react"
-                    workspace = "C:/sippi/${target}/react"
+                    serviceName = "sippi-${target}-api"
+                    workspace = "C:/sippi/${target}/api"
                 }               
             }
         }
@@ -31,17 +33,15 @@ pipeline {
                     catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
                         bat 'rd build /s /q'
                     }
-                    
-                    bat 'del .env'
-                    bat "ren .env.${target} .env"
-                }
-            }
-        }
 
-        stage('Install dependencies') {
-            steps {
-                ws(workspace) {
-                    bat 'npm install'
+                    script {
+                        properties = readProperties file: 'src/main/resources/application.properties'
+                        properties['spring.datasource.url'] = 'jdbc:postgresql://localhost:5432/api-teste'
+                        properties['server.port'] = ${apiPort}
+                        properties['cors.allowed.origins'] = "http://sippi.polodeinovacao.ifce.edu.br:${reactPort}"
+
+                        writeProperties file: 'src/main/resources/application.properties' data: properties
+                    }
                 }
             }
         }
@@ -49,7 +49,7 @@ pipeline {
         stage('Build') {
             steps {
                 ws(workspace) {
-                    bat 'npm run build'
+                    bat './gradlew clean build'
                 }
             }
         }
@@ -74,7 +74,6 @@ pipeline {
 
                     bat 'ren build dist'
                     bat 'rd src /s /q'
-                    bat 'rd public /s /q'
                 }
             }
         }
@@ -82,7 +81,7 @@ pipeline {
         stage('Start service') {
             steps {
                 ws(workspace) {
-                    bat "pm2 start server/index.js --name ${serviceName} -- ${port}"
+                    bat "pm2 start api.bat --name ${serviceName}"
                     bat 'pm2 save'
                 }
             }

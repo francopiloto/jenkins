@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="Izabella" id="20200629153526-1">
+		<preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="projeto_plano" columnName="contrapartida_infra"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="projeto_plano">
+            <column name="contrapartida_infra" type="numeric(19, 2)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="Izabella" id="20200629153526-2">
+		<preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="projeto_plano" columnName="contrapartida_suporte"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="projeto_plano">
+            <column name="contrapartida_suporte" type="numeric(19, 2)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

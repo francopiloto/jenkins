@@ -1,0 +1,162 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+     <changeSet author="fcolucas" id="20200213095710-1">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="email_edit" />
+        </preConditions>
+		<dropTable cascadeConstraints="true" schemaName="public" tableName="email_edit"/>
+    </changeSet>
+     
+     <changeSet author="fcolucas" id="20200213095710-2">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="email_edit" />
+            </not>
+        </preConditions>    
+        <createTable tableName="email_edit">
+            <column autoIncrement="true" name="id" type="SMALLINT">
+                <constraints primaryKey="true" primaryKeyName="email_editPK"/>
+            </column>
+            <column name="categoria" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="assunto" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mensagem" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213095710-3">
+        <insert tableName="email_edit">
+            <column name="id" value="1"/>                         
+            <column name="categoria" value="aluno"/>
+            <column name="assunto" value="SIPPI - Cadastro de aluno"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado discente {0},</p><p>segue em anexo a declaração da comissão de avaliação com o resultado da solicitação de inscrição no Edital Nº {1} do Polo de Inovação.</p>]]></column>                                                                  
+        </insert>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213095710-4">
+        <insert tableName="email_edit">
+            <column name="id" value="2"/>                         
+            <column name="categoria" value="aluno"/>
+            <column name="assunto" value="SIPPI - Solicitação de cadastro de aluno"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado {0},</p><p>solicitação de cadastro de Aluno realizado com sucesso. O resultado desta inscrição será enviado por e-mail após análise da comissão de avaliação, conforme edital.</p>]]></column>                                                                 
+        </insert>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213095710-5">
+        <insert tableName="email_edit">
+            <column name="id" value="3"/>                         
+            <column name="categoria" value="pesquisador"/>
+            <column name="assunto" value="SIPPI - Cadastro de pesquisador"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado pesquisador {0},</p><p>segue em anexo a declaração da comissão de avaliação com o resultado da solicitação de inscrição no Edital Nº {1} do Polo de Inovação.</p>]]></column>                                                                 
+        </insert>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213095710-6">
+        <insert tableName="email_edit">
+            <column name="id" value="4"/>                         
+            <column name="categoria" value="pesquisador"/>
+            <column name="assunto" value="SIPPI - Solicitação de cadastro de pesquisador"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado {0},</p><p>solicitação de cadastro de Pesquisador realizado com sucesso. O resultado desta inscrição será enviado por e-mail após análise da comissão de avaliação, conforme edital.</p>]]></column>                                                                
+        </insert>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213095710-7">
+        <insert tableName="email_edit">
+            <column name="id" value="5"/>                         
+            <column name="categoria" value="colaborador"/>
+            <column name="assunto" value="SIPPI - Cadastro de colaborador"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado colaborador {0},</p><p>segue em anexo a declaração da comissão de avaliação com o resultado da solicitação de inscrição no Edital Nº {1} do Polo de Inovação.</p>]]></column>                                                                 
+        </insert>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213095710-8">
+        <insert tableName="email_edit">
+            <column name="id" value="6"/>                         
+            <column name="categoria" value="colaborador"/>
+            <column name="assunto" value="SIPPI - Solicitação de cadastro de colaborador"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado {0},</p><p>solicitação de cadastro de Colaborador realizado com sucesso. O resultado desta inscrição será enviado por e-mail após análise da comissão de avaliação, conforme edital.</p>]]></column>                                                                 
+        </insert>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213095710-9">
+        <insert tableName="email_edit">
+            <column name="id" value="7"/>                         
+            <column name="categoria" value="empresa"/>
+            <column name="assunto" value="SIPPI - Cadastro de empresa"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado {0},</p><p>solicitação de cadastro da Empresa {1} realizado com sucesso. O resultado desta inscrição será enviado por e-mail após análise da comissão de avaliação, conforme edital.</p>]]></column>                                                                  
+        </insert>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213095710-10">
+        <insert tableName="email_edit">
+            <column name="id" value="8"/>                         
+            <column name="categoria" value="empresa"/>
+            <column name="assunto" value="SIPPI - Solicitação de cadastro de empresa"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado discente {0},</p><p>segue em anexo a declaração da comissão de avaliação com o resultado da solicitação de inscrição no Edital Nº {1} do Polo de Inovação.</p>]]></column>
+        </insert>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213095710-11">
+        <insert tableName="email_edit">
+            <column name="id" value="9"/>                         
+            <column name="categoria" value="supervisor"/>
+            <column name="assunto" value="SIPPI - Cadastro de supervisor"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado {0},</p><p>você foi cadastrado para fazer parte do grupo de supervisores do Sistema de Projetos do Polo de Inovação - SIPPI.</p>]]></column>
+        </insert>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213095710-12">
+        <insert tableName="email_edit">
+            <column name="id" value="10"/>                         
+            <column name="categoria" value="usuário"/>
+            <column name="assunto" value="SIPPI - Cadastro de usuário"/>  
+            <column name="mensagem"><![CDATA[<p>Seguem os dados de acesso:<p><p>Usuário: {0}</p><p>Senha: {1}</p>]]></column>   
+        </insert>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200213095710-13">
+        <insert tableName="email_edit">
+            <column name="id" value="11"/>                         
+            <column name="categoria" value="senha"/>
+            <column name="assunto" value="Redefinição de senha"/>  
+            <column name="mensagem"><![CDATA[<p>Acesse o link abaixo para redefinir sua senha.</p><p>{0}</p>]]></column>   
+        </insert>                        
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200213095710-14">
+        <insert tableName="email_edit">
+            <column name="id" value="12"/>                         
+            <column name="categoria" value="proposta"/>
+            <column name="assunto" value="Atualização de estado da proposta"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado discente {0},</p><p>sua proposta "{1}" teve o estado alterado para {2} em {3}.</p>]]></column>   
+        </insert>                        
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200213095710-15">
+        <insert tableName="email_edit">
+            <column name="id" value="13"/>                         
+            <column name="categoria" value="projeto"/>
+            <column name="assunto" value="Resultado da Solicitação"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado coordenador {0},</p><p>Segue o resultado da análise da sua solicitação:</p><p>{1}</p>]]></column>   
+        </insert>                        
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200213095710-16">
+        <insert tableName="email_edit">
+            <column name="id" value="14"/>                         
+            <column name="categoria" value="bolsa"/>
+            <column name="assunto" value="Concessão de Bolsa de Pesquisa"/>  
+            <column name="mensagem"><![CDATA[<p>Acesse o link abaixo para informar os dados.</p><p>{0}</p>]]></column>                                                                  
+        </insert> 
+    </changeSet>
+
+</databaseChangeLog>

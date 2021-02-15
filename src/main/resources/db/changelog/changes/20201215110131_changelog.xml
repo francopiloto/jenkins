@@ -1,0 +1,99 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+
+    <changeSet id="20201215110131-1" author="Izabella">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="proposta_caracterizacao"></tableExists>
+        </preConditions>
+        <dropTable tableName="proposta_caracterizacao"/>
+    </changeSet>
+
+    <changeSet id="20201215110131-2" author="Izabella">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="caracterizacao_perguntas"></tableExists>
+        </preConditions>
+        <dropTable tableName="caracterizacao_perguntas"/>
+    </changeSet>
+
+    <changeSet author="Izabella" id="20201215110131-3">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="caracterizacao_perguntas"></tableExists>
+            </not>
+        </preConditions>
+        <createTable tableName="caracterizacao_perguntas">
+            <column autoIncrement="true" name="id" type="SMALLINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="caracterizacao_perguntasPK"/>
+            </column>
+            <column name="pergunta" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Izabella" id="20201215110131-4">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="proposta_caracterizacao"></tableExists>
+            </not>
+        </preConditions>
+        <createTable tableName="proposta_caracterizacao">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="proposta_caracterizacaoPK"/>
+            </column>
+            <column name="resposta" type="VARCHAR(1000)"/>
+            <column name="form_caracterizacao_pergunta_id" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Izabella" id="20201215110131-5">
+        <addForeignKeyConstraint baseColumnNames="form_caracterizacao_pergunta_id" baseTableName="proposta_caracterizacao" constraintName="FKskvem4dthfoxljgemaim5nm6s" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="caracterizacao_perguntas" validate="true"/>
+    </changeSet>
+
+    <changeSet author="Izabella" id="20201215110131-6">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM caracterizacao_perguntas</sqlCheck>
+        </preConditions>
+        <insert tableName="caracterizacao_perguntas">                       
+            <column name="pergunta" value="A inovação do projeto é tecnológica? Ou seja, o projeto é mais do que a simples aplicação de tecnologia existente ao cenário da empresa?"/>                                                                  
+        </insert>
+        <insert tableName="caracterizacao_perguntas">                        
+            <column name="pergunta" value="Há elementos na solução proposta no projeto que o torne inovador do ponto de vista tecnológico? Quais?"/>                                                                  
+        </insert>
+        <insert tableName="caracterizacao_perguntas">                        
+            <column name="pergunta" value="Uma empresa nacional que presta serviços de desenvolvimento de software ou de engenharia teria dificuldades técnicas em executar este projeto? Quais?"/>                                                                  
+        </insert> 
+        <insert tableName="caracterizacao_perguntas">                          
+            <column name="pergunta" value="Há riscos tecnológicos do projeto não dar certo? Quais?"/>                                                                  
+        </insert> 
+        <insert tableName="caracterizacao_perguntas">                        
+            <column name="pergunta" value="Há desafios tecnológicos no projeto? Quais?"/>                                                                  
+        </insert>
+        <insert tableName="caracterizacao_perguntas">                        
+            <column name="pergunta" value="Há novas tecnologias usadas ou criadas no projeto? Quais?"/>                                                                  
+        </insert>
+        <insert tableName="caracterizacao_perguntas">                         
+            <column name="pergunta" value="O resultado do projeto inclui, no mínimo, uma prova de conceito de software ou automação?"/>                                                                  
+        </insert>
+        <insert tableName="caracterizacao_perguntas">                        
+            <column name="pergunta" value="De que maneira à prática desenvolvida no projeto contribui para a sua formação acadêmica?"/>                                                                  
+        </insert>
+        <insert tableName="caracterizacao_perguntas">                         
+            <column name="pergunta" value="O resultado do projeto pode ser considerado um produto pronto para o mercado? Por quê?"/>                                                                  
+        </insert>
+        <insert tableName="caracterizacao_perguntas">                       
+            <column name="pergunta" value="O cliente espera que a solução esteja pronta e operacional para uso na fábrica ou pronta para colocar na prateleira de uma loja?"/>                                                                  
+        </insert>
+        <insert tableName="caracterizacao_perguntas">                        
+            <column name="pergunta" value="O resultado do projeto possui inovação suficiente para uma patente, um registro de software?"/>                                                                  
+        </insert>                                       
+    </changeSet>
+
+    
+</databaseChangeLog>

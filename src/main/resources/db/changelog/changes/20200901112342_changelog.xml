@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="1598970317568-1">
+        <addColumn tableName="editavel_fundacao">
+            <column name="saudacao" type="varchar(20)"></column>
+        </addColumn>
+        
+        <update tableName="editavel_fundacao">                       
+            <column name="saudacao" value="Prezado Sr."/>
+            <where> id = 1 </where>                                                                
+        </update>
+    </changeSet>
+    
+</databaseChangeLog>

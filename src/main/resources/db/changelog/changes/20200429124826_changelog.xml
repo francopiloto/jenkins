@@ -1,0 +1,40 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200429124826-1">
+        <addColumn tableName="projeto_historico">
+            <column name="contrapartida" type="int4"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200429124826-2">
+        <addColumn tableName="projeto_contrapartida">
+            <column name="estado" type="int4">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200429124826-3">
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_contrapartida" constraintName="FKbveq6uer7it62xg561g6gmwlx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200429124826-4">
+        <dropForeignKeyConstraint baseTableName="projeto_contrapartida" constraintName="FKrie9aro23nlh8dukikkbpwi8l"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200429124826-5">
+        <dropColumn columnName="cargo" tableName="projeto_contrapartida"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200429124826-6">
+        <dropColumn columnName="contrapartida_ifce" tableName="projeto_historico"/>
+    </changeSet>
+   
+    <changeSet author="fcolucas" id="20200429124826-7">
+        <dropColumn columnName="contrato_info_id" tableName="projeto_contrapartida"/>
+    </changeSet>
+</databaseChangeLog>

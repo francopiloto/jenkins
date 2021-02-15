@@ -1,0 +1,37 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="Izabella" id="20200903105147-1">
+    	<preConditions onFail="MARK_RAN">
+            <columnExists tableName="projeto" columnName="eap_data"/>
+        </preConditions>
+    
+        <addColumn tableName="projeto">
+            <column name="eap_data" type="varchar(5242880)"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20200903105147-2">
+    	<preConditions onFail="MARK_RAN">
+            <columnExists tableName="projeto_eap" columnName="id_projeto"/>
+        </preConditions>
+        
+        <addColumn tableName="projeto_eap">
+            <column name="id_projeto" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20200903105147-3">
+        <addColumn tableName="projeto_plano_eap">
+            <column name="projeto_plano_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+</databaseChangeLog>

@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="Izabella" id="20200925120710-1">
+        <preConditions onFail="MARK_RAN">
+       		<not>
+           		<tableExists tableName="projeto_solicitacao_transferencia_rh" />
+       		</not>
+   		</preConditions>
+       
+        <createTable tableName="projeto_solicitacao_transferencia_rh">
+            <column name="justificativa" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_solicitacao_transferenciarhPK"/>
+            </column>
+            <column name="rh_atual_id" type="BIGINT"/>
+            <column name="rh_final_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20200925120710-2">
+        <addForeignKeyConstraint baseColumnNames="rh_final_id" baseTableName="projeto_solicitacao_transferencia_rh" constraintName="FKj1t8awcfmdqpjk8vhhbcigxvk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20200925120710-3">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="projeto_solicitacao_transferencia_rh" constraintName="FKnkq32xiqrc7h7jxtowq0jmc3f" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20200925120710-4">
+        <addForeignKeyConstraint baseColumnNames="rh_atual_id" baseTableName="projeto_solicitacao_transferencia_rh" constraintName="FKo2i8khqd9fvpco7j5cto3oces" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh" validate="true"/>
+    </changeSet>
+    
+</databaseChangeLog>

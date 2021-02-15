@@ -1,0 +1,96 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="matheusholandamatos" id="20200625091806-1">
+    	<preConditions>
+				<tableExists tableName="projeto_plano_atividade"/>    		
+    	</preConditions>       
+        <dropNotNullConstraint columnDataType="smallint" columnName="mes_fim" tableName="projeto_plano_atividade"/>
+        <dropNotNullConstraint columnDataType="smallint" columnName="mes_inicio" tableName="projeto_plano_atividade"/>
+        <dropNotNullConstraint columnDataType="varchar(50)" columnName="titulo" tableName="projeto_plano_atividade"/>        
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200625091806-2">
+    	<preConditions>
+				<tableExists tableName="projeto_plano_estagio"/>    		
+    	</preConditions>       
+        <dropNotNullConstraint columnDataType="smallint" columnName="duracao" tableName="projeto_plano_estagio"/>
+        <dropNotNullConstraint columnDataType="varchar(200)" columnName="funcao" tableName="projeto_plano_estagio"/>
+        <dropNotNullConstraint columnDataType="smallint" columnName="mes_execucao" tableName="projeto_plano_estagio"/>
+        <dropNotNullConstraint columnDataType="smallint" columnName="meses_executados" tableName="projeto_plano_estagio"/> 
+        <dropNotNullConstraint columnDataType="smallint" columnName="meses_solicitados" tableName="projeto_plano_estagio"/>
+        <dropNotNullConstraint columnDataType="number(19,2)" columnName="remuneracao" tableName="projeto_plano_estagio"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200625091806-3">
+    	<preConditions>
+				<tableExists tableName="projeto_plano_macroentrega"/>    		
+    	</preConditions>       
+        <dropNotNullConstraint columnDataType="varchar(200)" columnName="descricao" tableName="projeto_plano_macroentrega"/>
+        <dropNotNullConstraint columnDataType="varchar(50)" columnName="titulo" tableName="projeto_plano_macroentrega"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200625091806-4">
+    	<preConditions>
+				<tableExists tableName="projeto_plano_material"/>    		
+    	</preConditions>       
+        <dropNotNullConstraint columnDataType="varchar(200)" columnName="descricao" tableName="projeto_plano_material"/>
+        <dropNotNullConstraint columnDataType="smallint" columnName="mes_execucao" tableName="projeto_plano_material"/>
+        <dropNotNullConstraint columnDataType="numeric(19, 2)" columnName="valor_executado" tableName="projeto_plano_material"/> 
+        <dropNotNullConstraint columnDataType="numeric(19, 2)" columnName="valor_solicitado" tableName="projeto_plano_material"/>
+        <dropNotNullConstraint columnDataType="number(19,2)" columnName="valor" tableName="projeto_plano_material"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200625091806-5">
+    	<preConditions>
+				<tableExists tableName="projeto_plano_outros"/>    		
+    	</preConditions>       
+        <dropNotNullConstraint columnDataType="varchar(200)" columnName="descricao" tableName="projeto_plano_outros"/>
+        <dropNotNullConstraint columnDataType="smallint" columnName="mes_execucao" tableName="projeto_plano_outros"/>
+        <dropNotNullConstraint columnDataType="numeric(19, 2)" columnName="valor_executado" tableName="projeto_plano_outros"/> 
+        <dropNotNullConstraint columnDataType="numeric(19, 2)" columnName="valor_solicitado" tableName="projeto_plano_outros"/>
+        <dropNotNullConstraint columnDataType="number(19,2)" columnName="valor" tableName="projeto_plano_outros"/>
+    </changeSet> 
+    
+    <changeSet author="matheusholandamatos" id="20200625091806-6">
+    	<preConditions>
+				<tableExists tableName="projeto_plano_rh"/>    		
+    	</preConditions>       
+        <dropNotNullConstraint columnDataType="smallint" columnName="duracao" tableName="projeto_plano_rh"/>
+        <dropNotNullConstraint columnDataType="smallint" columnName="mes_execucao" tableName="projeto_plano_rh"/>
+        <dropNotNullConstraint columnDataType="smallint" columnName="meses_executados" tableName="projeto_plano_rh"/> 
+        <dropNotNullConstraint columnDataType="smallint" columnName="meses_solicitados" tableName="projeto_plano_rh"/>
+        <dropNotNullConstraint columnDataType="varchar(100)" columnName="cargo" tableName="projeto_plano_rh"/>
+        <dropNotNullConstraint columnDataType="number(19,2)" columnName="encargos" tableName="projeto_plano_rh"/>
+        <dropNotNullConstraint columnDataType="number(19,2)" columnName="remuneracao" tableName="projeto_plano_rh"/>        
+        <dropNotNullConstraint columnDataType="smallint" columnName="vinculo_instituicao_id" tableName="projeto_plano_rh"/>
+        <dropNotNullConstraint columnDataType="smallint" columnName="vinculo_trabalho_id" tableName="projeto_plano_rh"/>        
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200625091806-7">
+    	<preConditions>
+				<tableExists tableName="projeto_plano_viagem"/>    		
+    	</preConditions>       
+        <dropNotNullConstraint columnDataType="varchar(200)" columnName="descricao" tableName="projeto_plano_viagem"/>
+        <dropNotNullConstraint columnDataType="smallint" columnName="mes_execucao" tableName="projeto_plano_viagem"/>
+        <dropNotNullConstraint columnDataType="numeric(19, 2)" columnName="valor_executado" tableName="projeto_plano_viagem"/> 
+        <dropNotNullConstraint columnDataType="numeric(19, 2)" columnName="valor_solicitado" tableName="projeto_plano_viagem"/>
+        <dropNotNullConstraint columnDataType="number(19,2)" columnName="valor_diaria" tableName="projeto_plano_viagem"/>
+        <dropNotNullConstraint columnDataType="number(19,2)" columnName="valor_passagem" tableName="projeto_plano_viagem"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200625091806-8">
+    	<preConditions>
+				<tableExists tableName="projeto_plano_servico"/>    		
+    	</preConditions>       
+        <dropNotNullConstraint columnDataType="varchar(200)" columnName="descricao" tableName="projeto_plano_servico"/>
+        <dropNotNullConstraint columnDataType="smallint" columnName="mes_execucao" tableName="projeto_plano_servico"/>
+        <dropNotNullConstraint columnDataType="numeric(19, 2)" columnName="valor_executado" tableName="projeto_plano_servico"/> 
+        <dropNotNullConstraint columnDataType="numeric(19, 2)" columnName="valor_solicitado" tableName="projeto_plano_servico"/>
+        <dropNotNullConstraint columnDataType="number(19,2)" columnName="valor" tableName="projeto_plano_servico"/>
+    </changeSet>                                    
+   
+</databaseChangeLog>

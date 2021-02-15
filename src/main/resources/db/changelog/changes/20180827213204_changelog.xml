@@ -1,0 +1,304 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="franco" id="20180827213204-1">
+        <addForeignKeyConstraint baseColumnNames="nivel_id" baseTableName="aluno" constraintName="FK1yoop3f11a9pyijodkixqgei3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="aluno_nivel" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="aluno" constraintName="FKhduh1odyplbeaphnaldqwj7go" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-2">
+        <addForeignKeyConstraint baseColumnNames="aluno_id" baseTableName="aluno_area" constraintName="FK8fv1jelui1xv15mbx1cnt7jx8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="aluno" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="area_id" baseTableName="aluno_area" constraintName="FKbmwog7wam6e40iu7no6u53def" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="area_pesquisa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-3">
+        <addForeignKeyConstraint baseColumnNames="arquivo_id" baseTableName="aluno_arquivo" constraintName="FK7xfimitriad6550sl5gk2h338" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="arquivo" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="aluno_id" baseTableName="aluno_arquivo" constraintName="FKqcsbbydfoc349o16y33f1i83g" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="aluno" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-4">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="bolsa_info" constraintName="FK5xun2ny38muu0fqb8r3olvp82" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="contrato_info" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-5">
+        <addForeignKeyConstraint baseColumnNames="titulacao_id" baseTableName="colaborador" constraintName="FKm8tqh7jvin0qxhxwij95dfihb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pesquisador_titulo" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="campus_id" baseTableName="colaborador" constraintName="FK3ktk322yo7whpaltionfrikd6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="campus" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="colaborador" constraintName="FKe1c9o807krmainuuru9l43rgj" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-6">
+        <addForeignKeyConstraint baseColumnNames="colaborador_id" baseTableName="colaborador_area" constraintName="FK1ybm4rr9wobqtxohf1g78xaje" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="colaborador" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="area_id" baseTableName="colaborador_area" constraintName="FKq446rx9ia9ms810pxgjb91v6h" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="area_pesquisa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-7">
+        <addForeignKeyConstraint baseColumnNames="colaborador_id" baseTableName="colaborador_arquivo" constraintName="FKgexr9xrklfhaalvjhd5bunmmw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="colaborador" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="arquivo_id" baseTableName="colaborador_arquivo" constraintName="FKforiknhrm2ucf53uyti8d406p" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="arquivo" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-8">
+        <addForeignKeyConstraint baseColumnNames="endereco_id" baseTableName="empresa" constraintName="FK1bsdq6lhlktaf86nwgbftqrag" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="endereco" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-9">
+        <addForeignKeyConstraint baseColumnNames="id_empresa" baseTableName="empresa_contato" constraintName="FKiui4swbhbuly3iha374tumikw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="empresa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-10">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="password_reset_token" constraintName="FKctt15hotnxj2p53cimeh4lunj" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="usuario" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-11">
+        <addForeignKeyConstraint baseColumnNames="campus_id" baseTableName="pesquisador" constraintName="FK1rvahc55jlhc0ykpuxxnb00id" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="campus" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="titulacao_id" baseTableName="pesquisador" constraintName="FK4evac0qangeyqvtb6pxj747b" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pesquisador_titulo" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="pesquisador" constraintName="FKaj0723eyj3en8lkyojns1gqnd" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-12">
+        <addForeignKeyConstraint baseColumnNames="area_id" baseTableName="pesquisador_area" constraintName="FK399vuokq3chrtfg1djdlmfjed" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="area_pesquisa" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="pesquisador_id" baseTableName="pesquisador_area" constraintName="FK5hf2lwhhr62f8ln6muabut1gy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pesquisador" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-13">
+        <addForeignKeyConstraint baseColumnNames="pesquisador_id" baseTableName="pesquisador_arquivo" constraintName="FK76pkffbhk64uiw6nlei2en918" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pesquisador" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="arquivo_id" baseTableName="pesquisador_arquivo" constraintName="FKtcmamrqhhqgkwaipnt03jcf41" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="arquivo" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-14">
+        <addForeignKeyConstraint baseColumnNames="pesquisador_id" baseTableName="pesquisador_salario" constraintName="FKcm1axiru5a2jv0ifqhtlqvg3p" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pesquisador" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-15">
+        <addForeignKeyConstraint baseColumnNames="endereco_id" baseTableName="pessoa" constraintName="FKei4abnsw085kx27j89rp796ny" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="endereco" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-16">
+        <addForeignKeyConstraint baseColumnNames="descritivo_id" baseTableName="projeto" constraintName="FK5i5ha3jqem90brrf9q5h2r55j" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_descritivo" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="coordenador_id" baseTableName="projeto" constraintName="FK9qk9ejt7fbr1ehio9tv0vmrkj" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-17">
+        <addForeignKeyConstraint baseColumnNames="id_projeto" baseTableName="projeto_aporte" constraintName="FK3mg6dgj4vgjte9brb2t4xpthd" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-18">
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_area_map" constraintName="FK6vdr0lsetx7glhq5fpavk6q9e" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="area_id" baseTableName="projeto_area_map" constraintName="FKg43ur0s1gokmtydqvbmt52uov" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="area_competencia" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-19">
+        <addForeignKeyConstraint baseColumnNames="id_macroentrega" baseTableName="projeto_atividade" constraintName="FK9spd7fj37fmrj1mw0xw3ctqvm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_macroentrega" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-20">
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="projeto_estagio" constraintName="FK3t2mkrx3cppng40fcdeg7g4ug" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_estagio" constraintName="FKogc47h2k6tmk54safhscsi5jm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-21">
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_estagio_map" constraintName="FK98it68utqo1i9xot0l09i3l3f" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="estagio_id" baseTableName="projeto_estagio_map" constraintName="FKg6dfxm76xitee5comp739stou" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_estagio" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-22">
+        <addForeignKeyConstraint baseColumnNames="empresa_id" baseTableName="projeto_fonte_recurso" constraintName="FKgjm331nej6bjok8j0j57rojpn" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="empresa" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="id_projeto" baseTableName="projeto_fonte_recurso" constraintName="FKm7pej60qqjgjp8taei7x0jxom" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="conta_id" baseTableName="projeto_fonte_recurso" constraintName="FKp0m9sslvuu67gve3yq9p5gwal" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="conta" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-23">
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_historico" constraintName="FKga0t3tytffdl1dnn5omq2y7e2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="usuario_id" baseTableName="projeto_historico" constraintName="FKl35ln45omips017gq6x5h85xg" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="usuario" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-24">
+        <addForeignKeyConstraint baseColumnNames="id_projeto" baseTableName="projeto_macroentrega" constraintName="FK85nfb2bg7iecyamghkoxjo47s" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-25">
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_material" constraintName="FKf644lnjgsqfceutl5d2vw61sq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-26">
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_material_map" constraintName="FKomcjv9ns390mfspe9es343j0m" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="material_id" baseTableName="projeto_material_map" constraintName="FKayyhecwuq3db1dpvqd2hbp8wy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_material" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-27">
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_maturidade_map" constraintName="FKqehompjj0yoknyi7fbcw3b6d8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="maturidade_id" baseTableName="projeto_maturidade_map" constraintName="FK5jim93a9q8dwlfk1bj8wevhin" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_maturidade" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-28">
+        <addForeignKeyConstraint baseColumnNames="id_modalidade" baseTableName="projeto_modalidade_parte" constraintName="FKbab9ibybk3ajvdoe7tv3jiri0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-29">
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_outros" constraintName="FKr06mh2q6bld05cpwy0maw6wlw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-30">
+        <addForeignKeyConstraint baseColumnNames="outros_id" baseTableName="projeto_outros_map" constraintName="FKhusefg0bmlepn4odjxf0w6m5n" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_outros" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_outros_map" constraintName="FKb6p52dk6nus9gfwt2weljpy6n" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-31">
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_rh" constraintName="FK1ry0ojhvu488seuys12huykx0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="contrato_info_id" baseTableName="projeto_rh" constraintName="FKgjq2lrb7tthvmhh12kkhnuvav" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="contrato_info" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="vinculo_trabalho_id" baseTableName="projeto_rh" constraintName="FK83ewa1g4k9ij3q280dmahoa8o" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="vinculo_trabalho" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="projeto_rh" constraintName="FKbyhk7ij5qmqg48qtlpuidwgsg" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="categoria_bolsa_id" baseTableName="projeto_rh" constraintName="FK6a0tkil9ynmfm2aaomybdkp15" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="categoria_bolsa" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="vinculo_instituicao_id" baseTableName="projeto_rh" constraintName="FK2c0ygqxhpvxaofbbm8g0scvt7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="vinculo_instituicao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-32">
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_rh_map" constraintName="FK8upmur2od3vjfm6puoyyxjrpw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="rh_id" baseTableName="projeto_rh_map" constraintName="FKdtxnkyvwqg4mqyqi7bo8ro4hy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-33">
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_servico" constraintName="FK9gq2gxuwqhs0fc4cowc2tnu9v" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-34">
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_servico_map" constraintName="FK8tgbs3gmkjrhxpduwwrao39ws" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="servico_id" baseTableName="projeto_servico_map" constraintName="FKb52kykx0doep9nk7trkh2sjud" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_servico" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-35">
+        <addForeignKeyConstraint baseColumnNames="arquivo_id" baseTableName="projeto_solicitacao" constraintName="FKgroubdatrwr85oy4qvrujq3fx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="arquivo" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_solicitacao" constraintName="FKbxf9nb0utx4w9l1uxum1h2u4u" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-36">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="projeto_solicitacao_compra" constraintName="FKpcmf26rnlw0rnomjcbupyse8y" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="endereco_id" baseTableName="projeto_solicitacao_compra" constraintName="FK8mp1rk9kv46dfay7x47aj1yf1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="endereco" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-37">
+        <addForeignKeyConstraint baseColumnNames="solicitacao_aquisicao_id" baseTableName="projeto_solicitacao_pagamento" constraintName="FKbxdwohba0r1693icr1r5tp2l5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="projeto_solicitacao_pagamento" constraintName="FK66sq029uj6ksd9mw59n5se28v" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-38">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="projeto_solicitacao_servico" constraintName="FKncos7vnm0qasqmkmgrdnhiosf" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="tipo_servico_id" baseTableName="projeto_solicitacao_servico" constraintName="FKqb0yrw4t6m6pvo2sinhoci0lr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_servico_tipo" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-39">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="projeto_solicitacao_viagem" constraintName="FKr8aiiejly6g0qp7o2as0uds35" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-40">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="projeto_solicitacaorh" constraintName="FKj5kh8a4m83bbfser83vp432yr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="projeto_solicitacaorh" constraintName="FKlbha0xg3uk7qmfdd89diat4q7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-41">
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_viagem" constraintName="FKskt487upk8upi4f51yymgqu2f" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-42">
+        <addForeignKeyConstraint baseColumnNames="viagem_id" baseTableName="projeto_viagem_map" constraintName="FKgl1adt6huvata0h7n50sfrmmw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_viagem" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_viagem_map" constraintName="FKn00uouy91dfx908q2n46ec4my" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-43">
+        <addForeignKeyConstraint baseColumnNames="coordenador_id" baseTableName="proposta" constraintName="FKil7qpjdnwuuvkl2s066hjr0ov" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="modalidade_id" baseTableName="proposta" constraintName="FKql4t8wioulwhcl6qlcstxw38d" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="config_id" baseTableName="proposta" constraintName="FKs48g4jomyxl8q3521u3dlj70j" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta_config" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="descritivo_id" baseTableName="proposta" constraintName="FK58tdknpnltis6wwfqnv4h1vs5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta_descritivo" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="supervisor_id" baseTableName="proposta" constraintName="FK29pycy8md5pq17wgjrduxql4w" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-44">
+        <addForeignKeyConstraint baseColumnNames="id_proposta" baseTableName="proposta_aporte" constraintName="FKth2v7w34jcmi2wqwpc5kilpq3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-45">
+        <addForeignKeyConstraint baseColumnNames="proposta_id" baseTableName="proposta_area_map" constraintName="FK83qnx96qsmjssjn0j4k3c5r8p" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="area_id" baseTableName="proposta_area_map" constraintName="FKg3gfbuy9jf6coupan3c0pt4pg" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="area_competencia" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-46">
+        <addForeignKeyConstraint baseColumnNames="id_macroentrega" baseTableName="proposta_atividade" constraintName="FKh7iaunwpjbkhipfgls91nqner" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta_macroentrega" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-47">
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="proposta_devolucao" constraintName="FKrg2kdlpyah59re3xas5iasvm5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="id_proposta" baseTableName="proposta_devolucao" constraintName="FK9m5y9s90p5mlyxclh8xf04tsv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-48">
+        <addForeignKeyConstraint baseColumnNames="id_proposta" baseTableName="proposta_empresa" constraintName="FKdb7x6t2lkt81rqpvlg5wwomoi" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="parte_id" baseTableName="proposta_empresa" constraintName="FK4ld3b50ya3wiwmt8vqyyl4bkx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade_parte" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="empresa_id" baseTableName="proposta_empresa" constraintName="FK4uybhw8r5qr52jp6i3gyl0kvi" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="empresa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-49">
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="proposta_estagio" constraintName="FKso8xtqda2qgaimiettgs0j4pw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade_parte" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="id_proposta" baseTableName="proposta_estagio" constraintName="FKc60gd95a6qjry1bwcwjhn4fgc" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-50">
+        <addForeignKeyConstraint baseColumnNames="id_config" baseTableName="proposta_informativo" constraintName="FKa7qm7y3cc1aast43ox9sywq3q" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta_config" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-51">
+        <addForeignKeyConstraint baseColumnNames="id_proposta" baseTableName="proposta_macroentrega" constraintName="FKb228hqjhtxkliipxpsa6ngr7s" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-52">
+        <addForeignKeyConstraint baseColumnNames="id_proposta" baseTableName="proposta_material" constraintName="FKj7o4n1exxm2o5cbdf44hcbq6n" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="proposta_material" constraintName="FKa558pbx9ebm4kxingnyd0oey6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade_parte" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-53">
+        <addForeignKeyConstraint baseColumnNames="area_id" baseTableName="proposta_maturidade_map" constraintName="FKqjfyhcola43uo6v0lq5s4s6wu" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_maturidade" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="proposta_id" baseTableName="proposta_maturidade_map" constraintName="FK514ow8pujhbverdlvaswwwmq9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-54">
+        <addForeignKeyConstraint baseColumnNames="id_proposta" baseTableName="proposta_outros" constraintName="FK47srbooe3w7ygjcsxkmwcs62x" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="proposta_outros" constraintName="FK7kllrwqrn1hppsybd36w38sw1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade_parte" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-55">
+        <addForeignKeyConstraint baseColumnNames="categoria_bolsa_id" baseTableName="proposta_rh" constraintName="FK1ercfmrdc8blsl92qu6d7mfvd" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="categoria_bolsa" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="id_proposta" baseTableName="proposta_rh" constraintName="FKhn17wg2rx2j0ql5s9k89tv4re" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="vinculo_instituicao_id" baseTableName="proposta_rh" constraintName="FKq39j1q4itrngp3m3lakvwyge3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="vinculo_instituicao" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="proposta_rh" constraintName="FK870o01nw5d0tk5eora13gr8sk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade_parte" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="vinculo_trabalho_id" baseTableName="proposta_rh" constraintName="FKbns4j0j5899j2yhmpg72dl95o" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="vinculo_trabalho" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-56">
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="proposta_servico" constraintName="FKhstt0fm9vlp68yir4yrukut1d" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade_parte" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="id_proposta" baseTableName="proposta_servico" constraintName="FKndrdk2vqledawqq9mhayakc7f" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-57">
+        <addForeignKeyConstraint baseColumnNames="id_proposta" baseTableName="proposta_viagem" constraintName="FKixiql1c7s0xvjkddey5rc6t8v" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="proposta_viagem" constraintName="FK8g2lqcalvgk0opeliy7gwx4aw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade_parte" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-58">
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="supervisor" constraintName="FKpqlq0j7hbe0x30kv60iuu9ld1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-59">
+        <addForeignKeyConstraint baseColumnNames="supervisor" baseTableName="supervisor_notificacao" constraintName="FK3eg5ceeuwa18way0le0xnp24j" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="supervisor" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-60">
+        <addForeignKeyConstraint baseColumnNames="pessoa_id" baseTableName="usuario" constraintName="FK9kjbckbnh9ryosephjpbojisa" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pessoa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="franco" id="20180827213204-61">
+        <addForeignKeyConstraint baseColumnNames="permissao" baseTableName="usuario_perfil_permissao" constraintName="FKp1663j2j5wwduartr2k0w0860" deferrable="false" initiallyDeferred="false" referencedColumnNames="nome" referencedTableName="permissao" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="usuario_perfil" baseTableName="usuario_perfil_permissao" constraintName="FKq596dpix75sl2nmvh85jp4kkk" deferrable="false" initiallyDeferred="false" referencedColumnNames="nome" referencedTableName="usuario_perfil" validate="true"/>
+    </changeSet>
+    
+</databaseChangeLog>

@@ -1,0 +1,83 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="franco" id="20180827213206-1">
+        <addUniqueConstraint columnNames="matricula" constraintName="UC_ALUNOMATRICULA_COL" tableName="aluno"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-2">
+        <addUniqueConstraint columnNames="nome" constraintName="UC_AREA_COMPETENCIANOME_COL" tableName="area_competencia"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-3">
+        <addUniqueConstraint columnNames="nome" constraintName="UC_AREA_PESQUISANOME_COL" tableName="area_pesquisa"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-4">
+        <addUniqueConstraint columnNames="nome" constraintName="UC_CAMPUSNOME_COL" tableName="campus"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-5">
+        <addUniqueConstraint columnNames="nome" constraintName="UC_CATEGORIA_BOLSANOME_COL" tableName="categoria_bolsa"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-6">
+        <addUniqueConstraint columnNames="siape" constraintName="UC_COLABORADORSIAPE_COL" tableName="colaborador"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-7">
+        <addUniqueConstraint columnNames="destino" constraintName="UC_DIARIADESTINO_COL" tableName="diaria"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-8">
+        <addUniqueConstraint columnNames="cnpj" constraintName="UC_EMPRESACNPJ_COL" tableName="empresa"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-9">
+        <addUniqueConstraint columnNames="siape" constraintName="UC_PESQUISADORSIAPE_COL" tableName="pesquisador"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-10">
+        <addUniqueConstraint columnNames="cpf" constraintName="UC_PESSOACPF_COL" tableName="pessoa"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-11">
+        <addUniqueConstraint columnNames="sigla" constraintName="UC_PROJETOSIGLA_COL" tableName="projeto"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-12">
+        <addUniqueConstraint columnNames="titulo" constraintName="UC_PROJETOTITULO_COL" tableName="projeto"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-13">
+        <addUniqueConstraint columnNames="nome" constraintName="UC_PROJETO_MODALIDADENOME_COL" tableName="projeto_modalidade"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-14">
+        <addUniqueConstraint columnNames="nome" constraintName="UC_PROJETO_SERVICO_TIPONOME_COL" tableName="projeto_servico_tipo"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-15">
+        <addUniqueConstraint columnNames="sigla" constraintName="UC_PROPOSTASIGLA_COL" tableName="proposta"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-16">
+        <addUniqueConstraint columnNames="titulo" constraintName="UC_PROPOSTATITULO_COL" tableName="proposta"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-17">
+        <addUniqueConstraint columnNames="nome" constraintName="UC_USUARIONOME_COL" tableName="usuario"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-18">
+        <addUniqueConstraint columnNames="nome" constraintName="UC_VINCULO_INSTITUICAONOME_COL" tableName="vinculo_instituicao"/>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213206-19">
+        <addUniqueConstraint columnNames="nome" constraintName="UC_VINCULO_TRABALHONOME_COL" tableName="vinculo_trabalho"/>
+    </changeSet>
+
+</databaseChangeLog>

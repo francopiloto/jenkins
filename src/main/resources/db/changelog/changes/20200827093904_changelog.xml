@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200827093904-1">
+    	<sql>
+    		ALTER TABLE projeto_solicitacao_compra ALTER COLUMN descricao TYPE varchar(500);
+    		ALTER TABLE projeto_solicitacao_compra ALTER COLUMN justificativa TYPE varchar(500);
+    		ALTER TABLE projeto_solicitacao_servico ALTER COLUMN descricao TYPE varchar(500);
+    		ALTER TABLE projeto_solicitacao_servico ALTER COLUMN justificativa TYPE varchar(500);
+    		ALTER TABLE projeto_solicitacao_servico ALTER COLUMN criterio_selecao TYPE varchar(500);
+    		ALTER TABLE projeto_solicitacao_passagem ALTER COLUMN justificativa TYPE varchar(500);
+    		ALTER TABLE projeto_solicitacao_passagem ALTER COLUMN trecho TYPE varchar(500);
+    		ALTER TABLE projeto_solicitacao_passagem ALTER COLUMN sugestoes TYPE varchar(500);
+    		ALTER TABLE projeto_solicitacao_diaria ALTER COLUMN justificativa TYPE varchar(500);	
+    	</sql>
+    </changeSet>
+    
+</databaseChangeLog>

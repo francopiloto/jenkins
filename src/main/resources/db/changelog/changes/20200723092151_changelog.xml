@@ -1,0 +1,313 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="matheusholandamatos" id="20200723092151-1">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="projeto_viagem_map" />
+        </preConditions>
+		<dropTable cascadeConstraints="true" schemaName="public" tableName="projeto_viagem_map"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-2">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="projeto_plano_viagem" />
+        </preConditions>
+		<dropTable cascadeConstraints="true" schemaName="public" tableName="projeto_plano_viagem"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-3">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="projeto_viagem" />
+        </preConditions>
+		<dropTable cascadeConstraints="true" schemaName="public" tableName="projeto_viagem"/>
+    </changeSet>   
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-4">  
+        <preConditions onFail="MARK_RAN">
+        	<columnExists tableName="projeto_historico" columnName="viagem"/>
+        </preConditions>          
+    	<dropColumn columnName="viagem" tableName="projeto_historico"/>
+    </changeSet>         
+    	    
+    <changeSet author="matheusholandamatos" id="20200723092151-5">
+       	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_viagem_diaria"/>    		
+    		</not>
+    	</preConditions>     
+        <createTable tableName="projeto_viagem_diaria">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_viagem_diariaPK"/>
+            </column>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_executado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_solicitado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_diaria" type="numeric(19, 2)"/>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-6">
+       	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_viagem_diaria_map"/>    		
+    		</not>
+    	</preConditions>      
+        <createTable tableName="projeto_viagem_diaria_map">
+            <column name="versao" type="INTEGER"/>
+            <column name="viagem_diaria_id" type="BIGINT"/>
+            <column name="projeto_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-7">
+       	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_viagem_passagem"/>    		
+    		</not>
+    	</preConditions>       
+        <createTable tableName="projeto_viagem_passagem">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_viagem_passagemPK"/>
+            </column>
+            <column name="mes_execucao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_executado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_solicitado" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valor_passagem" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>            
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-8">
+       	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_viagem_passagem_map"/>    		
+    		</not>
+    	</preConditions>      
+        <createTable tableName="projeto_viagem_passagem_map">
+            <column name="versao" type="INTEGER"/>
+            <column name="viagem_passagem_id" type="BIGINT"/>
+            <column name="projeto_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-9">
+       	<preConditions>
+    		<not>
+        		<columnExists tableName="projeto_historico" columnName="viagem_diaria"/>
+    		</not>
+    	</preConditions>     
+        <addColumn tableName="projeto_historico">
+            <column name="viagem_diaria" type="int4"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-10">
+       	<preConditions>
+    		<not>
+        		<columnExists tableName="projeto_historico" columnName="viagem_passagem"/>
+    		</not>
+    	</preConditions>      
+        <addColumn tableName="projeto_historico">
+            <column name="viagem_passagem" type="int4"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-11">
+       	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_viagem_diaria"/>    		
+    		</not>
+    	</preConditions>      
+        <createTable tableName="projeto_plano_viagem_diaria">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_plano_viagem_diariaPK"/>
+            </column>
+            <column name="mes_execucao" type="SMALLINT"/>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)"/>
+            <column name="valor_executado" type="numeric(19, 2)"/>
+            <column name="valor_solicitado" type="numeric(19, 2)"/>
+            <column name="valor_diaria" type="numeric(19, 2)"/>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="diaria_id" type="BIGINT"/>
+            <column name="projeto_plano_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-12">
+       	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_viagem_passagem"/>    		
+    		</not>
+    	</preConditions>       
+        <createTable tableName="projeto_plano_viagem_passagem">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_plano_viagem_passagemPK"/>
+            </column>
+            <column name="mes_execucao" type="SMALLINT"/>
+            <column name="ordem" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(255)"/>
+            <column name="valor_executado" type="numeric(19, 2)"/>
+            <column name="valor_solicitado" type="numeric(19, 2)"/>
+            <column name="valor_passagem" type="numeric(19, 2)"/>
+            <column name="fonte_recurso_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passagem_id" type="BIGINT"/>
+            <column name="projeto_plano_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>    
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-13">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKg530pw8g9p75pec9wq5nwdbs6"/>
+            </not>
+        </preConditions>       
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_viagem_passagem" constraintName="FKg530pw8g9p75pec9wq5nwdbs6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-14">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKgidfoywnh76dgs1fgk7mr3qqe"/>
+            </not>
+        </preConditions>    
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_viagem_passagem_map" constraintName="FKgidfoywnh76dgs1fgk7mr3qqe" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+    </changeSet>
+
+    <changeSet author="matheusholandamatos" id="20200723092151-15">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKpdf7shft3x3h9hghkq5vpjlqk"/>
+            </not>
+        </preConditions>        
+        <addForeignKeyConstraint baseColumnNames="viagem_diaria_id" baseTableName="projeto_viagem_diaria_map" constraintName="FKpdf7shft3x3h9hghkq5vpjlqk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_viagem_diaria" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-16">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKps7ov6cirx9d11rq90yir7go0"/>
+            </not>
+        </preConditions>    
+        <addForeignKeyConstraint baseColumnNames="viagem_passagem_id" baseTableName="projeto_viagem_passagem_map" constraintName="FKps7ov6cirx9d11rq90yir7go0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_viagem_passagem" validate="true"/>
+    </changeSet>
+
+    <changeSet author="matheusholandamatos" id="20200723092151-17">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKr5ic3w67rw9lle2if5xt7y6bs"/>
+            </not>
+        </preConditions>       
+        <addForeignKeyConstraint baseColumnNames="projeto_id" baseTableName="projeto_viagem_diaria_map" constraintName="FKr5ic3w67rw9lle2if5xt7y6bs" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+    </changeSet>
+
+    <changeSet author="matheusholandamatos" id="20200723092151-18">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKracabyeu48eg7ufhff0fmfoa0"/>
+            </not>
+        </preConditions>     
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_viagem_diaria" constraintName="FKracabyeu48eg7ufhff0fmfoa0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-19">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK24viq4gibsng5pe7yy1500yl8"/>
+            </not>
+        </preConditions>    
+        <addForeignKeyConstraint baseColumnNames="diaria_id" baseTableName="projeto_plano_viagem_diaria" constraintName="FK24viq4gibsng5pe7yy1500yl8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_viagem_diaria" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-20">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK2c34y1tyojh2hmloqeuajdd1"/>
+            </not>
+        </preConditions>      
+        <addForeignKeyConstraint baseColumnNames="projeto_plano_id" baseTableName="projeto_plano_viagem_passagem" constraintName="FK2c34y1tyojh2hmloqeuajdd1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-21">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK8d8sl93h3e61mk6klt39bx3xb"/>
+            </not>
+        </preConditions>      
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_plano_viagem_diaria" constraintName="FK8d8sl93h3e61mk6klt39bx3xb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-22">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKcfpnitg7q7sw2qstxjv0wgi1p"/>
+            </not>
+        </preConditions>     
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_plano_viagem_passagem" constraintName="FKcfpnitg7q7sw2qstxjv0wgi1p" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-23">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKel0kdsq49eflppjl7l19ifxn3"/>
+            </not>
+        </preConditions>        
+        <addForeignKeyConstraint baseColumnNames="projeto_plano_id" baseTableName="projeto_plano_viagem_diaria" constraintName="FKel0kdsq49eflppjl7l19ifxn3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200723092151-24">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKi0ul1m00w1ebsl3t2k499o7ie"/>
+            </not>
+        </preConditions>       
+        <addForeignKeyConstraint baseColumnNames="passagem_id" baseTableName="projeto_plano_viagem_passagem" constraintName="FKi0ul1m00w1ebsl3t2k499o7ie" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_viagem_passagem" validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>

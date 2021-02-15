@@ -1,0 +1,35 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+   
+    <changeSet author="Izabella" id="20210208113217-1">
+       	<preConditions onFail="MARK_RAN"> 
+       		<not>
+    			<columnExists columnName="telefone" tableName="editavel_ifce"/>
+    		</not>
+    	</preConditions> 
+
+        <addColumn tableName="editavel_ifce">
+            <column name="telefone" type="varchar(15)" defaultValue="(85) 3401-2302">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20210208113217-2">
+        <preConditions onFail="MARK_RAN"> 
+    		<columnExists columnName="telefone1" tableName="editavel_ifce"/>
+    	</preConditions> 
+    
+        <dropColumn columnName="telefone1" tableName="editavel_ifce"/>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20210208113217-3">
+       	<preConditions onFail="MARK_RAN"> 
+    		<columnExists columnName="telefone2" tableName="editavel_ifce"/>
+    	</preConditions> 
+        <dropColumn columnName="telefone2" tableName="editavel_ifce"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,17 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200604122439-1">
+        <addColumn tableName="form_caracterizacao">
+            <column name="proposta_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="fcolucas" id="20200604122439-2">
+        <addForeignKeyConstraint baseColumnNames="proposta_id" baseTableName="form_caracterizacao" constraintName="FKhgor1kk1rmthg204m0jwihv5d" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="proposta" validate="true"/>
+    </changeSet>
+    
+</databaseChangeLog>

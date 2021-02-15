@@ -1,0 +1,67 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:pro="http://www.liquibase.org/xml/ns/pro" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    
+    <changeSet author="fcolucas" id="20201109094410-1">
+        <createTable tableName="editavel_ifce">
+            <column autoIncrement="true" name="id" type="SMALLINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="editavel_ifcePK"/>
+            </column>
+            <column name="assinatura" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cargo" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telefone" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fax" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="endereco_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="1604925943227-2">
+        <addForeignKeyConstraint baseColumnNames="endereco_id" baseTableName="editavel_ifce" constraintName="FKaqf8e7yw1e6n3xidmcv7pab9i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="endereco" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="1604925943227-3">
+    	<preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM endereco WHERE id = 1002</sqlCheck>
+        </preConditions>
+    	<insert tableName="endereco">
+    		<column name="id" value="1002"/>
+    		<column name="cep" value="60410-426" />
+    		<column name="logradouro" value="AVENIDA JORGE DUMAR"/>
+    		<column name="bairro" value="JARDIM AMÉRICA"/>
+    		<column name="cidade" value="Fortaleza" />
+    		<column name="uf" value="CE"/>
+    		<column name="numero" value="1703"/>
+    	</insert>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="1604925943227-4">
+		<preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(1) FROM editavel_ifce</sqlCheck>
+        </preConditions>
+        <insert tableName="editavel_ifce">
+        	<column name="nome" value="Instituto Federal do Ceará"/>
+        	<column name="telefone" value="(85) 3401-2300"/>
+        	<column name="fax" value="(85) 3401-2323"/>
+        	<column name="assinatura" value="Virgílio Augusto Sales Araripe"/>
+        	<column name="cargo" value="Reitor" />
+        	<column name="endereco_id" value="1002" />
+        </insert>
+    </changeSet>
+   
+</databaseChangeLog>

@@ -1,0 +1,115 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+     
+    <changeSet author="matheusholandamatos" id="20200622120721-1">
+       	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_empresa"/>    		
+    		</not>
+    	</preConditions>  
+        <createTable tableName="projeto_empresa">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_empresaPK"/>
+            </column>
+            <column name="cargo" type="VARCHAR(255)"/>
+            <column name="coordenador" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(80)"/>
+            <column name="telefone" type="VARCHAR(15)"/>
+            <column name="empresa_id" type="BIGINT"/>
+            <column name="parte_id" type="INTEGER"/>
+            <column name="id_projeto" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200622120721-2">
+       	<preConditions>
+    		<not>
+				<tableExists tableName="projeto_plano_empresa"/>    		
+    		</not>
+    	</preConditions>     
+        <createTable tableName="projeto_plano_empresa">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_plano_empresaPK"/>
+            </column>
+            <column name="cargo" type="VARCHAR(255)"/>
+            <column name="coordenador" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(80)"/>
+            <column name="telefone" type="VARCHAR(15)"/>
+            <column name="empresa_id" type="BIGINT"/>
+            <column name="parte_id" type="INTEGER"/>
+            <column name="projeto_empresa_id" type="BIGINT"/>
+            <column name="projeto_plano_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="matheusholandamatos" id="20200622120721-3">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK2iph2vdyex0yn3y5fmdp4wouy"/>
+            </not>
+        </preConditions>      
+        <addForeignKeyConstraint baseColumnNames="projeto_empresa_id" baseTableName="projeto_plano_empresa" constraintName="FK2iph2vdyex0yn3y5fmdp4wouy" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_empresa" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200622120721-4">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FK3jrjnag9l2a8smhdjjs3hmjma"/>
+            </not>
+        </preConditions>     
+        <addForeignKeyConstraint baseColumnNames="parte_id" baseTableName="projeto_empresa" constraintName="FK3jrjnag9l2a8smhdjjs3hmjma" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade_parte" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200622120721-5">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKjcethotkgmjloto49icqtkrd3"/>
+            </not>
+        </preConditions>     
+        <addForeignKeyConstraint baseColumnNames="projeto_plano_id" baseTableName="projeto_plano_empresa" constraintName="FKjcethotkgmjloto49icqtkrd3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano" validate="true"/>
+    </changeSet>
+
+    <changeSet author="matheusholandamatos" id="20200622120721-6">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKoe915jd6y08jl7y7rae0aq4m0"/>
+            </not>
+        </preConditions>     
+        <addForeignKeyConstraint baseColumnNames="parte_id" baseTableName="projeto_plano_empresa" constraintName="FKoe915jd6y08jl7y7rae0aq4m0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade_parte" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200622120721-7">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKp8enu4f8h5ekdc3mjporvtxed"/>
+            </not>
+        </preConditions>     
+        <addForeignKeyConstraint baseColumnNames="empresa_id" baseTableName="projeto_plano_empresa" constraintName="FKp8enu4f8h5ekdc3mjporvtxed" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="empresa" validate="true"/>
+    </changeSet>
+
+    <changeSet author="matheusholandamatos" id="20200622120721-8">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKrbaqm4vy3oe2vospa6fkouu9m"/>
+            </not>
+        </preConditions>     
+        <addForeignKeyConstraint baseColumnNames="id_projeto" baseTableName="projeto_empresa" constraintName="FKrbaqm4vy3oe2vospa6fkouu9m" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200622120721-9">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKrt5n0a6mcab0c4sish9eb50ng"/>
+            </not>
+        </preConditions>     
+        <addForeignKeyConstraint baseColumnNames="empresa_id" baseTableName="projeto_empresa" constraintName="FKrt5n0a6mcab0c4sish9eb50ng" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="empresa" validate="true"/>
+    </changeSet>
+    
+</databaseChangeLog>

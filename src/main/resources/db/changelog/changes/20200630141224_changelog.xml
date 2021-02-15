@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="matheusholandamatos" id="20200630141224-1">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="projeto" columnName="modalidade_id"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="projeto">
+            <column name="modalidade_id" type="int2"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="matheusholandamatos" id="20200630141224-2">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="FKdst1y606wfwa2kce7h7f4qxv7"/>
+            </not>
+        </preConditions> 
+        <addForeignKeyConstraint baseColumnNames="modalidade_id" baseTableName="projeto" constraintName="FKdst1y606wfwa2kce7h7f4qxv7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_modalidade" validate="true"/>
+    </changeSet>
+   
+</databaseChangeLog>

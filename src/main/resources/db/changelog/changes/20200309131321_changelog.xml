@@ -1,0 +1,25 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200309131321-1">
+        <insert tableName="email_edit">
+            <column name="id" value="15"/>                         
+            <column name="categoria" value="externo"/>
+            <column name="assunto" value="SIPPI - Cadastro de pessoa externa"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado {nome},</p><p>segue em anexo a declaração da comissão de avaliação com o resultado da solicitação de inscrição no Edital Nº {1} do Polo de Inovação.</p>]]></column>                                                                  
+        </insert>                        
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200309131321-2">
+        <insert tableName="email_edit">
+            <column name="id" value="16"/>                         
+            <column name="categoria" value="externo"/>
+            <column name="assunto" value="SIPPI - Solicitação de cadastro de pessoa externa"/>  
+            <column name="mensagem"><![CDATA[<p>Prezado {nome},</p><p>solicitação de cadastro de Pessoa Externa realizado com sucesso. O resultado desta inscrição será enviado por e-mail após análise da comissão de avaliação, conforme edital.</p>]]></column>                                                                 
+        </insert>                        
+    </changeSet>
+    
+</databaseChangeLog>

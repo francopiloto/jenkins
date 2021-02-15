@@ -1,0 +1,195 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="franco" id="20180827213205-1">
+        <sql>
+            ALTER TABLE projeto ADD CONSTRAINT projeto_duracao_check CHECK (duracao &gt;= 1 AND duracao &lt;= 99);
+            ALTER TABLE projeto ADD CONSTRAINT projeto_versao_check CHECK (versao &gt;= 0);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-2">
+        <sql>
+            ALTER TABLE projeto_atividade ADD CONSTRAINT projeto_atividade_mes_fim_check CHECK (mes_fim &gt;= 1 AND mes_fim &lt;= 99);
+            ALTER TABLE projeto_atividade ADD CONSTRAINT projeto_atividade_mes_inicio_check CHECK (mes_inicio &gt;= 1 AND mes_inicio &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-3">
+        <sql>
+            ALTER TABLE projeto_estagio ADD CONSTRAINT projeto_estagio_duracao_check CHECK (duracao &gt;= 1 AND duracao &lt;= 99);
+            ALTER TABLE projeto_estagio ADD CONSTRAINT projeto_estagio_mes_execucao_check CHECK (mes_execucao &gt;= 1 AND mes_execucao &lt;= 99);
+            ALTER TABLE projeto_estagio ADD CONSTRAINT projeto_estagio_meses_executados_check CHECK (meses_executados &gt;= 0 AND meses_executados &lt;= 99);
+            ALTER TABLE projeto_estagio ADD CONSTRAINT projeto_estagio_meses_solicitados_check CHECK (meses_solicitados &gt;= 0 AND meses_solicitados &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-4">
+        <sql>
+            ALTER TABLE projeto_estagio_map ADD CONSTRAINT projeto_estagio_map_versao_check CHECK (versao &gt;= 1);
+        </sql>
+    </changeSet>
+
+
+    <changeSet author="franco" id="20180827213205-5">
+        <sql>
+            ALTER TABLE projeto_historico ADD CONSTRAINT projeto_historico_estagio_check CHECK (estagio &gt;= 1);
+            ALTER TABLE projeto_historico ADD CONSTRAINT projeto_historico_material_check CHECK (material &gt;= 1);
+            ALTER TABLE projeto_historico ADD CONSTRAINT projeto_historico_outros_check CHECK (outros &gt;= 1);
+            ALTER TABLE projeto_historico ADD CONSTRAINT projeto_historico_rh_check CHECK (rh &gt;= 1);
+            ALTER TABLE projeto_historico ADD CONSTRAINT projeto_historico_servico_check CHECK (servico &gt;= 1);
+            ALTER TABLE projeto_historico ADD CONSTRAINT projeto_historico_versao_check CHECK (versao &gt;= 1);
+            ALTER TABLE projeto_historico ADD CONSTRAINT projeto_historico_viagem_check CHECK (viagem &gt;= 1);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-6">
+        <sql>
+            ALTER TABLE projeto_macroentrega ADD CONSTRAINT projeto_macroentrega_duracao_check CHECK (duracao &gt;= 1 AND duracao &lt;= 99);
+            ALTER TABLE projeto_macroentrega ADD CONSTRAINT projeto_macroentrega_inicio_check CHECK (inicio &gt;= 1 AND inicio &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-7">
+        <sql>
+            ALTER TABLE projeto_material ADD CONSTRAINT projeto_material_mes_execucao_check CHECK (mes_execucao &gt;= 1 AND mes_execucao &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-8">
+        <sql>
+            ALTER TABLE projeto_material_map ADD CONSTRAINT projeto_material_map_versao_check CHECK (versao &gt;= 1);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-9">
+        <sql>
+            ALTER TABLE projeto_modalidade ADD CONSTRAINT projeto_modalidade_timeout_limit_check CHECK (timeout_limit &gt;= 1 AND timeout_limit &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-10">
+        <sql>
+            ALTER TABLE projeto_outros ADD CONSTRAINT projeto_outros_mes_execucao_check CHECK (mes_execucao &gt;= 1 AND mes_execucao &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-11">
+        <sql>
+            ALTER TABLE projeto_outros_map ADD CONSTRAINT projeto_outros_map_versao_check CHECK (versao &gt;= 1);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-12">
+        <sql>
+            ALTER TABLE projeto_rh ADD CONSTRAINT projeto_rh_duracao_check CHECK (duracao &gt;= 1 AND duracao &lt;= 99);
+            ALTER TABLE projeto_rh ADD CONSTRAINT projeto_rh_mes_execucao_check CHECK (mes_execucao &gt;= 1 AND mes_execucao &lt;= 99);
+            ALTER TABLE projeto_rh ADD CONSTRAINT projeto_rh_meses_executados_check CHECK (meses_executados &gt;= 0 AND meses_executados &lt;= 99);
+            ALTER TABLE projeto_rh ADD CONSTRAINT projeto_rh_meses_solicitados_check CHECK (meses_solicitados &gt;= 0 AND meses_solicitados &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-13">
+        <sql>
+            ALTER TABLE projeto_rh_map ADD CONSTRAINT projeto_rh_map_versao_check CHECK (versao &gt;= 1);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-14">
+        <sql>
+            ALTER TABLE projeto_servico ADD CONSTRAINT projeto_servico_mes_execucao_check CHECK (mes_execucao &gt;= 1 AND mes_execucao &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-15">
+        <sql>
+            ALTER TABLE projeto_servico_map ADD CONSTRAINT projeto_servico_map_versao_check CHECK (versao &gt;= 1);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-16">
+        <sql>
+            ALTER TABLE projeto_solicitacao ADD CONSTRAINT projeto_solicitacao_oficio_check CHECK (oficio &gt;= 1);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-17">
+        <sql>
+            ALTER TABLE projeto_viagem ADD CONSTRAINT projeto_viagem_mes_execucao_check CHECK (mes_execucao &gt;= 1 AND mes_execucao &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-18">
+        <sql>
+            ALTER TABLE projeto_viagem_map ADD CONSTRAINT projeto_viagem_map_versao_check CHECK (versao &gt;= 1);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-19">
+        <sql>
+            ALTER TABLE proposta ADD CONSTRAINT proposta_duracao_check CHECK (duracao &gt;= 1 AND duracao &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-20">
+        <sql>
+            ALTER TABLE proposta_atividade ADD CONSTRAINT proposta_atividade_mes_fim_check CHECK (mes_fim &gt;= 1 AND mes_fim &lt;= 99);
+            ALTER TABLE proposta_atividade ADD CONSTRAINT proposta_atividade_mes_inicio_check CHECK (mes_inicio &gt;= 1 AND mes_inicio &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-21">
+        <sql>
+            ALTER TABLE proposta_config ADD CONSTRAINT proposta_config_prazo_finalizacao_check CHECK (prazo_finalizacao &gt;= 1 AND prazo_finalizacao &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-22">
+        <sql>
+            ALTER TABLE proposta_estagio ADD CONSTRAINT proposta_estagio_duracao_check CHECK (duracao &gt;= 1 AND duracao &lt;= 99);
+            ALTER TABLE proposta_estagio ADD CONSTRAINT proposta_estagio_mes_execucao_check CHECK (mes_execucao &gt;= 1 AND mes_execucao &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-23">
+        <sql>
+            ALTER TABLE proposta_macroentrega ADD CONSTRAINT proposta_macroentrega_duracao_check CHECK (duracao &gt;= 1 AND duracao &lt;= 99);
+            ALTER TABLE proposta_macroentrega ADD CONSTRAINT proposta_macroentrega_inicio_check CHECK (inicio &gt;= 1 AND inicio &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-24">
+        <sql>
+            ALTER TABLE proposta_material ADD CONSTRAINT proposta_material_mes_execucao_check CHECK (mes_execucao &gt;= 1 AND mes_execucao &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-25">
+        <sql>
+            ALTER TABLE proposta_outros ADD CONSTRAINT proposta_outros_mes_execucao_check CHECK (mes_execucao &gt;= 1 AND mes_execucao &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-26">
+        <sql>
+            ALTER TABLE proposta_rh ADD CONSTRAINT proposta_rh_duracao_check CHECK (duracao &gt;= 1 AND duracao &lt;= 99);
+            ALTER TABLE proposta_rh ADD CONSTRAINT proposta_rh_mes_execucao_check CHECK (mes_execucao &gt;= 1 AND mes_execucao &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-27">
+        <sql>
+            ALTER TABLE proposta_servico ADD CONSTRAINT proposta_servico_mes_execucao_check CHECK (mes_execucao &gt;= 1 AND mes_execucao &lt;= 99);
+        </sql>
+    </changeSet>
+
+    <changeSet author="franco" id="20180827213205-28">
+        <sql>
+            ALTER TABLE proposta_viagem ADD CONSTRAINT proposta_viagem_mes_execucao_check CHECK (mes_execucao &gt;= 1 AND mes_execucao &lt;= 99);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

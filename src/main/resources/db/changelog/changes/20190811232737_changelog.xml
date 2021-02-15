@@ -1,0 +1,140 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="franco" id="20190811232737-1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="local_atividades" />
+            </not>
+        </preConditions>
+        <createTable tableName="local_atividades">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="local_atividadesPK"/>
+            </column>
+            <column name="instituicao" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="local" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="orgao" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="endereco_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+	
+	<changeSet author="franco" id="20190811232737-2">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKikovxrvlmvfk4jp0xn2v2enl0"/>
+			</not>
+		</preConditions>
+        <addForeignKeyConstraint baseColumnNames="endereco_id" baseTableName="local_atividades" constraintName="FKikovxrvlmvfk4jp0xn2v2enl0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="endereco" validate="true"/>
+	</changeSet>
+    
+    <changeSet author="franco" id="20190811232737-3">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="contrato_info" columnName="conta_id"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="contrato_info">
+            <column name="conta_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+	
+	<changeSet author="franco" id="20190811232737-4">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKnf9ribivkn5mct7udaixp85fr"/>
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="conta_id" baseTableName="contrato_info" constraintName="FKnf9ribivkn5mct7udaixp85fr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="conta" validate="true"/>
+	</changeSet>
+    
+    <changeSet author="franco" id="20190811232737-5">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="contrato_info" columnName="valor_mensal"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="contrato_info">
+            <column name="valor_mensal" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+       
+    <changeSet author="franco" id="20190811232737-6">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="projeto_rh" columnName="conta_id"/>
+        </preConditions>
+        <dropColumn columnName="conta_id" tableName="projeto_rh"/>
+    </changeSet>
+	
+    <changeSet author="franco" id="20190811232737-7">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="bolsa_info" columnName="data_inicio"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="bolsa_info">
+            <column name="data_inicio" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+	
+    <changeSet author="franco" id="20190811232737-8">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="bolsa_info" columnName="duracao"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="bolsa_info">
+            <column name="duracao" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+	
+    <changeSet author="franco" id="20190811232737-9">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="bolsa_info" columnName="funcional"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="bolsa_info">
+            <column name="funcional" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+	
+    <changeSet author="franco" id="20190811232737-10">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="bolsa_info" columnName="local_id"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="bolsa_info">
+            <column name="local_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+	
+	<changeSet author="franco" id="20190811232737-11">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<foreignKeyConstraintExists schemaName="public" foreignKeyName="FK3uufp6991k8u4dh9wxvd2ns39"/>
+			</not>
+		</preConditions>
+		<addForeignKeyConstraint baseColumnNames="local_id" baseTableName="bolsa_info" constraintName="FK3uufp6991k8u4dh9wxvd2ns39" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="local_atividades" validate="true"/>
+	</changeSet>
+
+</databaseChangeLog>

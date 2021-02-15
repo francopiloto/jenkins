@@ -1,0 +1,22 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="Izabella" id="20200731085040-1">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="projeto_plano" columnName="distribuicao_id"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="projeto_plano">
+            <column name="distribuicao_id" type="int8"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20200731085040-2">
+        <addForeignKeyConstraint baseColumnNames="distribuicao_id" baseTableName="projeto_plano" constraintName="FKgpxdbtss0w2udp3mitden9lnq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_plano_distribuicao" validate="true"/>
+    </changeSet>
+    
+</databaseChangeLog>

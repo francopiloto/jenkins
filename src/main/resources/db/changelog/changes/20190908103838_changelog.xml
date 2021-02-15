@@ -1,0 +1,15 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="franco" id="20190908103838-1">
+        <renameTable newTableName="projeto_solicitacao_rh" oldTableName="projeto_solicitacaorh" schemaName="public" />
+    </changeSet>
+    
+    <changeSet author="franco" id="20190908103838-2">
+        <addDefaultValue columnDataType="SMALLINT" columnName="ordem" defaultValueNumeric="0" tableName="proposta_aporte"/>
+    </changeSet>
+    
+</databaseChangeLog>

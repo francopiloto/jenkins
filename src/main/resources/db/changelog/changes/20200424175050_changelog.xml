@@ -1,0 +1,307 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200424175050-1">
+        <sql>
+       		delete from databasechangelog where id = '20200423221516-2';
+			delete from databasechangelog where id = '20200423221516-1';
+			delete from databasechangelog where id = '20200423221516-3';
+			delete from databasechangelog where id = '20200424142018-1';
+			delete from databasechangelog where id = '20200424142018-2';
+			delete from databasechangelog where id = '20200424142018-3';
+			delete from databasechangelog where id = '20200424153255-1';
+			delete from databasechangelog where id = '20200424153255-2';
+        </sql>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-2">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<columnExists tableName="projeto_contrapartida" columnName="duracao"/>
+    		</not>
+    	</preConditions>
+        <addColumn tableName="projeto_contrapartida">
+            <column name="duracao" type="int2">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-3">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<columnExists tableName="projeto_contrapartida" columnName="fonte_recurso_id"/>
+    		</not>
+    	</preConditions>
+        <addColumn tableName="projeto_contrapartida">
+            <column name="fonte_recurso_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-4">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<columnExists tableName="projeto_contrapartida" columnName="mes_execucao"/>
+    		</not>
+    	</preConditions>
+        <addColumn tableName="projeto_contrapartida">
+            <column name="mes_execucao" type="int2">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-5">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<columnExists tableName="projeto_contrapartida" columnName="meses_executados"/>
+    		</not>
+    	</preConditions>
+        <addColumn tableName="projeto_contrapartida">
+            <column name="meses_executados" type="int2">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-6">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<columnExists tableName="projeto_contrapartida" columnName="meses_solicitados"/>
+    		</not>
+    	</preConditions>
+        <addColumn tableName="projeto_contrapartida">
+            <column name="meses_solicitados" type="int2">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-7">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+				<columnExists tableName="projeto_contrapartida" columnName="ordem"/>
+    		</not>
+    	</preConditions>
+        <addColumn tableName="projeto_contrapartida">
+            <column name="ordem" type="int2">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-8">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<indexExists indexName="IX_projeto_contrapartida_mapPK" tableName="projeto_contrapartida_map"/>
+    		</not>
+    	</preConditions>
+        <createIndex indexName="IX_projeto_contrapartida_mapPK" tableName="projeto_contrapartida_map" unique="true">
+            <column name="contrapartida_id"/>
+            <column name="versao"/>
+            <column name="projeto_id"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-9">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<indexExists indexName="IX_projeto_payment_mapPK" tableName="projeto_payment_map"/>
+    		</not>
+    	</preConditions>
+        <createIndex indexName="IX_projeto_payment_mapPK" tableName="projeto_payment_map" unique="true">
+            <column name="payment_id"/>
+            <column name="versao"/>
+            <column name="projeto_id"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-10">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<primaryKeyExists tableName="projeto_contrapartida_map"/>
+    		</not>
+    	</preConditions>
+        <addPrimaryKey columnNames="contrapartida_id, versao, projeto_id" constraintName="projeto_contrapartida_mapPK" tableName="projeto_contrapartida_map"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-11">
+    	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<primaryKeyExists tableName="projeto_payment_map"/>
+    		</not>
+    	</preConditions>
+        <addPrimaryKey columnNames="payment_id, versao, projeto_id" constraintName="projeto_payment_mapPK" tableName="projeto_payment_map"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200424175050-12">
+         <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_solicitacao_pagamento_rh_projeto_rh" />
+            </not>
+        </preConditions>    
+        <createTable tableName="projeto_solicitacao_pagamento_rh_projeto_rh">
+            <column name="solicitacao_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+        
+    <changeSet author="matheusholandamatos" id="20200424175050-13">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="projeto_payment" columnName="contrato_info_id"/>
+            </not>
+        </preConditions>    
+        <addColumn tableName="projeto_payment">
+            <column name="contrato_info_id" type="int8"/>
+        </addColumn>
+    </changeSet> 
+    
+     <changeSet author="Izabella" id="20200423221516-14">
+     	<preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="projeto_solicitacao_pagamento_rh" />
+            </not>
+        </preConditions>
+        <createTable tableName="projeto_solicitacao_pagamento_rh">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="projeto_solicitacao_pagamento_rhPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20200423221516-15">
+    	<preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="projeto_payment" columnName="mes_pagamento"/>
+            </not>
+        </preConditions>
+        <addColumn tableName="projeto_payment">
+            <column name="mes_pagamento" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-16">
+    	<preConditions onFail="MARK_RAN">
+        	<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKbveq6uer7it62xg561g6gmwlx"/>
+        </preConditions>
+    	<dropForeignKeyConstraint baseTableName="projeto_contrapartida" constraintName="FKbveq6uer7it62xg561g6gmwlx"/>
+        <addForeignKeyConstraint baseColumnNames="fonte_recurso_id" baseTableName="projeto_contrapartida" constraintName="FKbveq6uer7it62xg561g6gmwlx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_fonte_recurso" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-17">
+    	<preConditions onFail="MARK_RAN">
+        	<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKmdskmawovosbimhdtwd9ctva2"/>
+        </preConditions>
+    	<dropForeignKeyConstraint baseTableName="projeto_solicitacao_pagamento_rh_projeto_rh" constraintName="FKmdskmawovosbimhdtwd9ctva2"/>
+        <addForeignKeyConstraint baseColumnNames="payment_id" baseTableName="projeto_solicitacao_pagamento_rh_projeto_rh" constraintName="FKmdskmawovosbimhdtwd9ctva2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_payment" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-18">
+    	<preConditions onFail="MARK_RAN">
+        	<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKnru7mnkmq29ggbwvoon7t7346"/>
+        </preConditions>
+    	<dropForeignKeyConstraint baseTableName="opcoes_bolsista" constraintName="FKnru7mnkmq29ggbwvoon7t7346"/>
+        <addForeignKeyConstraint baseColumnNames="projeto_rh_desligamento_id" baseTableName="opcoes_bolsista" constraintName="FKnru7mnkmq29ggbwvoon7t7346" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh_desligamento" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-19">
+    	<preConditions onFail="MARK_RAN">
+        	<foreignKeyConstraintExists schemaName="public" foreignKeyName="FK4x0x1syef1ii2ad4hcek5pxir"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="exemplo_resposta" constraintName="FK4x0x1syef1ii2ad4hcek5pxir"/>
+    </changeSet>
+    
+	<changeSet author="fcolucas" id="20200424175050-20">
+		<preConditions onFail="MARK_RAN">
+        	<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKcb9nxn2png9b91ihco1kh9la4"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="exemplo_pergunta_opcao" constraintName="FKcb9nxn2png9b91ihco1kh9la4"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-21">
+    	<preConditions onFail="MARK_RAN">
+        	<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKitw4s3lbcox4l17c7hn3ky90i"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="exemplo_resposta" constraintName="FKitw4s3lbcox4l17c7hn3ky90i"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-22">
+    	<preConditions onFail="MARK_RAN">
+        	<foreignKeyConstraintExists schemaName="public" foreignKeyName="UK_cgo8r0a2lw8xoabfaovl39yk8"/>
+        </preConditions>
+        <dropUniqueConstraint constraintName="UK_cgo8r0a2lw8xoabfaovl39yk8" tableName="opcoes_bolsista"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-23">
+    	<preConditions onFail="MARK_RAN">
+    		<tableExists tableName="exemplo_alguem"/>
+    	</preConditions>
+        <dropTable tableName="exemplo_alguem"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-24">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="exemplo_pergunta"/>
+        </preConditions>
+        <dropTable tableName="exemplo_pergunta"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-25">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="exemplo_pergunta_opcao"/>
+        </preConditions>
+        <dropTable tableName="exemplo_pergunta_opcao"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200424175050-26">
+        <preConditions onFail="MARK_RAN">
+        	<tableExists tableName="exemplo_resposta"/>
+        </preConditions>
+        <dropTable tableName="exemplo_resposta"/>
+    </changeSet>
+  
+    <changeSet author="fcolucas" id="20200424175050-27">
+        <dropUniqueConstraint constraintName="UC_BOLSISTA_AVALIACAO_OPCOESOPCAO_COL" tableName="bolsista_avaliacao_opcoes"/>
+        <addUniqueConstraint columnNames="opcao" constraintName="UC_BOLSISTA_AVALIACAO_OPCOESOPCAO_COL" tableName="bolsista_avaliacao_opcoes"/>
+    </changeSet>
+       
+    <changeSet author="fcolucas" id="20200424175050-28">
+    	<preConditions onFail="MARK_RAN">
+        	<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKqbdsgxoef6utxf7ynbi9xh4dn"/>
+        </preConditions>
+ 	    <dropForeignKeyConstraint baseTableName="projeto_payment" constraintName="FKqbdsgxoef6utxf7ynbi9xh4dn"/>
+        <addForeignKeyConstraint baseColumnNames="contrato_info_id" baseTableName="projeto_payment" constraintName="FKqbdsgxoef6utxf7ynbi9xh4dn" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="contrato_info" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="Izabella" id="20200424175050-29">
+    	<preConditions onFail="MARK_RAN">
+        	<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKr5oq54xspp6a52c10ude14loa"/>
+        </preConditions>
+    	<dropForeignKeyConstraint baseTableName="projeto_solicitacao_pagamento_rh" constraintName="FKr5oq54xspp6a52c10ude14loa"/>
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="projeto_solicitacao_pagamento_rh" constraintName="FKr5oq54xspp6a52c10ude14loa" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="matheusholandamatos" id="20200424175050-30">
+    	<preConditions onFail="MARK_RAN">
+        	<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKb17xf7j8mx6utatox1iokemel"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="projeto_solicitacao_pagamento_rh_projeto_rh" constraintName="FKb17xf7j8mx6utatox1iokemel"/>
+        <addForeignKeyConstraint baseColumnNames="payment_id" baseTableName="projeto_solicitacao_pagamento_rh_projeto_rh" constraintName="FKb17xf7j8mx6utatox1iokemel" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_rh" validate="true"/>
+    </changeSet>
+
+    <changeSet author="matheusholandamatos" id="20200424175050-31">
+    	<preConditions onFail="MARK_RAN">
+        	<foreignKeyConstraintExists schemaName="public" foreignKeyName="FKswbvc6y2x9imdd0rm7u1acwj1"/>
+        </preConditions>
+    	<dropForeignKeyConstraint baseTableName="projeto_solicitacao_pagamento_rh_projeto_rh" constraintName="FKswbvc6y2x9imdd0rm7u1acwj1"/>
+        <addForeignKeyConstraint baseColumnNames="solicitacao_id" baseTableName="projeto_solicitacao_pagamento_rh_projeto_rh" constraintName="FKswbvc6y2x9imdd0rm7u1acwj1" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projeto_solicitacao_pagamento_rh" validate="true"/>
+    </changeSet>
+    
+</databaseChangeLog>

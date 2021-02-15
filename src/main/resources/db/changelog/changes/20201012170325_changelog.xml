@@ -1,0 +1,90 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="franco" id="20201012170325-1">
+		<update tableName="supervisor_notificacao">
+			<column name="notificacao" value="cadastro.aluno" />
+			<where>notificacao = 'register.student'</where>
+		</update>
+		<update tableName="supervisor_notificacao">
+			<column name="notificacao" value="cadastro.pesquisador" />
+			<where>notificacao = 'register.researcher'</where>
+		</update>
+		<update tableName="supervisor_notificacao">
+			<column name="notificacao" value="cadastro.colaborador" />
+			<where>notificacao = 'register.contributor'</where>
+		</update>
+		<update tableName="supervisor_notificacao">
+			<column name="notificacao" value="cadastro.empresa" />
+			<where>notificacao = 'register.company'</where>
+		</update>
+		<update tableName="supervisor_notificacao">
+			<column name="notificacao" value="cadastro.externo" />
+			<where>notificacao = 'register.external'</where>
+		</update>
+	</changeSet>
+	
+	<changeSet author="franco" id="20201012170325-2">
+		<update tableName="notificacao">
+			<column name="tipo" value="cadastro.aluno" />
+			<where>tipo = 'register.student'</where>
+		</update>
+		<update tableName="notificacao">
+			<column name="tipo" value="cadastro.pesquisador" />
+			<where>tipo = 'register.researcher'</where>
+		</update>
+		<update tableName="notificacao">
+			<column name="tipo" value="cadastro.colaborador" />
+			<where>tipo = 'register.contributor'</where>
+		</update>
+		<update tableName="notificacao">
+			<column name="tipo" value="cadastro.empresa" />
+			<where>tipo = 'register.company'</where>
+		</update>
+		<update tableName="notificacao">
+			<column name="tipo" value="cadastro.externo" />
+			<where>tipo = 'register.external'</where>
+		</update>
+	</changeSet>
+	
+	<changeSet author="franco" id="20201012170325-3">
+        <addColumn tableName="aluno">
+            <column name="data_criacao" type="timestamp"/>
+            <column name="data_modificacao" type="timestamp"/>
+        </addColumn>
+        <addColumn tableName="pesquisador">
+            <column name="data_criacao" type="timestamp"/>
+            <column name="data_modificacao" type="timestamp"/>
+        </addColumn>
+        <addColumn tableName="colaborador">
+            <column name="data_criacao" type="timestamp"/>
+            <column name="data_modificacao" type="timestamp"/>
+        </addColumn>
+        <addColumn tableName="empresa">
+            <column name="data_criacao" type="timestamp"/>
+            <column name="data_modificacao" type="timestamp"/>
+        </addColumn>
+        <addColumn tableName="externo">
+            <column name="data_criacao" type="timestamp"/>
+            <column name="data_modificacao" type="timestamp"/>
+        </addColumn>
+        <addColumn tableName="supervisor">
+            <column name="data_criacao" type="timestamp"/>
+            <column name="data_modificacao" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="franco" id="20201012170325-4">
+    	<sql>
+    		UPDATE aluno a SET data_criacao = n.data FROM notificacao n WHERE a.id = n.referencia AND n.tipo = 'cadastro.aluno';
+			UPDATE pesquisador p SET data_criacao = n.data FROM notificacao n WHERE p.id = n.referencia AND n.tipo = 'cadastro.pesquisador';
+			UPDATE colaborador c SET data_criacao = n.data FROM notificacao n WHERE c.id = n.referencia AND n.tipo = 'cadastro.colaborador';
+			UPDATE empresa e SET data_criacao = n.data FROM notificacao n WHERE e.id = n.referencia AND n.tipo = 'cadastro.empresa';
+			UPDATE externo e SET data_criacao = n.data FROM notificacao n WHERE e.id = n.referencia AND n.tipo = 'cadastro.externo';
+    	</sql>
+    </changeSet>
+    
+</databaseChangeLog>

@@ -1,0 +1,39 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    
+    <changeSet author="fcolucas" id="20200304112548-1">
+        <addColumn tableName="externo">
+            <column name="vinculo_ativado" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200304112548-2">
+        <addColumn tableName="externo">
+            <column name="vinculo_externo_id" type="int8">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200304112548-3">
+        <addForeignKeyConstraint baseColumnNames="vinculo_externo_id" baseTableName="externo" constraintName="FKj0f4gerv67b7fpylwlk16ohxe" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="vinculo_externo" validate="true"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200304112548-4">
+        <dropForeignKeyConstraint baseTableName="vinculo_externo" constraintName="FKnlc6kif4dbm1y56bi9064cjw2"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200304112548-5">
+        <dropColumn columnName="externo_id" tableName="vinculo_externo"/>
+    </changeSet>
+    
+    <changeSet author="fcolucas" id="20200304112548-6">
+        <dropColumn columnName="vinculo_externo" tableName="externo"/>
+    </changeSet>
+   
+</databaseChangeLog>
