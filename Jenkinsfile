@@ -7,9 +7,11 @@ pipeline {
 
     stages {
         stage('Setup environment') {
-            script {
-                if (env.BRANCH_NAME == 'master') {
-                    ENVIRONMENT = 'prod'
+            steps {
+                script {
+                    if (env.BRANCH_NAME == 'master') {
+                        ENVIRONMENT = 'prod'
+                    }
                 }
             }
 
