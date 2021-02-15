@@ -59,7 +59,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 ws(workspace) {
-                    bat 'rd dist /s /q'
+                    catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                        bat 'rd dist /s /q'
+                    }
+
                     bat 'ren build dist'
                 }
             }
