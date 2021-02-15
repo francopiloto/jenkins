@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        label {
+            label ""
+            customWorkspace "C:/sippi/dev/react"
+        }
+    }
     
     stages {
         stage('Stop') {
@@ -14,13 +19,13 @@ pipeline {
         stage('Build') {
             steps {
                 bat 'npm install'
-                bat 'npm rum build'
+                bat 'npm run build'
             }
         }
         
         stage('Start') {
             steps {
-                bat 'pm2 start teste.js --name sippi-react-dev'
+                bat 'pm2 start server/index.js --name sippi-react-dev'
                 bat 'pm2 save'
             }
         }
