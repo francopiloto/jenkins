@@ -26,7 +26,10 @@ pipeline {
                 ws(workspace) {
                     checkout scm
 
-                    bat 'rd build /s /q'
+                    catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                        bat 'rd build /s /q'
+                    }
+                    
                     bat 'del .env'
                     bat "ren .env.${target} .env"
                 }
