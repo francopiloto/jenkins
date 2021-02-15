@@ -39,6 +39,8 @@ pipeline {
                         properties['spring.datasource.url'] = 'jdbc:postgresql://localhost:5432/api-teste'
                         properties['server.port'] = apiPort
                         properties['cors.allowed.origins'] = "http://sippi.polodeinovacao.ifce.edu.br:${reactPort}"
+
+                        echo properties
                     }
                 }
             }
