@@ -13,9 +13,9 @@ pipeline {
                         ENVIRONMENT = 'prod'
                     }
                 }
-            }
 
-            echo 'environment: $ENVIRONMENT'
+                echo 'environment: $ENVIRONMENT'
+            }
         }
 
         stage('Stop service') {
@@ -24,7 +24,7 @@ pipeline {
                     bat 'pm2 stop sippi-react-$ENVIRONMENT'
                     bat 'pm2 delete sippi-react-$ENVIRONMENT'
                 }
-            }           
+            }
         }
 
         stage('Prepare workspace') {
@@ -42,7 +42,7 @@ pipeline {
                 bat 'npm run build'
             }
         }
-        
+
         stage('Start service') {
             steps {
                 bat 'pm2 start server/index.js --name sippi-react-$ENVIRONMENT'
