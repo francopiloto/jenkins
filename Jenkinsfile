@@ -70,10 +70,14 @@ pipeline {
             steps {
                 ws(workspace) {
                     catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                        bat 'rd dist /s /q'
+                    }
+
+                    catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
                         bat 'del log.txt'
                     }
 
-                    bat 'move build\\libs\\sippi.jar .'
+                    bat 'move build\\libs\\sippi.jar dist'
                     bat 'rd build /s /q'
                     bat 'rd src /s /q'
                 }
@@ -83,7 +87,7 @@ pipeline {
         stage('Start service') {
             steps {
                 ws(workspace) {
-                    bat "pm2 start api.bat --name ${serviceName} --log log.txt"
+                    bat "pm2 start java --name ${serviceName} --log log.txt -- -jar dist/sippi.jar"
                     bat 'pm2 save'
                 }
             }
