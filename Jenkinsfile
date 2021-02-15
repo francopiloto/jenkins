@@ -19,7 +19,7 @@ pipeline {
         
         stage('Start') {
             steps {
-                bat 'pm2 start server/index.js --name sippi-react-dev'
+                bat 'pm2 start ./server/index.js --name sippi-react-dev'
             }
         }
     }
