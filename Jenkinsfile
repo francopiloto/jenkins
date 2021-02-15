@@ -36,10 +36,17 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Install dependencies') {
             steps {
                 ws(workspace) {
                     bat 'npm install'
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                ws(workspace) {
                     bat 'npm run build'
                 }
             }
@@ -64,6 +71,8 @@ pipeline {
                     }
 
                     bat 'ren build dist'
+                    bat 'rd src /s /q'
+                    bat 'rd public /s /q'
                 }
             }
         }
