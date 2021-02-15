@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Stop') {
             steps {
-                bat 'pm2 stop sippi-react-dev'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    bat 'pm2 stop sippi-react-dev'
+                }
             }
         }
         
