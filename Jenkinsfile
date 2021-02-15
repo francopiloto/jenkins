@@ -14,25 +14,25 @@ pipeline {
                     }
                 }
 
-                echo 'environment: $ENVIRONMENT'
+                echo "environment: ${ENVIRONMENT}"
             }
         }
 
         stage('Stop service') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    bat 'pm2 stop sippi-react-$ENVIRONMENT'
-                    bat 'pm2 delete sippi-react-$ENVIRONMENT'
+                    bat "pm2 stop sippi-react-${ENVIRONMENT}"
+                    bat "pm2 delete sippi-react-${ENVIRONMENT}"
                 }
             }
         }
 
         stage('Prepare workspace') {
             steps {
-                ws('C:/sippi/$ENVIRONMENT/react')
+                ws("C:/sippi/${ENVIRONMENT}/react")
                 checkout scm
                 bat 'del .env'
-                bat 'rn .env.$ENVIRONMENT .env'
+                bat "rn .env.${ENVIRONMENT} .env"
             }
         }
 
@@ -45,7 +45,7 @@ pipeline {
 
         stage('Start service') {
             steps {
-                bat 'pm2 start server/index.js --name sippi-react-$ENVIRONMENT'
+                bat "pm2 start server/index.js --name sippi-react-${ENVIRONMENT}"
                 bat 'pm2 save'
             }
         }
