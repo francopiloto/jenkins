@@ -5,6 +5,7 @@ pipeline {
         target = 'dev'
         serviceName = ''
         workspace = ''
+        port = 5003
     }
 
     stages {
@@ -13,6 +14,7 @@ pipeline {
                 script {
                     if (env.BRANCH_NAME == 'master') {
                         target = 'prod'
+                        port = 80
                     }
 
                     serviceName = "sippi-${target}-react"
@@ -80,7 +82,7 @@ pipeline {
         stage('Start service') {
             steps {
                 ws(workspace) {
-                    bat "pm2 start server/index.js --name ${serviceName}"
+                    bat "pm2 start server/index.js --name ${serviceName} -- ${port}"
                     bat 'pm2 save'
                 }
             }
