@@ -1,7 +1,6 @@
 package ifce.polo.sippi.dto.config;
 
-import ifce.polo.sippi.annotation.EqualTo;
-import ifce.polo.sippi.annotation.NotEqualTo;
+
 import ifce.polo.sippi.annotation.Password;
 import lombok.Setter;
 
@@ -22,7 +21,7 @@ public class UserPassword
 /* --------------------------------------------------------------------------------------------- */
 
     @Password
-    @NotEqualTo("currentPassword")
+   
     public String getNewPassword() {
         return newPassword;
     }
@@ -30,7 +29,7 @@ public class UserPassword
 /* --------------------------------------------------------------------------------------------- */
 
     @Password
-    @EqualTo("newPassword")
+   
     public String getNewPasswordConfirm() {
         return newPasswordConfirm;
     }
