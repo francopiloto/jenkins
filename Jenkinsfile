@@ -28,7 +28,7 @@ pipeline {
 
                     bat 'rd build /s /q'
                     bat 'del .env'
-                    bat "rn .env.${target} .env"
+                    bat "ren .env.${target} .env"
                 }
             }
         }
@@ -57,7 +57,7 @@ pipeline {
             steps {
                 ws(workspace) {
                     bat 'rd dist /s /q'
-                    bat 'rn build dist'
+                    bat 'ren build dist'
                 }
             }
         }
