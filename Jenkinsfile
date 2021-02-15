@@ -26,7 +26,7 @@ pipeline {
                 ws(workspace) {
                     checkout scm
 
-                    bat "rd ${build} /s /q"
+                    bat 'rd build /s /q'
                     bat 'del .env'
                     bat "rn .env.${target} .env"
                 }
