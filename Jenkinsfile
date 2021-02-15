@@ -74,7 +74,7 @@ pipeline {
                     }
 
                     bat 'mkdir dist'
-                    bat 'move build/libs/sippi.jar dist/'
+                    bat 'move build\\libs\\sippi.jar dist'
                     bat 'rd build /s /q'
                     bat 'rd src /s /q'
                 }
@@ -84,7 +84,7 @@ pipeline {
         stage('Start service') {
             steps {
                 ws(workspace) {
-                    bat "pm2 start api.bat --name ${serviceName}"
+                    bat "pm2 start api --name ${serviceName} --l log.txt"
                     bat 'pm2 save'
                 }
             }
