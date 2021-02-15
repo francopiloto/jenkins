@@ -77,6 +77,7 @@ pipeline {
                         bat 'del log.txt'
                     }
 
+                    bat 'mkdir dist'
                     bat 'move build\\libs\\sippi.jar dist'
                     bat 'rd build /s /q'
                     bat 'rd src /s /q'
