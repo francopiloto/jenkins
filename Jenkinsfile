@@ -84,7 +84,7 @@ pipeline {
         stage('Start service') {
             steps {
                 ws(workspace) {
-                    bat "pm2 start api --name ${serviceName} --l log.txt"
+                    bat "pm2 start api --name ${serviceName} --log log.txt"
                     bat 'pm2 save'
                 }
             }
