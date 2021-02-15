@@ -2,7 +2,9 @@ pipeline {
     agent any
 
     environment {
-        ENVIRONMENT = 'dev'
+        target = 'dev'
+        serviceName = ''
+        workspace = ''
     }
 
     stages {
@@ -10,43 +12,62 @@ pipeline {
             steps {
                 script {
                     if (env.BRANCH_NAME == 'master') {
-                        ENVIRONMENT = 'prod'
+                        target = 'prod'
                     }
-                }
 
-                echo "environment: ${ENVIRONMENT}"
-            }
-        }
-
-        stage('Stop service') {
-            steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    bat "pm2 stop sippi-react-${ENVIRONMENT}"
-                    bat "pm2 delete sippi-react-${ENVIRONMENT}"
-                }
+                    serviceName = "sippi-${target}-react"
+                    workspace = "C:/sippi/${target}/react"
+                }               
             }
         }
 
         stage('Prepare workspace') {
             steps {
-                ws("C:/sippi/${ENVIRONMENT}/react")
-                checkout scm
-                bat 'del .env'
-                bat "rn .env.${ENVIRONMENT} .env"
+                ws(workspace) {
+                    checkout scm
+
+                    bat "rd ${build} /s /q"
+                    bat 'del .env'
+                    bat "rn .env.${target} .env"
+                }
             }
         }
 
         stage('Build') {
             steps {
-                bat 'npm install'
-                bat 'npm run build'
+                ws(workspace) {
+                    bat 'npm install'
+                    bat 'npm run build'
+                }
+            }
+        }
+
+        stage('Stop service') {
+            steps {
+                ws(workspace) {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        bat "pm2 stop ${serviceName}"
+                        bat "pm2 delete ${serviceName}"
+                    }
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                ws(workspace) {
+                    bat 'rd dist /s /q'
+                    bat 'rn build dist'
+                }
             }
         }
 
         stage('Start service') {
             steps {
-                bat "pm2 start server/index.js --name sippi-react-${ENVIRONMENT}"
-                bat 'pm2 save'
+                ws(workspace) {
+                    bat "pm2 start server/index.js --name ${serviceName}"
+                    bat 'pm2 save'
+                }
             }
         }
     }   
